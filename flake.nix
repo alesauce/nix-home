@@ -49,7 +49,22 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#Alexanders-MacBook-Pro
     darwinConfigurations."Alexanders-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [
+	self.darwinModules.base
+	self.darwinModules.homebrew-handler
+	home-manager.darwinModules.home-manager
+	./home-manager
+      ];
+    };
+
+    darwinModules = {
+      base = { pkgs, ...}: import ./nix-darwin/base {
+	inherit pkgs;
+      };
+
+      homebrew-handler = {
+	imports = [ ./nix-darwin/homebrew-handler ];
+      };
     };
 
     # Expose the package set, including overlays, for convenience.

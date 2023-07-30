@@ -23,6 +23,7 @@
 	experimental-features = "nix-command flakes";
 	extra-nix-path = "nixpkgs=flake:nixpkgs";
 	max-jobs = "auto";
+	warn-dirty = false;
       };
     };
 

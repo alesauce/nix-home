@@ -2,7 +2,7 @@
   description = "alesauce's Darwin configs";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-darwin = {
 	url = "github:lnl7/nix-darwin";
 	inputs.nixpkgs.follows = "nixpkgs";
@@ -16,34 +16,18 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     username = "alesauce";
-    configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [ pkgs.vim
-        ];
+    stateVersion = "22.11";
 
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
-      # nix.package = pkgs.nix;
-
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
-
-      # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;  # default shell on catalina
-      # programs.fish.enable = true;
-
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 4;
-
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-    };
+    overlays = [
+      (final: prev: {
+        homeDirectory =
+          if (prev.stdenv.isDarwin)
+          then "/Users/${username}"
+          else "/home/${username}";
+	
+	inherit stateVersion username;
+      })
+    ];
   in
   {
     # Build darwin flake using:
@@ -59,7 +43,7 @@
 
     darwinModules = {
       base = { pkgs, ...}: import ./nix-darwin/base {
-	inherit pkgs;
+	inherit overlays pkgs;
       };
 
       homebrew-handler = {

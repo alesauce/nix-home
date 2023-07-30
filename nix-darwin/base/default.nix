@@ -1,4 +1,4 @@
-{ pkgs ... }:
+{ overlays, pkgs, ... }:
 
 {
   config = {
@@ -30,6 +30,8 @@
       config = {
 	allowUnfree = true;
       };
+      hostPlatform = "aarch64-darwin";
+      inherit overlays;
     };
 
     programs = {
@@ -38,7 +40,9 @@
     };
 
     services.nix-daemon.enable = true;
+
     security.pam.enableSudoTouchIdAuth = true;
+
     system = {
       defaults = {
 	dock = {
@@ -49,12 +53,16 @@
 	finder.CreateDesktop = false;
 	magicmouse.MouseButtonMode = "TwoButton";
 	menuExtraClock.Show24Hour = true;
-	screencapture.location = "/Users/alesauce/screenshots"
+	screencapture.location = "/Users/alesauce/screenshots";
       };
+
       # TODO: look into additional keymappings for base computer or disabling keyboard:
       # https://developer.apple.com/library/archive/technotes/tn2450/_index.html
       keyboard.enableKeyMapping = true;
       keyboard.remapCapsLockToEscape = true;
     };
+
+    users.users.alesauce.name = "alesauce";
+    users.users.alesauce.home = pkgs.homeDirectory;
   };
 }

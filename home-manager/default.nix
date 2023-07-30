@@ -24,7 +24,15 @@
 	    wget
 	  ];
 	};
+
         programs = import ./programs.nix { inherit pkgs; };
+
+	xdg.configFile = {
+	  "alacritty" = {
+	    source = ./configs/alacritty;
+	    recursive = false;
+	  };
+	};
       };
     };
   };

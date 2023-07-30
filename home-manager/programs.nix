@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, ... }:
 
 {
   direnv = {
@@ -14,8 +14,8 @@
     enable = true;
   };
 
-  neovim = import ./neovim.nix {
-    inherit (pkgs) vimPlugins;
+  nixvim = import ./nvim.nix {
+    inherit pkgs;
   };
 
   starship = {

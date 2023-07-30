@@ -6,6 +6,10 @@
     nix-direnv.enable = true;
   };
 
+  exa = {
+    enable = true;
+  };
+
   fzf = {
     enable = true;
   };
@@ -14,8 +18,9 @@
     enable = true;
   };
 
-  nixvim = import ./neovim {
-    inherit pkgs;
+  pls = {
+    enable = true;
+    enableAliases = true;
   };
 
   starship = {
@@ -27,8 +32,10 @@
     };
   };
 
-  tmux = import ./tmux.nix {
-    inherit (pkgs) tmuxPlugins;
+  zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
   };
 
   zsh = {

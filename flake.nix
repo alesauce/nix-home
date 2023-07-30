@@ -11,8 +11,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = { 
-      url = "github:nix-community/nixvim"; 
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -37,16 +37,16 @@
       # $ darwin-rebuild build --flake .#Alexanders-MacBook-Pro
       darwinConfigurations."Alexanders-MacBook-Pro" =
         nix-darwin.lib.darwinSystem {
-	  inherit inputs;
+          inherit inputs;
           modules = [
             self.darwinModules.base
             self.darwinModules.homebrew-handler
-            home-manager.darwinModules.home-manager {
-	      home-manager.users.alesauce.imports = [
-	        inputs.nixvim.homeManagerModules.nixvim
-	      ];
-	    }
-	    ./home-manager
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.users.alesauce.imports =
+                [ inputs.nixvim.homeManagerModules.nixvim ];
+            }
+            ./home-manager
           ];
         };
 

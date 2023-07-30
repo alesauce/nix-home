@@ -14,25 +14,18 @@
     users = {
       alesauce = { pkgs, ... }: {
         home = {
-	  inherit (pkgs) stateVersion;
-          packages = with pkgs; [
-	    ripgrep
-	    gh
-	    nixfmt
-	    nixpkgs-fmt
-	    htop
-	    wget
-	  ];
-	};
+          inherit (pkgs) stateVersion;
+          packages = with pkgs; [ ripgrep gh nixfmt nixpkgs-fmt htop wget ];
+        };
 
         programs = import ./programs.nix { inherit pkgs; };
 
-	xdg.configFile = {
-	  "alacritty" = {
-	    source = ./configs/alacritty;
-	    recursive = false;
-	  };
-	};
+        xdg.configFile = {
+          "alacritty" = {
+            source = ./configs/alacritty;
+            recursive = false;
+          };
+        };
       };
     };
   };

@@ -10,7 +10,7 @@
   mouse = true;
   newSession = true;
   terminal = "screen-256color";
-    
+
   extraConfig = (builtins.readFile ./configs/tmux/tmux.conf);
 
   plugins = with tmuxPlugins; [

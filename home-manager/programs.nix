@@ -14,7 +14,7 @@
     enable = true;
   };
 
-  nixvim = import ./nvim.nix {
+  nixvim = import ./neovim {
     inherit pkgs;
   };
 

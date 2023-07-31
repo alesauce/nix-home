@@ -18,11 +18,6 @@
     enable = true;
   };
 
-  pls = {
-    enable = true;
-    enableAliases = true;
-  };
-
   starship = {
     enable = true;
     enableNushellIntegration = true;

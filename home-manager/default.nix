@@ -16,7 +16,7 @@
         imports = [ ./neovim ./tmux ];
         home = {
           inherit (pkgs) stateVersion;
-          packages = with pkgs; [ ripgrep gh nixfmt nixpkgs-fmt htop wget ];
+          packages = with pkgs; [ fd ripgrep gh nixfmt nixpkgs-fmt htop wget ];
         };
 
         programs = import ./programs.nix { inherit pkgs; };

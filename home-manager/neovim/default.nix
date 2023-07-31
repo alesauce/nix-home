@@ -5,6 +5,7 @@
     ./base-opts.nix
     ./base-plugins.nix
     ./colorscheme.nix
+    ./telescope.nix
   ];
 
   programs.nixvim = {
@@ -19,25 +20,21 @@
     '';
   };
 
-  # TODO: move this over to completions module
-  # Completions
-  # completeopt = "menuone,noselect";
+    # TODO: move this over to completions module
+    # Completions
+    # completeopt = "menuone,noselect";
 
-  # TODO: move these over to completions module
-  # Completions (cmp)
-  # nvim-cmp.enable = true;
-  # cmp-buffer.enable = true;
-  # cmp-cmdline.enable = true;
-  # cmp_luasnip.enable = true;
-  # cmp-path.enable = true;
-  # cmp-nvim-lsp.enable = true;
-  # cmp-nvim-lua.enable = true;
-  # luasnip.enable = true;
+    # TODO: move these over to completions module
+    # Completions (cmp)
+    # nvim-cmp.enable = true;
+    # cmp-buffer.enable = true;
+    # cmp-cmdline.enable = true;
+    # cmp_luasnip.enable = true;
+    # cmp-path.enable = true;
+    # cmp-nvim-lsp.enable = true;
+    # cmp-nvim-lua.enable = true;
+    # luasnip.enable = true;
 
-  # TODO: create telescope module
-  # telescope.enable = true;
-  # telescope.extensions.file_browser.enable = true;
-  # telescope.extensions.media_files.enable = true;
-  # tmux-navigator.enable = true;
-  # treesitter.enable = true;
+    # TODO: create treesitter module
+    # treesitter.enable = true;
 }

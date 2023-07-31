@@ -5,32 +5,25 @@
     fonts = {
       fontDir.enable = true;
       fonts = with pkgs; [
-	recursive
-	(nerdfonts.override {
-	  fonts = [
-	    "FiraCode"
-	    "JetBrainsMono"
-	  ];
-	})
+        recursive
+        (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
       ];
     };
 
     nix = {
       package = pkgs.nixVersions.unstable;
       settings = {
-	auto-optimise-store = true;
-	build-users-group = "nixbld";
-	experimental-features = "nix-command flakes";
-	extra-nix-path = "nixpkgs=flake:nixpkgs";
-	max-jobs = "auto";
-	warn-dirty = false;
+        auto-optimise-store = true;
+        build-users-group = "nixbld";
+        experimental-features = "nix-command flakes";
+        extra-nix-path = "nixpkgs=flake:nixpkgs";
+        max-jobs = "auto";
+        warn-dirty = false;
       };
     };
 
     nixpkgs = {
-      config = {
-	allowUnfree = true;
-      };
+      config = { allowUnfree = true; };
       hostPlatform = "aarch64-darwin";
       inherit overlays;
     };
@@ -46,15 +39,15 @@
 
     system = {
       defaults = {
-	dock = {
-	  autohide = true;
-	  mru-spaces = false;
-	  show-recents = false;
-	};
-	finder.CreateDesktop = false;
-	magicmouse.MouseButtonMode = "TwoButton";
-	menuExtraClock.Show24Hour = true;
-	screencapture.location = "/Users/alesauce/screenshots";
+        dock = {
+          autohide = true;
+          mru-spaces = false;
+          show-recents = false;
+        };
+        finder.CreateDesktop = false;
+        magicmouse.MouseButtonMode = "TwoButton";
+        menuExtraClock.Show24Hour = true;
+        screencapture.location = "/Users/alesauce/screenshots";
       };
 
       # TODO: look into additional keymappings for base computer or disabling keyboard:

@@ -5,6 +5,9 @@
     plugins.treesitter = {
       enable = true;
 
+      indent = true;
+      nixvimInjections = true;
+
       ensureInstalled = [
         "bash"
         "dockerfile"

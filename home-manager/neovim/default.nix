@@ -5,6 +5,7 @@
     ./base-opts.nix
     ./base-plugins.nix
     ./colorscheme.nix
+    ./lsp.nix
     ./telescope.nix
     ./treesitter.nix
   ];

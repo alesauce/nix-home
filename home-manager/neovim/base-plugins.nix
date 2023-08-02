@@ -2,6 +2,8 @@
 
 {
   programs.nixvim = {
+    # TODO: add formatter.nvim: https://github.com/mhartington/formatter.nvim
+    # TODO: add nvim-lint: https://github.com/mfussenegger/nvim-lint
     plugins = {
       # TODO: review docs and configure harpoon: https://github.com/ThePrimeagen/harpoon
       # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_harpoon_enable

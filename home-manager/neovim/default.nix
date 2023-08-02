@@ -6,6 +6,7 @@
     ./base-plugins.nix
     ./colorscheme.nix
     ./telescope.nix
+    ./treesitter.nix
   ];
 
   programs.nixvim = {

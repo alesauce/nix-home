@@ -38,6 +38,24 @@
       darwinConfigurations."Alexanders-MacBook-Pro" =
         nix-darwin.lib.darwinSystem {
           inherit inputs;
+          system = "aarch64-darwin";
+          modules = [
+            self.darwinModules.base
+            self.darwinModules.homebrew-handler
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.users.alesauce.imports =
+                [ inputs.nixvim.homeManagerModules.nixvim ];
+            }
+            ./home-manager
+          ];
+        };
+
+      # TODO: find a less noob-y way to handle multiple hosts
+      darwinConfigurations."08f8bc618702" =
+        nix-darwin.lib.darwinSystem {
+          inherit inputs;
+          system = "x86_64-darwin";
           modules = [
             self.darwinModules.base
             self.darwinModules.homebrew-handler
@@ -56,8 +74,5 @@
 
         homebrew-handler = { imports = [ ./nix-darwin/homebrew-handler ]; };
       };
-
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."Alexanders-MacBook-Pro".pkgs;
     };
 }

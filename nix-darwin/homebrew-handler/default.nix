@@ -9,6 +9,8 @@
     };
     casks = [
       "alacritty"
+      # uncomment to add tiling window manager
+      #"amethyst"
       "arc"
       "brave-browser"
       "discord"
@@ -18,6 +20,5 @@
       "spotify"
       "todoist"
     ];
-    taps = [ "homebrew/cask" ];
   };
 }

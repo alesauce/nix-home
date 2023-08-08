@@ -13,17 +13,9 @@
       # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_toggleterm_enable
       # toggleterm.enable = true;
 
-      # TODO: add todo-comments: https://github.com/folke/todo-comments.nvim
-      # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_todo_comments_enable
-      # todo-comments.enable = true;
-
-      # TODO: Add which-key: https://github.com/folke/which-key.nvim
+      # TODO: configure which-key: https://github.com/folke/which-key.nvim
       # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_which_key_enable
-      # which-key.enable = true;
-
-      # TODO: add undotree: https://github.com/mbbill/undotree
-      # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_undotree_enable
-      # undotree.enable = true;
+      which-key.enable = true;
 
       nix.enable = true;
       tmux-navigator.enable = true;
@@ -45,6 +37,14 @@
           lua = ["string" "source"];
         };
       };
+
+      # TODO: configure todo-comments: https://github.com/folke/todo-comments.nvim
+      # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_todo_comments_enable
+      todo-comments.enable = true;
+
+      # TODO: configure undotree: https://github.com/mbbill/undotree
+      # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_undotree_enable
+      undotree.enable = true;
     };
   };
 }

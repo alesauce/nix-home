@@ -23,8 +23,10 @@
 
       # tmux aliases
       tk = "tmux kill-session";
+      tkt = "tmux kill-session -t";
       tls = "tmux ls";
       tn = "tmux new";
+      ta = "tmux attach -t";
 
       # darwin update one-liner
       dr = "git -C  ~/.config/nix-darwin pull && darwin-rebuild switch --flake ~/.config/nix-darwin";

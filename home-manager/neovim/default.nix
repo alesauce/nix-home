@@ -9,6 +9,7 @@
     ./telescope.nix
     ./treesitter.nix
     ./completion.nix
+    ./noice.nix
   ];
 
   programs.nixvim = {

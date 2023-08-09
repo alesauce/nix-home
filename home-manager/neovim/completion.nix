@@ -10,6 +10,8 @@
       cmp-buffer.enable = true;
       cmp-cmdline.enable = true;
       cmp-nvim-lua.enable = true;
+      cmp-nvim-lsp.enable = true;
+      cmp-nvim-lsp-signature-help.enable = true;
       luasnip.enable = true;
       cmp_luasnip.enable = true;
       nvim-cmp = {
@@ -20,6 +22,7 @@
           "native_menu" = false;
         };
         formatting = {
+          fields = [ "kind" "abbr" "menu" ];
           format = ''
             function(entry, vim_item)
               -- Kind icons
@@ -109,6 +112,7 @@
         sources = [
           { groupIndex = 1; name = "path"; }
           { groupIndex = 1; name = "nvim_lsp"; }
+          { groupIndex = 1; name = "nvim_lsp_signature_help"; }
           { groupIndex = 2; name = "luasnip"; }
           { groupIndex = 2; name = "buffer"; }
           { groupIndex = 2; name = "nvim_lua"; }

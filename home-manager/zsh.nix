@@ -9,9 +9,16 @@
     shellAliases = {
       ll = "ls -l";
       ".." = "cd ..";
+
+      # git aliases
       ga = "git add";
       gr = "git restore";
       gl = "git log";
+      gc = "git commit -m";
+
+      # tmux aliases
+      tk = "tmux kill-session";
+      tn = "tmux new";
     };
     initExtra = ''
       NEW_USER="''${(C)USERNAME}"

@@ -14,13 +14,19 @@
       cmp-nvim-lsp-signature-help.enable = true;
       luasnip.enable = true;
       cmp_luasnip.enable = true;
+
       nvim-cmp = {
         enable = true;
-        completion.autocomplete = false;
-        experimental = {
-          "ghost_text" = true;
-          "native_menu" = false;
-        };
+        mappingPresets = ["insert" "cmdline"];
+        snippet.expand = "luasnip";
+        sources = [
+          { name = "path"; }
+          { name = "nvim_lsp"; }
+          { name = "nvim_lsp_signature_help"; }
+          { name = "luasnip"; }
+          { name = "buffer"; }
+          { name = "nvim_lua"; }
+        ];
         formatting = {
           fields = [ "kind" "abbr" "menu" ];
           format = ''
@@ -57,7 +63,7 @@
               vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
               vim_item.menu = ({
                 nvim_lsp = "[LSP]",
-                nvim_lua = "[NVIM_LUA]", 
+                nvim_lua = "[NVIM_LUA]",
                 luasnip = "[Snippet]",
                 buffer = "[Buffer]",
                 path = "[Path]",
@@ -108,20 +114,6 @@
             '';
           };
         };
-        snippet.expand = "luasnip";
-        sources = [
-          { groupIndex = 1; name = "path"; }
-          { groupIndex = 1; name = "nvim_lsp"; }
-          { groupIndex = 1; name = "nvim_lsp_signature_help"; }
-          { groupIndex = 2; name = "luasnip"; }
-          { groupIndex = 2; name = "buffer"; }
-          { groupIndex = 2; name = "nvim_lua"; }
-        ];
-        matching = {
-          disallowFuzzyMatching = false;
-          disallowPartialMatching = false;
-        };
-        window.documentation.border = "rounded";
       };
     };
 
@@ -134,7 +126,7 @@
     ];
 
     extraConfigLua = ''
-      require('luasnip.loaders.from_vscode').lazy_load()
+      require("luasnip/loaders/from_vscode").lazy_load()
 
       function check_backspace()
         local col = vim.fn.col(".") - 1

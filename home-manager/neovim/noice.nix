@@ -5,7 +5,6 @@
     # TODO: make mini popups pop up one line lower
     plugins.noice = {
       enable = true;
-      lsp.signature.enabled = true;
       cmdline.view = "cmdline";
       cmdline.format = {
         cmdline = { icon = false; conceal = false; };
@@ -15,10 +14,21 @@
         lua = { icon = false; conceal = false; };
         help = { icon = false; conceal = false; };
       };
-      lsp.progress.enabled = false;
-      lsp.signature.view = "virtualtext";
-      lsp.hover.view = "virtualtext";
-      lsp.documentation.view = "virtualtext";
+
+      lsp = {
+        signature = {
+          enabled = true;
+          view = "virtualtext";
+        };
+        progress.enabled = false;
+        hover.view = "virtualtext";
+        documentation.view = "virtualtext";
+        override = {
+          "vim.lsp.util.convert_input_to_markdown_lines" = false;
+          "vim.lsp.util.stylize_markdown" = false;
+          "cmp.entry.get_documentation" = false;
+        };
+      };
       views.mini.position.row = "100%";
       # replace confirmation shouldn't obscure the text it's asking about
       routes = [{

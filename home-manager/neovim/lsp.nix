@@ -27,11 +27,6 @@
           };
         };
 
-        capabilities = ''
-          client_capabilities = vim.lsp.protocol.make_client_capabilities()
-          capabilities = require('cmp_nvim_lsp').default_capabilities(client_capabilities)
-        '';
-
         onAttach = ''
           vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
           if client.server_capabilities.documentHighlight then
@@ -92,14 +87,6 @@
           }
 
           vim.diagnostic.config(config)
-
-          vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-            border = "rounded",
-          })
-
-          vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-            border = "rounded",
-          })
         '';
       };
     };

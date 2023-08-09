@@ -24,6 +24,9 @@
       # tmux aliases
       tk = "tmux kill-session";
       tn = "tmux new";
+
+      # darwin update one-liner
+      dr = "git -C  ~/.config/nix-darwin pull && darwin-rebuild switch --flake ~/.config/nix-darwin";
     };
     initExtra = ''
       NEW_USER="''${(C)USERNAME}"

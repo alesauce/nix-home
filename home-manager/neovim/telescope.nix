@@ -5,7 +5,6 @@
     plugins.telescope = {
       enable = true;
 
-      # TODO: finish migrating defaults: https://github.com/alesauce/nix-dotfiles/blob/main/configs/nvim/lua/user/telescope.lua
       defaults = {
         prompt_prefix = " ";
         selection_caret = " ";
@@ -49,7 +48,6 @@
       };
     };
 
-    # TODO: figure out keyboard mapping issue
     maps = {
       normalVisualOp = {
         "<leader>fb".action = ":Telescope file_browser<CR>";

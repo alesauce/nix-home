@@ -5,11 +5,11 @@
     ./base-opts.nix
     ./base-plugins.nix
     ./colorscheme.nix
+    ./completion.nix
     ./lsp.nix
+    ./noice.nix
     ./telescope.nix
     ./treesitter.nix
-    ./completion.nix
-    ./noice.nix
   ];
 
   programs.nixvim = {

@@ -24,6 +24,7 @@
 
       # tmux aliases
       tk = "tmux kill-session";
+      tka = "tmux kill-server";
       tkt = "tmux kill-session -t";
       tls = "tmux ls";
       tn = "tmux new";

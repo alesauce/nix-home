@@ -23,6 +23,7 @@
 
       # tmux aliases
       tk = "tmux kill-session";
+      tls = "tmux ls";
       tn = "tmux new";
 
       # darwin update one-liner

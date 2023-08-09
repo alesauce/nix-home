@@ -73,7 +73,7 @@
           '';
         };
         mapping = {
-          "<C-Space>" = "cmp.mapping.confirm({select = false})";
+          "<CR>" = "cmp.mapping.confirm({select = false})";
           "<C-Tab>" = "cmp.mapping.complete_common_string()";
           "<Tab>" = {
             modes = [ "i" "s" ];

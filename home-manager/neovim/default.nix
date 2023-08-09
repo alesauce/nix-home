@@ -22,6 +22,11 @@
         action = "<Nop>";
         silent = true;
       };
+      # Remapping keys to accommodate Tarmak1
+      normalVisualOp = {
+        "n" = "j";
+        "e" = "k";
+      };
     };
 
     globals = {

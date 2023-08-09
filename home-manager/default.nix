@@ -35,13 +35,6 @@
             source = ./tmux/tmux-cht-languages;
             target = "tmux/tmux-cht-languages";
           };
-          # TODO: figure out less noob-y way to handle shell scripts
-          # TODO: figure out how to patch the shebang from Nix
-          "tmux-cht.sh" = {
-            source = ./tmux/tmux-cht.sh;
-            target = "tmux/tmux-cht.sh";
-            executable = true;
-          };
         };
       };
     };

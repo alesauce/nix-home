@@ -9,6 +9,7 @@
     shellAliases = {
       ll = "ls -l";
       ".." = "cd ..";
+      sz = "source ~/.zshrc";
 
       # git aliases
       ga = "git add";
@@ -26,7 +27,7 @@
     };
     initExtra = ''
       NEW_USER="''${(C)USERNAME}"
-      if [ -e ~/$NEW_USER-config ]; then 
+      if [ -e ~/$NEW_USER-config ]; then
         source ~/$NEW_USER-config/entry-point
       fi
     '';

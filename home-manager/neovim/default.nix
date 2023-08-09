@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -16,7 +16,18 @@
     viAlias = true;
     vimAlias = true;
 
-    globals.mapleader = "<Space>";
+    maps = {
+      normalVisualOp."<Space>" = {
+        action = "<Nop>";
+        silent = true;
+      };
+    };
+
+    globals = {
+      mapleader = " ";
+      maplocalleader = " ";
+    };
+
     # TODO: Figure out how the append function works for a table and how I can set a table with specific characters added
     extraConfigLua = ''
       vim.opt.listchars:append "eol:↴"

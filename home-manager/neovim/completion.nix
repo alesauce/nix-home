@@ -9,7 +9,6 @@
       cmp-treesitter.enable = true;
       cmp-buffer.enable = true;
       cmp-cmdline.enable = true;
-      cmp-nvim-lsp.enable = true;
       cmp-nvim-lua.enable = true;
       luasnip.enable = true;
       cmp_luasnip.enable = true;
@@ -115,7 +114,7 @@
           { groupIndex = 2; name = "nvim_lua"; }
         ];
         matching = {
-          disallowFuzzyMatching = true;
+          disallowFuzzyMatching = false;
           disallowPartialMatching = false;
         };
         window.documentation.border = "rounded";
@@ -125,6 +124,10 @@
     options = {
       completeopt = [ "menu" "menuone" "noselect" ];
     };
+
+    extraPlugins = with pkgs.vimPlugins; [
+      friendly-snippets
+    ];
 
     extraConfigLua = ''
       require('luasnip.loaders.from_vscode').lazy_load()

@@ -46,5 +46,13 @@
       # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_undotree_enable
       undotree.enable = true;
     };
+
+    extraPlugins = with pkgs.vimPlugins; [
+      guess-indent-nvim
+    ];
+
+    extraConfigLua = ''
+      require('guess-indent').setup {}
+    '';
   };
 }

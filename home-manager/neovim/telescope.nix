@@ -48,7 +48,7 @@
     # TODO: figure out keyboard mapping issue
     maps = {
       normalVisualOp = {
-        "<leader>fb".action = ":Telescope.file_browser<CR>";
+        "<leader>fb".action = ":Telescope file_browser<CR>";
       };
     };
   };

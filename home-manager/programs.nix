@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   direnv = {
@@ -31,11 +31,5 @@
     enable = true;
     enableZshIntegration = true;
     enableNushellIntegration = true;
-  };
-
-  zsh = {
-    enable = true;
-    enableAutosuggestions = true;
-    enableCompletion = true;
   };
 }

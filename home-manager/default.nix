@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   nixpkgs = {
@@ -13,7 +13,7 @@
     useUserPackages = true;
     users = {
       alesauce = { pkgs, ... }: {
-        imports = [ ./neovim ./tmux ];
+        imports = [ ./neovim ./tmux ./zsh.nix];
         home = {
           inherit (pkgs) stateVersion;
           packages = with pkgs; [ fd ripgrep gh nixfmt nixpkgs-fmt htop wget ];

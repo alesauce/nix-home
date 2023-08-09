@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.nixvim = {
@@ -14,10 +14,14 @@
         mappings = {
           i = {
             "<C-c>" = "close";
+            "<C-n>" = "move_selection_next";
+            "<C-e>" = "move_selection_previous>";
           };
 
           n = {
             "<esc>" = "close";
+            "n" = "move_selection_next";
+            "e" = "move_selection_previous>";
           };
         };
       };

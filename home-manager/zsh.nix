@@ -14,6 +14,7 @@
       # git aliases
       ga = "git add";
       gaa = "git add -A";
+      gd = "git diff";
       gs = "git status";
       gr = "git restore";
       gl = "git log";
@@ -28,8 +29,11 @@
       tn = "tmux new";
       ta = "tmux attach -t";
 
-      # darwin update one-liner
-      dr = "git -C  ~/.config/nix-darwin pull && darwin-rebuild switch --flake ~/.config/nix-darwin";
+      # nix/darwin aliases
+      dr = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+      dpr = "git -C  ~/.config/nix-darwin pull && darwin-rebuild switch --flake ~/.config/nix-darwin";
+      drb = "darwin-rebuild --rollback";
+      ngc = "nix store gc";
     };
     initExtra = ''
       NEW_USER="''${(C)USERNAME}"

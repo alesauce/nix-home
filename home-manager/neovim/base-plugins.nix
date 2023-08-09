@@ -47,6 +47,21 @@
       undotree.enable = true;
     };
 
+    # Adding custom tmux navigator bindings bc Colemak
+    globals."tmux_navigator_no_mappings" = 1;
+    maps = {
+      normalVisualOp = {
+        "<C-n>" = {
+          silent = true;
+          action = ":TmuxNavigateDown<CR>";
+        };
+        "<C-e>" = {
+          silent = true;
+          action = ":TmuxNavigateUp<CR>";
+        };
+      };
+    };
+
     extraPlugins = with pkgs.vimPlugins; [
       guess-indent-nvim
     ];

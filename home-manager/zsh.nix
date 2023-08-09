@@ -12,11 +12,13 @@
 
       # git aliases
       ga = "git add";
+      gaa = "git add -A";
       gs = "git status";
       gr = "git restore";
       gl = "git log";
       gc = "git commit -m";
-      gp = "git push";
+      gps = "git push";
+      gpl = "git pull";
 
       # tmux aliases
       tk = "tmux kill-session";

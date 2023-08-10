@@ -14,7 +14,7 @@
           i = {
             "<C-c>" = "close";
             "<C-n>" = "move_selection_next";
-            "<C-e>" = "move_selection_previous>";
+            "<C-e>" = "move_selection_previous";
           };
 
           n = {

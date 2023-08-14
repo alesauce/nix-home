@@ -20,7 +20,7 @@
           n = {
             "<esc>" = "close";
             "n" = "move_selection_next";
-            "e" = "move_selection_previous>";
+            "e" = "move_selection_previous";
           };
         };
       };

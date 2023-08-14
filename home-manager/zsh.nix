@@ -18,9 +18,13 @@
       gs = "git status";
       gr = "git restore";
       gl = "git log";
-      gc = "git commit -m";
+      gc = "git commit";
+      gcm = "git commit -m";
       gps = "git push";
       gpl = "git pull";
+      gch = "git checkout";
+      gcb = "git checkout -b";
+      gb = "git branch";
 
       # tmux aliases
       tk = "tmux kill-session";

@@ -16,7 +16,7 @@
         imports = [ ./neovim ./tmux ./zsh.nix ];
         home = {
           inherit (pkgs) stateVersion;
-          packages = with pkgs; [ fd ripgrep gh htop wget cheat nixfmt];
+          packages = with pkgs; [ fd ripgrep gh htop wget cheat nixfmt jq];
         };
 
         programs = import ./programs.nix { inherit pkgs; };

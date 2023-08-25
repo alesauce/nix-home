@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  # TODO: https://nix-community.github.io/nixvim/plugins/treesitter-context.html
   programs.nixvim = {
     # TODO: add formatter.nvim: https://github.com/mhartington/formatter.nvim
     # TODO: add nvim-lint: https://github.com/mfussenegger/nvim-lint

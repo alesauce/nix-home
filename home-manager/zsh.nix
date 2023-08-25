@@ -35,6 +35,7 @@
       ta = "tmux attach -t";
 
       # nix/darwin aliases
+      # TODO: have darwin sebuild from git flake
       dr = "darwin-rebuild switch --flake ~/.config/nix-darwin";
       dpr = "git -C  ~/.config/nix-darwin pull && darwin-rebuild switch --flake ~/.config/nix-darwin";
       drb = "darwin-rebuild --rollback";

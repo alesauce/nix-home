@@ -3,6 +3,9 @@
 {
   programs.tmux = {
     enable = true;
+    # Tmux Python session manager:
+    # https://github.com/tmux-python/tmuxp
+    tmuxp.enable = true;
 
     aggressiveResize = true;
     baseIndex = 1;

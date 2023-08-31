@@ -52,6 +52,7 @@
         };
 
       # TODO: find a less noob-y way to handle multiple hosts
+      # possibly with flake-parts: https://read.readwise.io/search/read/01h7d7yhsm7m4tcryed48rrv0c
       darwinConfigurations."08f8bc618702" =
         nix-darwin.lib.darwinSystem {
           inherit inputs;

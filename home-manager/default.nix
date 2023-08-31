@@ -21,6 +21,13 @@
 
         programs = import ./programs.nix { inherit pkgs; };
 
+        home.file = {
+          "amethyst" = {
+            source = ./amethyst/amethyst.yml;
+            target = ".amethyst.yml";
+          };
+        };
+
         xdg.configFile = {
           "alacritty" = {
             source = ./alacritty;

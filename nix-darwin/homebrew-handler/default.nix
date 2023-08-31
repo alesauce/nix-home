@@ -9,8 +9,7 @@
     };
     casks = [
       "alacritty"
-      # uncomment to add tiling window manager
-      #"amethyst"
+      "amethyst"
       "arc"
       "brave-browser"
       "discord"

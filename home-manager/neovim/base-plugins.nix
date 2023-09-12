@@ -6,10 +6,6 @@
     # TODO: add formatter.nvim: https://github.com/mhartington/formatter.nvim
     # TODO: add nvim-lint: https://github.com/mfussenegger/nvim-lint
     plugins = {
-      # TODO: review docs and configure harpoon: https://github.com/ThePrimeagen/harpoon
-      # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_harpoon_enable
-      # harpoon.enable = true;
-
       # TODO: add toggleterm: https://github.com/akinsho/toggleterm.nvim
       # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_toggleterm_enable
       # toggleterm.enable = true;
@@ -39,8 +35,6 @@
         };
       };
 
-      # TODO: configure todo-comments: https://github.com/folke/todo-comments.nvim
-      # nixvim docs: https://nix-community.github.io/nixvim/#_plugins_todo_comments_enable
       todo-comments.enable = true;
 
       # TODO: configure undotree: https://github.com/mbbill/undotree

@@ -6,8 +6,10 @@
     ./base-plugins.nix
     ./colorscheme.nix
     ./completion.nix
+    ./harpoon.nix
     ./lsp.nix
     ./noice.nix
+    ./nvim-tree.nix
     ./telescope.nix
     ./treesitter.nix
   ];

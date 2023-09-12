@@ -28,7 +28,6 @@
       extensions = {
         file_browser = {
           enable = true;
-          hijackNetrw = true;
           grouped = true;
           depth = 1;
           autoDepth = true;

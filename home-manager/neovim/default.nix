@@ -1,6 +1,8 @@
 { ... }:
 
 {
+  # TODO: Look into nixvim in devshells with direnv to avoid adding all LSPs system wide
+  # https://github.com/nix-community/nixvim#with-a-devshell
   imports = [
     ./base-opts.nix
     ./base-plugins.nix

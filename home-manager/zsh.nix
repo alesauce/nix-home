@@ -46,6 +46,9 @@
       if [ -e ~/$NEW_USER-config ]; then
         source ~/$NEW_USER-config/entry-point
       fi
+
+      # Rust toolchain path (until I figure out a better way to use Nix)
+      export PATH="$PATH:$HOME/.cargo/:$HOME/.cargo/bin:$HOME/.rustup"
     '';
   };
 }

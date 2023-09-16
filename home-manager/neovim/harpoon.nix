@@ -9,7 +9,6 @@
 
       keymaps = {
         addFile = "<leader>ha";
-        cmdToggleQuickMenu = "<leader>H";
         navFile = {
           "1" = "<C-l>";
           "2" = "<C-u>";

@@ -7,6 +7,9 @@
       autoUpdate = true;
       upgrade = true;
     };
+    brews = [
+      "openapi-generator"
+    ];
     casks = [
       "alacritty"
       "amethyst"

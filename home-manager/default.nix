@@ -16,7 +16,8 @@
         imports = [ ./neovim ./tmux ./zsh.nix ];
         home = {
           inherit (pkgs) stateVersion;
-          packages = with pkgs; [ fd ripgrep gh htop wget cheat nixfmt jq tmuxp ];
+          # TODO: move nixfmt to language-specific flake
+          packages = with pkgs; [ fd ripgrep gh htop wget cheat nixfmt jq tmuxp tree ];
         };
 
         programs = import ./programs.nix { inherit pkgs; };

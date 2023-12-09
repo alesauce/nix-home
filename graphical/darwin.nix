@@ -28,10 +28,6 @@
         CreateDesktop = false;
         QuitMenuItem = true;
       };
-      keyboard = {
-        enableKeyMapping = true;
-        remapCapsLockToEscape = true;
-      };
       menuExtraClock.Show24Hour = true;
       NSGlobalDomain = {
         AppleInterfaceStyle = "Dark";
@@ -40,6 +36,10 @@
       };
       screencapture.location = "/Users/alesauce/screenshots";
       spaces.spans-displays = false;
+    };
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
     };
   };
 }

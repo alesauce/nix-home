@@ -6,7 +6,6 @@
       else throw "Unknown hostType '${hostType}' for users/alesauce/graphical"
     )
     ./alacritty.nix
-    ./mpv.nix
   ];
 
   home.packages = with pkgs; [

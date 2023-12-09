@@ -30,7 +30,6 @@
       ripgrep
       tmuxp
       tree
-      truecolor-check
     ];
     shellAliases = {
       ",cat" = "bat";

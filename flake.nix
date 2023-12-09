@@ -18,11 +18,6 @@
       flake = false;
     };
 
-    truecolor-check = {
-      url = "git+https://gist.github.com/fdeaf79e921c2f413f44b6f613f6ad53.git";
-      flake = false;
-    };
-
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -88,7 +83,6 @@
 
       pkgs = forAllSystems (localSystem: import nixpkgs {
         inherit localSystem;
-        overlays = [ self.overlays.default ];
         config = {
           allowUnfree = true;
           allowAliases = true;
@@ -97,7 +91,6 @@
 
       checks = forAllSystems (import ./nix/checks.nix inputs);
       devShells = forAllSystems (import ./nix/dev-shell.nix inputs);
-      overlays = import ./nix/overlay.nix inputs;
       packages = forAllSystems (import ./nix/packages.nix inputs);
 
       darwinConfigurations = import ./nix/darwin.nix inputs;

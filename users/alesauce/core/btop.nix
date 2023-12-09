@@ -30,7 +30,7 @@ in
     theme_background = true;
 
     # Sets if 24-bit truecolor should be used, will convert 24-bit colors to 256 color (6x6x6 color cube) if false.
-    truecolor = true;
+    # truecolor = true;
 
     # Set to true to force tty mode regardless if a real tty has been detected or not.
     # Will force 16-color mode and TTY theme, set all graph symbols to "tty" and swap out other non tty friendly symbols.

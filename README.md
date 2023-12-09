@@ -1,0 +1,1 @@
+My Nix configs for all my machines. I've learned a lot about Nix in the last few months, but this repo was in particular inspired by [lovesegfault's nix-config](https://github.com/lovesegfault/nix-config/tree/master)

@@ -1,5 +1,9 @@
-{ hostType, lib, pkgs, ... }:
-let
+{
+  hostType,
+  lib,
+  pkgs,
+  ...
+}: let
   fontPackages = with pkgs; [
     monaspace
     recursive
@@ -9,9 +13,9 @@ let
     noto-fonts-cjk-serif
     noto-fonts-extra
   ];
-in
-{
-  fonts = lib.optionalAttrs (hostType == "nixos")
+in {
+  fonts =
+    lib.optionalAttrs (hostType == "nixos")
     {
       packages = fontPackages;
       enableDefaultPackages = false;
@@ -42,10 +46,11 @@ in
           </fontconfig>
         '';
       };
-    } // lib.optionalAttrs (hostType == "darwin") {
-    fonts = fontPackages;
-    fontDir.enable = true;
-  };
+    }
+    // lib.optionalAttrs (hostType == "darwin") {
+      fonts = fontPackages;
+      fontDir.enable = true;
+    };
 
   stylix.fonts = {
     sansSerif = {
@@ -57,7 +62,7 @@ in
       name = "IBM Plex Serif";
     };
     monospace = {
-      package = pkgs.monaspace.override { fonts = [ "Argon" ]; };
+      package = pkgs.monaspace.override {fonts = ["Argon"];};
       name = "Argon Monaspace Font";
     };
     emoji = {

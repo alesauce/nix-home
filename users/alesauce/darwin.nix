@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   home-manager.users.alesauce = {
     imports = [
       ./graphical

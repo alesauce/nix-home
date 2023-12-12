@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{lib, ...}: {
   imports = [
     ../../core
     ../../graphical
@@ -7,14 +7,14 @@
 
   environment.variables.JAVA_HOME = "$(/usr/libexec/java_home)";
 
-  home-manager.users.alesauce = { config, ... }: {
-    imports = [ ../../users/alesauce/dev/amzn.nix ];
+  home-manager.users.alesauce = {config, ...}: {
+    imports = [../../users/alesauce/dev/amzn.nix];
     home.sessionPath = [
       "${config.home.homeDirectory}/.local/bin"
     ];
   };
 
-  programs = {
+  home-manager.programs = {
     git.userEmail = lib.mkForce "alesauce@amazon.com";
   };
 
@@ -23,8 +23,8 @@
     linux-builder.enable = true;
     settings = {
       max-substitution-jobs = 20;
-      system-features = [ "big-parallel" "gccarch-armv8-a" ];
-      trusted-users = [ "alesauce" ];
+      system-features = ["big-parallel" "gccarch-armv8-a"];
+      trusted-users = ["alesauce"];
     };
   };
 

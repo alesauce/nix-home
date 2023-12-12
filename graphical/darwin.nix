@@ -1,22 +1,55 @@
 {
   homebrew = {
     casks = [
-      { name = "alacritty"; greedy = true; }
-      { name = "aldente"; greedy = true; }
-      { name = "alt-tab"; greedy = true; }
-      { name = "amethyst"; greedy = true; }
-      { name = "appcleaner"; greedy = true; }
-      { name = "arc"; greedy = true; }
-      { name = "firefox"; greedy = true; }
-      { name = "obsidian"; greedy = true; }
-      { name = "raycast"; greedy = true; }
-      { name = "spotify"; greedy = true; }
-      { name = "todoist"; greedy = true; }
+      {
+        name = "alacritty";
+        greedy = true;
+      }
+      {
+        name = "aldente";
+        greedy = true;
+      }
+      {
+        name = "alt-tab";
+        greedy = true;
+      }
+      {
+        name = "amethyst";
+        greedy = true;
+      }
+      {
+        name = "appcleaner";
+        greedy = true;
+      }
+      {
+        name = "arc";
+        greedy = true;
+      }
+      {
+        name = "firefox";
+        greedy = true;
+      }
+      {
+        name = "obsidian";
+        greedy = true;
+      }
+      {
+        name = "raycast";
+        greedy = true;
+      }
+      {
+        name = "spotify";
+        greedy = true;
+      }
+      {
+        name = "todoist";
+        greedy = true;
+      }
     ];
   };
 
   security.pam.enableSudoTouchIdAuth = true;
- 
+
   system = {
     defaults = {
       dock = {

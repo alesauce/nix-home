@@ -1,9 +1,5 @@
-{self, ...}:
-
-hostPlatform:
-
-with self.pkgs.${hostPlatform};
-{
+{self, ...}: hostPlatform:
+with self.pkgs.${hostPlatform}; {
   default = mkShell {
     name = "nix-home";
 

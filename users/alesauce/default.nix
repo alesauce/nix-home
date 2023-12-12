@@ -1,9 +1,17 @@
-{ config, hostType, lib, ... }:
-if hostType == "nixos" || hostType == "darwin" then {
+{
+  config,
+  hostType,
+  lib,
+  ...
+}:
+if hostType == "nixos" || hostType == "darwin"
+then {
   imports = [
     (
-      if hostType == "nixos" then ./nixos.nix
-      else if hostType == "darwin" then ./darwin.nix
+      if hostType == "nixos"
+      then ./nixos.nix
+      else if hostType == "darwin"
+      then ./darwin.nix
       else throw "No sysConfig for hostType '${hostType}'"
     )
   ];
@@ -17,11 +25,13 @@ if hostType == "nixos" || hostType == "darwin" then {
     home.uid = config.users.users.alesauce.uid;
   };
 }
-else if hostType == "home-manager" then {
+else if hostType == "home-manager"
+then {
   imports = [
     ./core
     ./dev
     ./modules
   ];
   programs.home-manager.enable = true;
-} else throw "Unknown hostType '${hostType}'"
+}
+else throw "Unknown hostType '${hostType}'"

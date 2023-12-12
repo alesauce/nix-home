@@ -1,27 +1,40 @@
-{ lib, pkgs, ... }:
-let
-  mkValueString = v: with builtins;
-    let
-      err = t: v: abort
-        ("generators.mkBtopKV: " +
-          "${t} not supported: ${toPretty {} v}");
-    in
-    if isInt v then toString v
-    else if lib.isDerivation v then toString v
-    else if isString v then ''"${v}"''
-    else if v then "True"
-    else if !v then "False"
-    else if null == v then err "null" v
-    else if isList v then ''"${toString v}"''
-    else if isAttrs v then err "attrsets" v
-    else if isFunction v then err "functions" v
-    else if isFloat v then lib.strings.floatToString v
-    else err "this value is" (toString v);
-  mkKeyValue = lib.generators.mkKeyValueDefault { inherit mkValueString; } "=";
-in
 {
-  home.packages = with pkgs; [ btop ];
-  xdg.configFile."btop/btop.conf".text = lib.generators.toKeyValue { inherit mkKeyValue; } {
+  lib,
+  pkgs,
+  ...
+}: let
+  mkValueString = v:
+    with builtins; let
+      err = t: v:
+        abort
+        ("generators.mkBtopKV: "
+          + "${t} not supported: ${toPretty {} v}");
+    in
+      if isInt v
+      then toString v
+      else if lib.isDerivation v
+      then toString v
+      else if isString v
+      then ''"${v}"''
+      else if v
+      then "True"
+      else if !v
+      then "False"
+      else if null == v
+      then err "null" v
+      else if isList v
+      then ''"${toString v}"''
+      else if isAttrs v
+      then err "attrsets" v
+      else if isFunction v
+      then err "functions" v
+      else if isFloat v
+      then lib.strings.floatToString v
+      else err "this value is" (toString v);
+  mkKeyValue = lib.generators.mkKeyValueDefault {inherit mkValueString;} "=";
+in {
+  home.packages = with pkgs; [btop];
+  xdg.configFile."btop/btop.conf".text = lib.generators.toKeyValue {inherit mkKeyValue;} {
     # Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
     # Themes should be placed in "../share/btop/themes" relative to binary or "$HOME/.config/btop/themes"
     color_theme = "Default";

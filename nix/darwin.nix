@@ -1,16 +1,20 @@
-{ self
-, base16-schemes
-, darwin
-, home-manager
-, nix-index-database
-, nixpkgs
-, stylix
-, ...
-}:
-let
+{
+  self,
+  base16-schemes,
+  darwin,
+  home-manager,
+  nix-index-database,
+  nixpkgs,
+  stylix,
+  ...
+}: let
   inherit (nixpkgs) lib;
 
-  genConfiguration = hostname: { hostPlatform, type, ... }:
+  genConfiguration = hostname: {
+    hostPlatform,
+    type,
+    ...
+  }:
     darwin.lib.darwinSystem {
       system = hostPlatform;
       pkgs = self.pkgs.${hostPlatform};
@@ -29,10 +33,11 @@ let
           base16-schemes
           home-manager
           nix-index-database
-          stylix;
+          stylix
+          ;
       };
     };
 in
-lib.mapAttrs
+  lib.mapAttrs
   genConfiguration
   (lib.filterAttrs (_: host: host.type == "darwin") self.hosts)

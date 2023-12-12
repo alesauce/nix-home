@@ -1,4 +1,10 @@
-{ base16-schemes, nix-index-database, pkgs, stylix, nixvim-flake, ... }: {
+{
+  base16-schemes,
+  nix-index-database,
+  pkgs,
+  stylix,
+  ...
+}: {
   imports = [
     nix-index-database.hmModules.nix-index
     stylix.homeManagerModules.stylix
@@ -21,12 +27,13 @@
     # TODO: add a reference to nixvim flake here, also need to reference the system variable here - might need to use the forAllSystems function to pass that in
     # referencing: https://gist.github.com/siph/288b7c6b5f68a1902d28aebc95fde4c5
     packages = with pkgs; [
+      alejandra
       eza
       fd
       fzf
       kalker
       mosh
-      nixvim-flake.packages.${pkgs.hostPlatform.system}.default
+      neovim
       ripgrep
       tmuxp
       tree
@@ -52,11 +59,11 @@
     atuin = {
       enable = true;
       settings.auto_sync = false;
-      flags = [ "--disable-up-arrow" ];
+      flags = ["--disable-up-arrow"];
     };
     bat = {
       enable = true;
-      extraPackages = with pkgs.bat-extras; [ batman ];
+      extraPackages = with pkgs.bat-extras; [batman];
     };
     nix-index.enable = true;
     zoxide.enable = true;

@@ -1,8 +1,17 @@
-{ pkgs, base16-schemes, hostType, nix-index-database, stylix, ... }: {
+{
+  pkgs,
+  base16-schemes,
+  hostType,
+  nix-index-database,
+  stylix,
+  ...
+}: {
   imports = [
     (
-      if hostType == "nixos" then ./nixos.nix
-      else if hostType == "darwin" then ./darwin.nix
+      if hostType == "nixos"
+      then ./nixos.nix
+      else if hostType == "darwin"
+      then ./darwin.nix
       else throw "Unknown hostType '${hostType}' for core"
     )
     ./aspell.nix
@@ -33,7 +42,8 @@
         base16-schemes
         hostType
         nix-index-database
-        stylix;
+        stylix
+        ;
     };
   };
 

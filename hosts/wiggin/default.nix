@@ -1,4 +1,8 @@
-{ lib, pkgs, ... }: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../users/alesauce
     ../../users/alesauce/dev/amzn.nix

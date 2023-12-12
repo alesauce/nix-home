@@ -69,19 +69,22 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
-    let
-      forAllSystems = nixpkgs.lib.genAttrs [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "x86_64-linux"
-      ];
-    in
-    {
-      hosts = import ./nix/hosts.nix;
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    forAllSystems = nixpkgs.lib.genAttrs [
+      "aarch64-darwin"
+      "aarch64-linux"
+      "x86_64-darwin"
+      "x86_64-linux"
+    ];
+  in {
+    hosts = import ./nix/hosts.nix;
 
-      pkgs = forAllSystems (localSystem: import nixpkgs {
+    pkgs = forAllSystems (localSystem:
+      import nixpkgs {
         inherit localSystem;
         config = {
           allowUnfree = true;
@@ -89,11 +92,11 @@
         };
       });
 
-      checks = forAllSystems (import ./nix/checks.nix inputs);
-      devShells = forAllSystems (import ./nix/dev-shell.nix inputs);
-      packages = forAllSystems (import ./nix/packages.nix inputs);
+    checks = forAllSystems (import ./nix/checks.nix inputs);
+    devShells = forAllSystems (import ./nix/dev-shell.nix inputs);
+    packages = forAllSystems (import ./nix/packages.nix inputs);
 
-      darwinConfigurations = import ./nix/darwin.nix inputs;
-      homeConfigurations = import ./nix/home-manager.nix inputs;
-    };
+    darwinConfigurations = import ./nix/darwin.nix inputs;
+    homeConfigurations = import ./nix/home-manager.nix inputs;
+  };
 }

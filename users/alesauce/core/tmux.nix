@@ -1,5 +1,4 @@
-{pkgs, ...}:
-{
+{pkgs, ...}: {
   # TODO: add the tmux cheat sheet shell scripts
   programs.tmux = {
     enable = true;

@@ -5,7 +5,7 @@
     ../../users/alesauce
   ];
 
-  home-manager.users.alesauce = { config, ... }: {
+  home-manager.users.alesauce = {config, ...}: {
     home.sessionPath = [
       "${config.home.homeDirectory}/.local/bin"
     ];
@@ -16,8 +16,8 @@
     linux-builder.enable = true;
     settings = {
       max-substitution-jobs = 20;
-      system-features = [ "big-parallel" "gccarch-armv8-a" ];
-      trusted-users = [ "alesauce" ];
+      system-features = ["big-parallel" "gccarch-armv8-a"];
+      trusted-users = ["alesauce"];
     };
   };
 

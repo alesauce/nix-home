@@ -2,7 +2,6 @@
   self,
   nixpkgs,
   nixvim-flake,
-  pkgs,
   ...
 } @ inputs: let
   inherit (nixpkgs) lib;

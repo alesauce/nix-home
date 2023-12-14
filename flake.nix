@@ -86,6 +86,7 @@
     pkgs = forAllSystems (localSystem:
       import nixpkgs {
         inherit localSystem;
+        overlays = [self.overlays.default];
         config = {
           allowUnfree = true;
           allowAliases = true;
@@ -94,6 +95,7 @@
 
     checks = forAllSystems (import ./nix/checks.nix inputs);
     devShells = forAllSystems (import ./nix/dev-shell.nix inputs);
+    overlays = import ./nix/overlay.nix inputs;
     packages = forAllSystems (import ./nix/packages.nix inputs);
 
     darwinConfigurations = import ./nix/darwin.nix inputs;

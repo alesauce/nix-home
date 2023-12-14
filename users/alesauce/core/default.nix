@@ -71,6 +71,10 @@
   };
 
   stylix = {
+    image = pkgs.fetchurl {
+      url = "https://www.amazon.com/photos/shared/sm6sTzxXQYOkgT5EwtJAUA.oLstPFMFeG-SoN0CGYou67";
+      sha256 = "iMDsRDi84VUvmRdGaHZJXG+YrP1mXZFbxhviXDwFVXo=";
+    };
     base16Scheme = "${base16-schemes}/ayu-mirage.yaml";
   };
 

@@ -12,10 +12,9 @@
     home.sessionPath = [
       "${config.home.homeDirectory}/.local/bin"
     ];
-  };
-
-  home-manager.programs = {
-    git.userEmail = lib.mkForce "alesauce@amazon.com";
+    programs = {
+      git.userEmail = lib.mkForce "alesauce@amazon.com";
+    };
   };
 
   nix = {

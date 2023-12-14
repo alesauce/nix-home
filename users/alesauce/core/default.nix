@@ -1,5 +1,7 @@
 {
   base16-schemes,
+  hostType,
+  lib,
   nix-index-database,
   pkgs,
   stylix,
@@ -24,8 +26,6 @@
   home = {
     username = "alesauce";
     stateVersion = "23.05";
-    # TODO: add a reference to nixvim flake here, also need to reference the system variable here - might need to use the forAllSystems function to pass that in
-    # referencing: https://gist.github.com/siph/288b7c6b5f68a1902d28aebc95fde4c5
     packages = with pkgs; [
       alejandra
       eza
@@ -40,12 +40,12 @@
       tree
     ];
     shellAliases = {
-      ",cat" = "bat";
+      cat = "bat";
       ",cls" = "clear";
       ",l" = "ls";
       ",la" = "ls --all";
-      ",ls" = "eza --binary --header --long --classify";
-      ",man" = "batman";
+      ls = "eza --binary --header --long --classify";
+      man = "batman";
       # tmux aliases
       ",tk" = "tmux kill-session";
       ",tka" = "tmux kill-server";
@@ -71,11 +71,17 @@
   };
 
   stylix = {
+    base16Scheme = "${base16-schemes}/catppuccin-mocha.yaml";
     image = pkgs.fetchurl {
       url = "https://www.amazon.com/photos/shared/sm6sTzxXQYOkgT5EwtJAUA.oLstPFMFeG-SoN0CGYou67";
-      sha256 = "iMDsRDi84VUvmRdGaHZJXG+YrP1mXZFbxhviXDwFVXo=";
+      hash = "sha256-iMDsRDi84VUvmRdGaHZJXG+YrP1mXZFbxhviXDwFVXo=";
     };
-    base16Scheme = "${base16-schemes}/ayu-mirage.yaml";
+    targets = {
+      gnome.enable = hostType == "nixos";
+      gtk.enable = hostType == "nixos";
+      kde.enable = lib.mkDefault false;
+      xfce.enable = lib.mkDefault false;
+    };
   };
 
   systemd.user.startServices = "sd-switch";

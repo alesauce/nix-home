@@ -19,7 +19,6 @@
       gnugrep
       gnutar
       ncurses
-      openssh
     ];
     systemPath = lib.mkBefore [
       "/opt/homebrew/bin"

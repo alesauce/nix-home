@@ -46,6 +46,8 @@
       ",la" = "ls --all";
       ls = "eza --binary --header --long --classify";
       man = "batman";
+      vim = "nvim";
+      vi = "nvim";
       # tmux aliases
       ",tk" = "tmux kill-session";
       ",tka" = "tmux kill-server";

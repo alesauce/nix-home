@@ -5,10 +5,6 @@
 }: {
   programs.alacritty = {
     enable = hostType != "darwin";
-    # use the below to add attributes only if on darwin, ex:
-    # // (lib.optionalAttrs (hostType == "darwin")) {
-    #  macos_show_window_title_in = "window";
-    #  macos_colorspace = "default";
     settings =
       {
         title = "Alacritty";

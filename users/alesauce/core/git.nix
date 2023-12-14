@@ -13,6 +13,7 @@
     userEmail = "alexander@alexandersauceda.dev";
     userName = "Alexander Sauceda";
     extraConfig = {
+      core.editor = "nvim";
       diff = {
         colorMoved = "default";
       };

@@ -6,6 +6,8 @@ with self.pkgs.${hostPlatform}; {
     nativeBuildInputs = [
       # Nix
       alejandra
+      deadnix
+      nil
       self.packages.${hostPlatform}.nix-eval-jobs
       self.packages.${hostPlatform}.nix-fast-build
       statix

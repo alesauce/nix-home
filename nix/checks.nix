@@ -11,8 +11,10 @@ with self.pkgs.${system}; {
       # TODO: add actionlint when you add in the flake publishing workflow
       # https://github.com/rhysd/actionlint
       hooks = {
-        statix.enable = true;
         alejandra.enable = true;
+        deadnix.enable = true;
+        nil.enable = true;
+        statix.enable = true;
       };
     };
 }

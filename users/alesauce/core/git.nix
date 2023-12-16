@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.git = {
-    enable = true;
+    enable = false;
     delta = {
       enable = true;
       options = {

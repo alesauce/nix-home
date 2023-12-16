@@ -4,7 +4,7 @@
   ...
 }: {
   programs.alacritty = {
-    enable = hostType != "darwin";
+    enable = true;
     settings =
       {
         title = "Alacritty";

@@ -2,10 +2,6 @@
   homebrew = {
     casks = [
       {
-        name = "alacritty";
-        greedy = true;
-      }
-      {
         name = "aldente";
         greedy = true;
       }
@@ -35,6 +31,10 @@
       }
       {
         name = "raycast";
+        greedy = true;
+      }
+      {
+        name = "reader";
         greedy = true;
       }
       {

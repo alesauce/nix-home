@@ -62,7 +62,7 @@ in {
       name = "IBM Plex Serif";
     };
     monospace = {
-      package = pkgs.monaspace.override {fonts = ["Argon"];};
+      package = pkgs.monaspace;
       name = "Argon Monaspace Font";
     };
     emoji = {

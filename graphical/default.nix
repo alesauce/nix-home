@@ -7,5 +7,6 @@
       then ./darwin.nix
       else throw "Unknown hostType '${hostType}' for graphical"
     )
+    ./fonts.nix
   ];
 }

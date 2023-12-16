@@ -16,5 +16,12 @@ with self.pkgs.${system}; {
         nil.enable = true;
         statix.enable = true;
       };
+      settings = {
+        deadnix = {
+          noLambdaArg = true;
+          noLambdaPatternNames = true;
+          noUnderscore = true;
+        };
+      };
     };
 }

@@ -4,6 +4,9 @@
   ...
 }: {
   home = {
+    packages = with pkgs; [
+      unison
+    ];
     sessionPath = [
       "${config.home.homeDirectory}/.toolbox/bin"
     ];

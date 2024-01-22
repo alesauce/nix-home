@@ -12,6 +12,8 @@
     uid = 22314791;
     packages = with pkgs; [
       nix-fast-build
+      nodejs_18
+      nodenv
     ];
   };
 

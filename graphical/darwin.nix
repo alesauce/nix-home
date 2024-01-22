@@ -34,10 +34,6 @@
         greedy = true;
       }
       {
-        name = "reader";
-        greedy = true;
-      }
-      {
         name = "spotify";
         greedy = true;
       }

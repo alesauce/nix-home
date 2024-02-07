@@ -1,0 +1,49 @@
+name: update-flakes
+on:
+  schedule:
+    - cron:  '0 12 * * */1'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  get-flake-inputs:
+    runs-on: ubuntu-latest
+    outputs:
+      flake-inputs: ${{ steps.get-flake-inputs.outputs.flake-inputs }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          sparse-checkout: flake.lock
+      - id: get-flake-inputs
+        run: |
+          flake_inputs="$(jq -c '.nodes.root.inputs | {flake: keys}' flake.lock)"
+
+          echo "flake-inputs=${flake_inputs}" >> "$GITHUB_OUTPUT"
+  update-flake:
+    name: update-${{ matrix.flake }}
+    runs-on: ubuntu-latest
+    needs: get-flake-inputs
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.get-flake-inputs.outputs.flake-inputs) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - uses: DeterminateSystems/nix-installer-action@v9
+        with:
+          nix-installer-branch: main
+          extra-conf: accept-flake-config = true
+      - run: git config --global user.email "alebot@alexandersauceda.dev"
+      - run: git config --global user.name "alebot"
+      - uses: cpcloud/flake-update-action@v2.0.1
+        with:
+          dependency: ${{ matrix.flake }}
+          pull-request-token: ${{ secrets.PRTOKEN }}
+          pull-request-author: alebot <alebot@alexandersauceda.dev>
+          delete-branch: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-branch-prefix: update-
+          automerge: true

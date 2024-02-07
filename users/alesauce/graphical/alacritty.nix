@@ -8,7 +8,6 @@
     settings =
       {
         title = "Alacritty";
-        dynamic_title = true;
         scrolling = {
           history = 10000;
           multiplier = 3;

@@ -12,6 +12,10 @@ with self.pkgs.${hostPlatform}; {
       self.packages.${hostPlatform}.nix-fast-build
       statix
 
+      # GitHub Actions
+      act
+      actionlint
+
       # Misc
       pre-commit
     ];

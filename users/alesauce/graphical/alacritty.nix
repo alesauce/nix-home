@@ -7,7 +7,6 @@
     enable = true;
     settings =
       {
-        title = "Alacritty";
         scrolling = {
           history = 10000;
           multiplier = 3;

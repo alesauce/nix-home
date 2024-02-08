@@ -41,13 +41,12 @@
     ];
     shellAliases = {
       cat = "bat";
-      ",cls" = "clear";
-      ",l" = "ls";
-      ",la" = "ls --all";
       ls = "eza --binary --header --long --classify";
       man = "batman";
       vim = "nvim";
       vi = "nvim";
+      # Adding this so that Alacritty works with remote hosts
+      ssh = "TERM=xterm-256color ssh";
       # tmux aliases
       ",tk" = "tmux kill-session";
       ",tka" = "tmux kill-server";

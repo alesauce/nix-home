@@ -46,4 +46,5 @@ jobs:
           delete-branch: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pull-request-branch-prefix: update-
+          pull-request-merge-method: rebase
           automerge: true

@@ -6,7 +6,7 @@
 }: {
   nix =
     {
-      package = pkgs.nixVersions.unstable;
+      package = pkgs.nixVersions.latest;
       settings = {
         accept-flake-config = true;
         # XXX: Causes annoying "cannot link ... to ...: File exists" errors on Darwin

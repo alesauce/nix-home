@@ -11,6 +11,23 @@
     ];
   };
 
+  homebrew = {
+    casks = [
+      {
+        name = "firefox";
+        greedy = true;
+      }
+      {
+        name = "reader";
+        greedy = true;
+      }
+      {
+        name = "todoist";
+        greedy = true;
+      }
+    ];
+  };
+
   nix = {
     gc.automatic = true;
     linux-builder.enable = true;

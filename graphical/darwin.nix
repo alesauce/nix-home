@@ -22,10 +22,6 @@
         greedy = true;
       }
       {
-        name = "firefox";
-        greedy = true;
-      }
-      {
         name = "obsidian";
         greedy = true;
       }
@@ -34,15 +30,7 @@
         greedy = true;
       }
       {
-        name = "reader";
-        greedy = true;
-      }
-      {
         name = "spotify";
-        greedy = true;
-      }
-      {
-        name = "todoist";
         greedy = true;
       }
     ];

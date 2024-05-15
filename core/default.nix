@@ -29,9 +29,9 @@
     pathsToLink = [
       "/share/zsh"
     ];
-    systemPackages = with pkgs; [
-      man-pages
-    ];
+    # systemPackages = with pkgs; [
+    #  man-pages
+    # ];
   };
 
   home-manager = {

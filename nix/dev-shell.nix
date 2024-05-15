@@ -14,7 +14,7 @@ with self.pkgs.${hostPlatform}; {
 
       # GitHub Actions
       act
-      actionlint
+      # actionlint
 
       # Misc
       pre-commit

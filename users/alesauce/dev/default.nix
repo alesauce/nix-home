@@ -6,6 +6,7 @@
   home = {
     extraOutputsToInstall = ["doc" "devdoc"];
     packages = with pkgs; [
+      duckdb
       git-lfs
       nix-output-monitor
       (lib.hiPrio nixpkgs-review)

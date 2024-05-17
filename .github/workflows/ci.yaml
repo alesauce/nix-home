@@ -59,7 +59,7 @@ jobs:
                 name: .key,
                 evalOnly: false,
                 hostPlatform: .value.hostPlatform,
-                attr: "packages.\(.value.hostPlatform).\(.key)"
+                attr: "packages.\(.value.hostPlatform)"
             })
             | map(
                 if .hostPlatform  == "x86_64-linux" then .runsOn="ubuntu-latest"

@@ -17,6 +17,7 @@ with self.pkgs.${hostPlatform}; {
       actionlint
 
       # Misc
+      jq
       pre-commit
     ];
 

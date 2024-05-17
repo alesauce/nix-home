@@ -9,7 +9,7 @@ with self.pkgs.${system}; {
     {
       src = lib.cleanSource self;
       hooks = {
-        actionlint.enable = false;
+        actionlint.enable = true;
         alejandra.enable = true;
         deadnix = {
           enable = true;

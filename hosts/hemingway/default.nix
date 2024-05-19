@@ -14,6 +14,10 @@
   homebrew = {
     casks = [
       {
+        name = "beeper";
+        greedy = true;
+      }
+      {
         name = "firefox";
         greedy = true;
       }

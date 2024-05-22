@@ -1,20 +1,35 @@
-{lib, ...}: {
+{
   imports = [
     ../../core
     ../../graphical
     ../../users/alesauce
   ];
 
-  environment.variables.JAVA_HOME = "$(/usr/libexec/java_home)";
-
   home-manager.users.alesauce = {config, ...}: {
-    imports = [../../users/alesauce/dev/amzn.nix];
     home.sessionPath = [
       "${config.home.homeDirectory}/.local/bin"
     ];
-    programs = {
-      git.userEmail = lib.mkForce "alesauce@amazon.com";
-    };
+  };
+
+  homebrew = {
+    casks = [
+      {
+        name = "beeper";
+        greedy = true;
+      }
+      {
+        name = "firefox";
+        greedy = true;
+      }
+      {
+        name = "reader";
+        greedy = true;
+      }
+      {
+        name = "todoist";
+        greedy = true;
+      }
+    ];
   };
 
   nix = {
@@ -22,7 +37,7 @@
     linux-builder.enable = true;
     settings = {
       max-substitution-jobs = 20;
-      system-features = ["big-parallel"];
+      system-features = ["big-parallel" "gccarch-armv8-a"];
       trusted-users = ["alesauce"];
     };
   };

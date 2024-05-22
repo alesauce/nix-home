@@ -36,7 +36,7 @@ in {
   };
   vonnegut = mkHost {
     type = "darwin";
-    hostPlatform = "x86_64-darwin";
+    hostPlatform = "aarch64-darwin";
   };
   wiggin = mkHost {
     type = "home-manager";

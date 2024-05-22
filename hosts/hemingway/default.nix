@@ -1,35 +1,20 @@
-{
+{lib, ...}: {
   imports = [
     ../../core
     ../../graphical
     ../../users/alesauce
   ];
 
+  environment.variables.JAVA_HOME = "$(/usr/libexec/java_home)";
+
   home-manager.users.alesauce = {config, ...}: {
+    imports = [../../users/alesauce/dev/amzn.nix];
     home.sessionPath = [
       "${config.home.homeDirectory}/.local/bin"
     ];
-  };
-
-  homebrew = {
-    casks = [
-      {
-        name = "beeper";
-        greedy = true;
-      }
-      {
-        name = "firefox";
-        greedy = true;
-      }
-      {
-        name = "reader";
-        greedy = true;
-      }
-      {
-        name = "todoist";
-        greedy = true;
-      }
-    ];
+    programs = {
+      git.userEmail = lib.mkForce "alesauce@amazon.com";
+    };
   };
 
   nix = {

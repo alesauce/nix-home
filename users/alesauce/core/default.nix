@@ -25,7 +25,7 @@
 
   home = {
     username = "alesauce";
-    stateVersion = "23.05";
+    stateVersion = "23.11";
     packages = with pkgs; [
       alejandra
       eza
@@ -41,7 +41,7 @@
     ];
     shellAliases = {
       cat = "bat";
-      ls = "eza --binary --header --long --classify";
+      ls = "eza --icons --classify --binary --header --long";
       man = "batman";
       vim = "nvim";
       vi = "nvim";

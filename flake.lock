@@ -668,11 +668,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1718673399,
-        "narHash": "sha256-/wHDUH8CF5lcBjQL1dHOGUNB0eExwntSucroHwSyP1A=",
+        "lastModified": 1718846090,
+        "narHash": "sha256-qe9W6LKA/vr1UtS4dO1JQXhbtOllA+tPoSupMGP0blU=",
         "owner": "alesauce",
         "repo": "nixvim-flake",
-        "rev": "143e6415efcf927d020344d95dca79fce8bad04b",
+        "rev": "415b744684aedb6df24409eae05c5454dfed330b",
         "type": "github"
       },
       "original": {
@@ -692,11 +692,11 @@
         "nixpkgs-stable": "nixpkgs-stable_2"
       },
       "locked": {
-        "lastModified": 1717664902,
-        "narHash": "sha256-7XfBuLULizXjXfBYy/VV+SpYMHreNRHk9nKMsm1bgb4=",
+        "lastModified": 1718825512,
+        "narHash": "sha256-nz7idS/SZWcTUGJ+lOFL+eJayrL/LpkUiy7+FxThAh4=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "cc4d466cb1254af050ff7bdf47f6d404a7c646d1",
+        "rev": "97c0dc865fe9a062c5970f4bcf55bb9e6028bcf5",
         "type": "github"
       },
       "original": {

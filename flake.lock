@@ -548,6 +548,32 @@
         "type": "github"
       }
     },
+    "nix-fast-build_2": {
+      "inputs": {
+        "flake-parts": [
+          "nixvim-flake",
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixvim-flake",
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix_2"
+      },
+      "locked": {
+        "lastModified": 1715803356,
+        "narHash": "sha256-wvsg/UMM/jekzgbggH56KLZJzRmwrB9ErevaXXyWyqc=",
+        "owner": "Mic92",
+        "repo": "nix-fast-build",
+        "rev": "cfff239d93716e92f6467f8953d8f8c12da1892a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-fast-build",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -640,7 +666,7 @@
           "nixvim-flake",
           "nixpkgs"
         ],
-        "treefmt-nix": "treefmt-nix_2"
+        "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
         "lastModified": 1718656037,
@@ -661,6 +687,7 @@
         "flake-parts": [
           "flake-parts"
         ],
+        "nix-fast-build": "nix-fast-build_2",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -668,11 +695,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1718846090,
-        "narHash": "sha256-qe9W6LKA/vr1UtS4dO1JQXhbtOllA+tPoSupMGP0blU=",
+        "lastModified": 1718854447,
+        "narHash": "sha256-TlSXwkmI6h9elcoUdRjhlkNklKv4Ms0jmPg/3ELpU2A=",
         "owner": "alesauce",
         "repo": "nixvim-flake",
-        "rev": "415b744684aedb6df24409eae05c5454dfed330b",
+        "rev": "ff6cfbccbc4b98f3949d919752fc9b673167edb3",
         "type": "github"
       },
       "original": {
@@ -788,6 +815,28 @@
       }
     },
     "treefmt-nix_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixvim-flake",
+          "nix-fast-build",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1714058656,
+        "narHash": "sha256-Qv4RBm4LKuO4fNOfx9wl40W2rBbv5u5m+whxRYUMiaA=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "c6aaf729f34a36c445618580a9f95a48f5e4e03f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_3": {
       "inputs": {
         "nixpkgs": [
           "nixvim-flake",

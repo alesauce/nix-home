@@ -131,7 +131,7 @@ jobs:
       matrix:
         attrs: ${{ fromJson(needs.get-attrs.outputs.eval) }}
     env:
-      system: ${{ matrix.attrs.platform }}
+      system: ${{ matrix.attrs.hostPlatform }}
     steps:
       - uses: DeterminateSystems/nix-installer-action@v12
         with:
@@ -150,7 +150,7 @@ jobs:
       matrix:
         attrs: ${{ fromJson(needs.get-attrs.outputs.build) }}
     env:
-      system: ${{ matrix.attrs.platform }}
+      system: ${{ matrix.attrs.hostPlatform }}
     steps:
       - uses: DeterminateSystems/nix-installer-action@v12
         with:

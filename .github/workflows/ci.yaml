@@ -123,25 +123,6 @@ jobs:
 
           echo "build=$(<"$TMP/build.json")" >>"$GITHUB_OUTPUT"
           echo "eval=$(<"$TMP/eval.json")" >>"$GITHUB_OUTPUT"
-  eval:
-    name: eval ${{ matrix.attrs.name }}
-    runs-on: ${{ matrix.attrs.runsOn }}
-    needs: [ get-attrs ]
-    strategy:
-      fail-fast: false
-      matrix:
-        attrs: ${{ fromJson(needs.get-attrs.outputs.eval) }}
-    env:
-      system: ${{ matrix.attrs.hostPlatform }}
-    steps:
-      - uses: DeterminateSystems/nix-installer-action@v12
-        with:
-          extra-conf: ${{ env.nix-conf }}
-      - uses: DeterminateSystems/magic-nix-cache-action@v7
-      - name: eval
-        if: ${{ matrix.attrs.evalOnly }}
-        run: |
-          nix eval --raw '${{ env.flake }}#${{ matrix.attrs.attr }}'
   build:
     name: build ${{ matrix.attrs.name }}
     runs-on: ${{ matrix.attrs.runsOn }}
@@ -176,7 +157,7 @@ jobs:
 
   check:
     runs-on: ubuntu-latest
-    needs: [ flake-check, flake-show, eval, build ]
+    needs: [ flake-check, flake-show, build ]
     if: always()
     steps:
       - uses: re-actors/alls-green@release/v1

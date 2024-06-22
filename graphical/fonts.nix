@@ -46,10 +46,6 @@ in {
           </fontconfig>
         '';
       };
-    }
-    // lib.optionalAttrs (hostType == "darwin") {
-      fonts = fontPackages;
-      fontDir.enable = true;
     };
 
   stylix.fonts = {

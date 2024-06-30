@@ -72,6 +72,7 @@
   };
 
   stylix = {
+    enable = true;
     base16Scheme = "${base16-schemes}/catppuccin-mocha.yaml";
     image = pkgs.fetchurl {
       url = "https://www.amazon.com/photos/shared/sm6sTzxXQYOkgT5EwtJAUA.oLstPFMFeG-SoN0CGYou67";

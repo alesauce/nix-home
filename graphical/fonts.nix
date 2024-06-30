@@ -3,21 +3,21 @@
   lib,
   pkgs,
   ...
-}: let
-  fontPackages = with pkgs; [
-    monaspace
-    recursive
-    nerdfonts
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-extra
-  ];
-in {
+}: {
   fonts =
-    lib.optionalAttrs (hostType == "nixos")
     {
-      packages = fontPackages;
+      packages = with pkgs; [
+        monaspace
+        recursive
+        nerdfonts
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
+        noto-fonts-extra
+      ];
+    }
+    // lib.optionalAttrs (hostType == "nixos")
+    {
       enableDefaultPackages = false;
       enableGhostscriptFonts = false;
       fontconfig = {

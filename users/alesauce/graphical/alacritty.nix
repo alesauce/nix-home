@@ -11,9 +11,10 @@
           history = 10000;
           multiplier = 3;
         };
+        window.startup_mode = "Windowed";
       }
       // (lib.optionalAttrs (hostType == "darwin")) {
-        window.startup_mode = "Windowed";
+        window.option_as_alt = "Both";
       };
   };
 }

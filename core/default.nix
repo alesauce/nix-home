@@ -57,9 +57,6 @@
     base16Scheme = "${base16-schemes}/catppuccin-mocha.yaml";
     # We need this otherwise the autoimport clashes with our manual import.
     homeManagerIntegration.autoImport = false;
-    image = pkgs.fetchurl {
-      url = "https://www.amazon.com/photos/shared/sm6sTzxXQYOkgT5EwtJAUA.oLstPFMFeG-SoN0CGYou67/gallery/_DYiRRFrSyWc3lk8F_Tmzw";
-      hash = "sha256-twq+drJQxH6O3Wn1TnGZuwYvf2qVYSXPkKzrH9VhWGA=";
-    };
+    image = ../graphical/mt_fuji_across_lake.jpg;
   };
 }

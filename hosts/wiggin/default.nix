@@ -14,6 +14,7 @@
       nix-fast-build
       nodejs_18
       nodenv
+      opensshWithKerberos
     ];
   };
 

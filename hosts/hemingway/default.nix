@@ -1,11 +1,18 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../core
     ../../graphical
     ../../users/alesauce
   ];
 
-  environment.variables.JAVA_HOME = "$(/usr/libexec/java_home)";
+  environment = {
+    variables.JAVA_HOME = "$(/usr/libexec/java_home)";
+    systemPackages = [(lib.hiPrio pkgs.opensshWithKerberos)];
+  };
 
   home-manager.users.alesauce = {config, ...}: {
     imports = [../../users/alesauce/dev/amzn.nix];

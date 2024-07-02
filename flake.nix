@@ -67,6 +67,15 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        pre-commit-hooks-nix.follows = "git-hooks";
+      };
+    };
   };
 
   outputs = {

@@ -25,9 +25,25 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        pre-commit-hooks-nix.follows = "git-hooks";
+      };
     };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -53,27 +69,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
     stylix = {
       url = "github:danth/stylix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
-      };
-    };
-
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-        pre-commit-hooks-nix.follows = "git-hooks";
       };
     };
   };

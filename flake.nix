@@ -46,6 +46,11 @@
       };
     };
 
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixvim-flake = {

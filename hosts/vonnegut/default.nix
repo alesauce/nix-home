@@ -22,10 +22,6 @@
         greedy = true;
       }
       {
-        name = "reader";
-        greedy = true;
-      }
-      {
         name = "todoist";
         greedy = true;
       }

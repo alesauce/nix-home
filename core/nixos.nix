@@ -1,7 +1,5 @@
 {
-  config,
   lib,
-  pkgs,
   home-manager,
   lanzaboote,
   nix-index-database,
@@ -25,17 +23,6 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  networking = {
-    firewall = {
-      checkReversePath = "loose";
-      trustedInterfaces = ["tailscale0"];
-      allowedUDPPorts = [config.services.tailscale.port];
-    };
-    useDHCP = false;
-    useNetworkd = true;
-    wireguard.enable = true;
-  };
-
   programs = {
     command-not-found.enable = false;
     mosh.enable = true;
@@ -50,31 +37,13 @@
   };
 
   services = {
-    dbus.implementation = "broker";
     openssh = {
       enable = true;
       settings.PermitRootLogin = lib.mkDefault "no";
     };
-    tailscale.enable = true;
-    fwupd.daemonSettings.EspLocation = config.boot.loader.efi.efiSysMountPoint;
   };
 
   system = {
-    extraSystemBuilderCmds = ''
-      ln -sv ${pkgs.path} $out/nixpkgs
-    '';
-
     stateVersion = "23.05";
   };
-
-  systemd = {
-    enableUnifiedCgroupHierarchy = true;
-    network.wait-online.anyInterface = true;
-    services.tailscaled = {
-      after = ["network-online.target" "systemd-resolved.service"];
-      wants = ["network-online.target" "systemd-resolved.service"];
-    };
-  };
-
-  users.mutableUsers = false;
 }

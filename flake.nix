@@ -96,6 +96,7 @@
     devShells = forAllSystems (import ./nix/dev-shell.nix inputs);
     overlays = import ./nix/overlay.nix inputs;
     packages = forAllSystems (import ./nix/packages.nix inputs);
+    formatter = forAllSystems (system: self.pkgs.${system}.alejandra);
 
     darwinConfigurations = import ./nix/darwin.nix inputs;
     homeConfigurations = import ./nix/home-manager.nix inputs;

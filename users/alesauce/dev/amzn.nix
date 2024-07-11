@@ -6,6 +6,8 @@
   home = {
     packages = with pkgs; [
       unison
+      typescript
+      typescript-language-server
     ];
     sessionPath = [
       "${config.home.homeDirectory}/.toolbox/bin"

@@ -31,14 +31,8 @@
 
       source ${pkgs.zsh-autopair.src}/zsh-autopair.plugin.zsh
 
-      source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-      bindkey "''${terminfo[kcuu1]}" history-substring-search-up
-      bindkey '^[[A' history-substring-search-up
-      bindkey "''${terminfo[kcud1]}" history-substring-search-down
-      bindkey '^[[B' history-substring-search-down
-
       ${pkgs.nix-your-shell}/bin/nix-your-shell zsh | source /dev/stdin
-
+      bindkey '^R' _atuin_search_widget
       bindkey "''${terminfo[khome]}" beginning-of-line
       bindkey "''${terminfo[kend]}" end-of-line
       bindkey "''${terminfo[kdch1]}" delete-char

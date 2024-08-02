@@ -11,6 +11,7 @@
     nix-index-database.hmModules.nix-index
     stylix.homeManagerModules.stylix
 
+    ./atuin.nix
     ./btop.nix
     ./git.nix
     ./htop.nix
@@ -43,8 +44,6 @@
       cat = "bat";
       ls = "eza --icons --classify --binary --header --long";
       man = "batman";
-      vim = "nvim";
-      vi = "nvim";
       # Adding this so that Alacritty works with remote hosts
       ssh = "TERM=xterm-256color ssh";
       # tmux aliases
@@ -58,11 +57,6 @@
   };
 
   programs = {
-    atuin = {
-      enable = true;
-      settings.auto_sync = false;
-      flags = ["--disable-up-arrow"];
-    };
     bat = {
       enable = true;
       extraPackages = with pkgs.bat-extras; [batman];

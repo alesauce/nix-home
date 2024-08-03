@@ -1,7 +1,10 @@
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs.atuin = {
     enable = true;
-    enableZshIntegration = true;
     settings = {
       auto_sync = false;
       enter_accept = false;
@@ -11,4 +14,12 @@
       secrets_filter = true;
     };
   };
+
+  # Zsh-vi-mode overwrites the Ctrl-R keybinding for atuin, this loads atuin after zvm.
+  # https://github.com/atuinsh/atuin/issues/1826
+  programs.zsh.initExtra = ''
+    if [[ $options[zle] = on ]]; then
+      zvm_after_init_commands+=(eval "$(${lib.getExe pkgs.atuin} init zsh)")
+    fi
+  '';
 }

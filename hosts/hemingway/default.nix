@@ -16,9 +16,14 @@
 
   home-manager.users.alesauce = {config, ...}: {
     imports = [../../users/alesauce/dev/amzn.nix];
-    home.sessionPath = [
-      "${config.home.homeDirectory}/.local/bin"
-    ];
+    home = {
+      sessionPath = [
+        "${config.home.homeDirectory}/.local/bin"
+      ];
+      packages = with pkgs; [
+        unison-fsmonitor
+      ];
+    };
     programs = {
       git.userEmail = lib.mkForce "alesauce@amazon.com";
     };

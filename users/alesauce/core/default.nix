@@ -31,9 +31,7 @@
       alejandra
       eza
       fd
-      fh
       fzf
-      kalker
       mosh
       neovim
       ripgrep

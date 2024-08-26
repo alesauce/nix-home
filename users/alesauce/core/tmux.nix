@@ -6,7 +6,7 @@
     sensibleOnTop = true;
     aggressiveResize = true;
     clock24 = true;
-    newSession = true;
+    newSession = false;
     baseIndex = 1;
     plugins = with pkgs.tmuxPlugins; [
       tmux-fzf
@@ -41,5 +41,14 @@
       bind : command-prompt
       set-window-option -g automatic-rename
     '';
+  };
+
+  home.shellAliases = {
+    ",tk" = "tmux kill-session";
+    ",tka" = "tmux kill-server";
+    ",tkt" = "tmux kill-session -t";
+    ",tls" = "tmux ls";
+    ",tn" = "tmux new";
+    ",ta" = "tmux attach -t";
   };
 }

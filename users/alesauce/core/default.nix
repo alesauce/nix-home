@@ -46,13 +46,6 @@
       man = "batman";
       # Adding this so that Alacritty works with remote hosts
       ssh = "TERM=xterm-256color ssh";
-      # tmux aliases
-      ",tk" = "tmux kill-session";
-      ",tka" = "tmux kill-server";
-      ",tkt" = "tmux kill-session -t";
-      ",tls" = "tmux ls";
-      ",tn" = "tmux new";
-      ",ta" = "tmux attach -t";
     };
   };
 

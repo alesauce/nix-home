@@ -4,10 +4,13 @@
   ...
 }: {
   home = {
-    packages = with pkgs; [
-      unison
-      unison-fsmonitor
-    ];
+    packages = with pkgs;
+      [
+        unison
+      ]
+      ++ lib.filter (lib.meta.availableOn stdenv.hostPlatform) [
+        unison-fsmonitor
+      ];
     sessionPath = [
       "${config.home.homeDirectory}/.toolbox/bin"
     ];

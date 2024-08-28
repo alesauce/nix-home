@@ -6,6 +6,7 @@
   home = {
     packages = with pkgs; [
       unison
+      unison-fsmonitor
     ];
     sessionPath = [
       "${config.home.homeDirectory}/.toolbox/bin"

@@ -20,9 +20,6 @@
       sessionPath = [
         "${config.home.homeDirectory}/.local/bin"
       ];
-      packages = with pkgs; [
-        unison-fsmonitor
-      ];
     };
     programs = {
       git.userEmail = lib.mkForce "alesauce@amazon.com";

@@ -25,7 +25,7 @@
     variables = {
       SHELL = lib.getExe pkgs.zsh;
     };
-    postBuild = ''
+    extraSetup = ''
       ln -sv ${pkgs.path} $out/nixpkgs
     '';
   };

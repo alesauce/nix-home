@@ -25,6 +25,7 @@
   };
 
   home.shellAliases = {
+    ",g" = "git";
     ",ga" = "git add";
     ",gaa" = "git add -A";
     ",gb" = "git branch";
@@ -47,5 +48,8 @@
     ",grss" = "git restore --staged";
     ",gs" = "git status";
     ",gsw" = "git switch";
+    ",grb" = "git rebase";
+    ",grba" = "git rebase --abort";
+    ",grbc" = "git rebase --continue";
   };
 }

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   programs.git = {
     enable = true;
     delta = {
@@ -8,7 +8,6 @@
         syntax-theme = "Nord";
       };
     };
-    package = pkgs.gitFull;
     lfs.enable = true;
     userEmail = "alexander@alexandersauceda.dev";
     userName = "Alexander Sauceda";

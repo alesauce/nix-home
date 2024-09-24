@@ -18,10 +18,6 @@
         greedy = true;
       }
       {
-        name = "firefox";
-        greedy = true;
-      }
-      {
         name = "todoist";
         greedy = true;
       }

@@ -22,6 +22,10 @@
         greedy = true;
       }
       {
+        name = "firefox@nightly";
+        greedy = true;
+      }
+      {
         name = "obsidian";
         greedy = true;
       }

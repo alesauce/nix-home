@@ -751,11 +751,11 @@
         "tinted-tmux": "tinted-tmux"
       },
       "locked": {
-        "lastModified": 1728242323,
-        "narHash": "sha256-GYGx9aK+PCseQO72u6eJc8LJxWhAm2p2+3WXJ42seE8=",
+        "lastModified": 1728312564,
+        "narHash": "sha256-z01cTK5VeLFOUekhAXrJHLDzE74uAxxMwE2p6+Wp9Sg=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "39e5435c1da9ce50fe36deaf58bd2b94dd4d8249",
+        "rev": "63426a59e714c4389c5a8e559dee05a0087a3043",
         "type": "github"
       },
       "original": {

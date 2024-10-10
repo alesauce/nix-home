@@ -656,11 +656,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1728491330,
-        "narHash": "sha256-4Z3gemkFBGz9uwodl0ysAUWx1jbqmfNCcaVE3So5jd8=",
+        "lastModified": 1728549119,
+        "narHash": "sha256-2ONH7lu83CZzjOyGFtTIq5ipgJNGbJABOugsveqLVL4=",
         "owner": "alesauce",
         "repo": "nixvim-flake",
-        "rev": "3acdd541d9ea14a5628ffe76bbaa2f6a6fc01c1f",
+        "rev": "2cf4148cce1b53300c3d3afc1ddbff03fb2dc1f8",
         "type": "github"
       },
       "original": {

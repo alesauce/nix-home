@@ -5,10 +5,7 @@
 }: {
   home = {
     packages = with pkgs;
-      [
-        unison
-      ]
-      ++ lib.filter (lib.meta.availableOn stdenv.hostPlatform) [
+      lib.filter (lib.meta.availableOn stdenv.hostPlatform) [
         unison-fsmonitor
       ];
     sessionPath = [

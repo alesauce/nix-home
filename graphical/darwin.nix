@@ -41,6 +41,10 @@
         name = "spotify";
         greedy = true;
       }
+      {
+        name = "zen-browser";
+        greedy = true;
+      }
     ];
   };
 

@@ -551,11 +551,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1728306776,
-        "narHash": "sha256-57QXMMEELaEbE+ZVg0ngSC7UGZoyYP2QmDGcQSJ8BnE=",
+        "lastModified": 1730278911,
+        "narHash": "sha256-CrbqsC+lEA3w6gLfpqfDMDEKoEta2sl4sbQK6Z/gXak=",
         "owner": "Mic92",
         "repo": "nix-fast-build",
-        "rev": "1775c732071d0ee37c1950ce4ecbf2729487ee71",
+        "rev": "8e7c9d76979381441facb8888f21408312cf177a",
         "type": "github"
       },
       "original": {
@@ -686,11 +686,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1730305791,
-        "narHash": "sha256-zSwhQE4xzqli2uxmAcicJgx6kkp4Ur1HYWsXimhEvhw=",
+        "lastModified": 1730338938,
+        "narHash": "sha256-IqA7LzGx/LShGVEp5KDzq7dM6G2yYk1Qe4l2kfJz/aA=",
         "owner": "alesauce",
         "repo": "nixvim-flake",
-        "rev": "eccc6004906151108c6581d693fbed4f63ffe734",
+        "rev": "512457bfc5ef34a7929ce38b974c0c978f06d9b3",
         "type": "github"
       },
       "original": {

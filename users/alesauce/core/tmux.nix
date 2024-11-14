@@ -3,7 +3,8 @@
   programs.tmux = {
     enable = true;
     tmuxp.enable = true;
-    sensibleOnTop = true;
+    # FIXME: https://github.com/nix-community/home-manager/issues/5952
+    sensibleOnTop = false;
     aggressiveResize = true;
     clock24 = true;
     newSession = false;
@@ -21,6 +22,8 @@
     mouse = true;
     customPaneNavigationAndResize = true;
     extraConfig = ''
+      # update the env when attaching to an existing session
+      set -g update-environment -r
       # automatically renumber windows
       set -g renumber-windows on
 

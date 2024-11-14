@@ -32,7 +32,6 @@
       eza
       fd
       fzf
-      mosh
       neovim
       ripgrep
       tmuxp

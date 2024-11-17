@@ -18,6 +18,10 @@
         greedy = true;
       }
       {
+        name = "arc";
+        greedy = true;
+      }
+      {
         name = "firefox@nightly";
         greedy = true;
       }

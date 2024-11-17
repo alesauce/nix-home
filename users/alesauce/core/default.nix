@@ -26,7 +26,7 @@
 
   home = {
     username = "alesauce";
-    stateVersion = "23.11";
+    stateVersion = "25.05";
     packages = with pkgs; [
       alejandra
       eza

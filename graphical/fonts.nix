@@ -9,7 +9,7 @@
       packages = with pkgs; [
         monaspace
         recursive
-        nerdfonts
+        nerd-fonts.hack
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif

@@ -34,7 +34,7 @@
       name = "IBM Plex Serif";
     };
     monospace = {
-      package = pkgs.nerdfonts.override {fonts = ["Hack"];};
+      package = pkgs.nerd-fonts.hack;
       name = "Hack Nerd Font";
     };
     emoji = {

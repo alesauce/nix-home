@@ -32,6 +32,9 @@
 
   homebrew = {
     enable = true;
+    brews = [
+      "bitwarden-cli"
+    ];
     onActivation = {
       cleanup = "zap";
       autoUpdate = true;

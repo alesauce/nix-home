@@ -6,10 +6,6 @@
         greedy = true;
       }
       {
-        name = "alt-tab";
-        greedy = true;
-      }
-      {
         name = "amethyst";
         greedy = true;
       }
@@ -39,10 +35,6 @@
       }
       {
         name = "spotify";
-        greedy = true;
-      }
-      {
-        name = "zen-browser";
         greedy = true;
       }
     ];

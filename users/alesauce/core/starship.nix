@@ -4,9 +4,14 @@
     enableZshIntegration = true;
     settings = {
       add_newline = false;
+      character = {
+        error_symbol = "[✗](bold red)";
+      };
+      time.disabled = false;
       format = lib.concatStrings [
         "$username"
         "$hostname"
+        "$time"
         "$directory"
         "$git_branch"
         "$git_commit"
@@ -20,6 +25,7 @@
         "$nix_shell"
         "$line_break"
         "$jobs"
+        "$cmd_duration"
         "$character"
       ];
     };

@@ -22,6 +22,10 @@
         greedy = true;
       }
       {
+        name = "keymapp";
+        greedy = true;
+      }
+      {
         name = "obsidian";
         greedy = true;
       }

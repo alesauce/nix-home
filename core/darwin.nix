@@ -43,7 +43,10 @@
   };
 
   services = {
-    nix-daemon.logfile = "/var/log/nix-daemon.log";
+    nix-daemon = {
+      enable = true;
+      logFile = "/var/log/nix-daemon.log";
+    };
   };
 
   system = {

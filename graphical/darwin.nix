@@ -84,9 +84,6 @@
           {
             app = "/System/Volumes/Data/Applications/Obsidian.app";
           }
-          {
-            app = "/System/Volumes/Data/Applications/Todoist.app";
-          }
         ];
       };
       finder = {

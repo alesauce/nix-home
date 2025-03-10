@@ -14,10 +14,6 @@
   homebrew = {
     casks = [
       {
-        name = "beeper";
-        greedy = true;
-      }
-      {
         name = "todoist";
         greedy = true;
       }

@@ -20,7 +20,19 @@
           "if" = {
             app-id = "com.automattic.beeper.desktop";
           };
-          run = "move-node-to-workspace 5";
+          run = "move-node-to-workspace 4";
+        }
+        {
+          "if" = {
+            app-id = "com.microsoft.Outlook";
+          };
+          run = "move-node-to-workspace 4";
+        }
+        {
+          "if" = {
+            app-id = "com.tinyspeck.slackmacgap";
+          };
+          run = "move-node-to-workspace 4";
         }
       ];
       mode = {

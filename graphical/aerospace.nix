@@ -60,6 +60,7 @@ in {
             "${meh}-5" = "move-node-to-workspace 5";
             "${meh}-6" = "move-node-to-workspace 6";
             "${meh}-s" = "mode service";
+            "${meh}-m" = "macos-native-minimize";
             alt-tab = "workspace-back-and-forth";
             "${hyper}-f" = "fullscreen";
           };

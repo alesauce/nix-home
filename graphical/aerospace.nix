@@ -61,6 +61,7 @@ in {
             "${meh}-6" = "move-node-to-workspace 6";
             "${meh}-s" = "mode service";
             alt-tab = "workspace-back-and-forth";
+            "${hyper}-f" = "fullscreen";
           };
         };
         service = {

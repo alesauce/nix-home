@@ -57,9 +57,9 @@ jobs:
             })
             | map(
                 if .hostPlatform  == "x86_64-linux" then .runsOn="ubuntu-latest"
-                elif .hostPlatform == "aarch64-linux" then .runsOn="ubuntu-latest"
+                elif .hostPlatform == "aarch64-linux" then .runsOn="ubuntu-24.04-arm"
                 elif .hostPlatform == "x86_64-darwin" then .runsOn="macos-13"
-                elif .hostPlatform == "aarch64-darwin" then .runsOn="macos-14"
+                elif .hostPlatform == "aarch64-darwin" then .runsOn="macos-latest"
                 else .evalOnly=true | .runsOn="ubuntu-latest"
                 end
             )

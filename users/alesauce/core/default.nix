@@ -15,6 +15,7 @@
     ./btop.nix
     ./git.nix
     ./htop.nix
+    ./neovim.nix
     ./starship.nix
     ./tmux.nix
     ./xdg.nix
@@ -32,7 +33,6 @@
       eza
       fd
       fzf
-      neovim
       ripgrep
       tmuxp
       tree

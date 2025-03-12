@@ -1,7 +1,6 @@
 {
   self,
   nixpkgs,
-  nixvim-flake,
   ...
 } @ inputs: let
   inherit (nixpkgs) lib;
@@ -23,10 +22,10 @@
 in
   localOverlays
   // {
-    default = lib.composeManyExtensions ([
-        (final: prev: {
-          inherit (self.packages.${final.stdenv.hostPlatform.system}) nix-fast-build;
-        })
-      ]
-      ++ (lib.attrValues localOverlays));
+    default = lib.composeManyExtensions [
+      inputs.nixvim-flake.overlays.default
+      (final: prev: {
+        inherit (self.packages.${final.stdenv.hostPlatform.system}) nix-fast-build;
+      })
+    ];
   }

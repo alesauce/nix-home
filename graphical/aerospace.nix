@@ -37,6 +37,18 @@ in {
           };
           run = "move-node-to-workspace 4";
         }
+        {
+          "if" = {
+            app-id = "com.todoist.mac.Todoist";
+          };
+          run = "move-node-to-workspace 3";
+        }
+        {
+          "if" = {
+            app-id = "md.obsidian";
+          };
+          run = "move-node-to-workspace 3";
+        }
       ];
       mode = {
         main = {

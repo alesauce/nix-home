@@ -36,6 +36,12 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    # https://github.com/danth/stylix/issues/617
+    sharedModules = [
+      {
+        stylix.enable = true;
+      }
+    ];
     extraSpecialArgs = {
       inherit
         hostType

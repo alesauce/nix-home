@@ -4,6 +4,7 @@
   nix-index-database,
   pkgs,
   stylix,
+  tinted-schemes,
   ...
 }: {
   imports = [
@@ -56,7 +57,7 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = "${tinted-schemes}/base16/catppuccin-mocha.yaml";
     image = ../../../graphical/mt_fuji_across_lake.jpg;
     targets = {
       gnome.enable = hostType == "nixos";

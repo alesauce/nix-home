@@ -699,7 +699,8 @@
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "nixvim-flake": "nixvim-flake",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "tinted-schemes": "tinted-schemes_2"
       }
     },
     "stylix": {
@@ -813,6 +814,22 @@
         "owner": "tinted-theming",
         "repo": "schemes",
         "rev": "a1bc2bd89e693e7e3f5764cfe8114e2ae150e184",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tinted-theming",
+        "repo": "schemes",
+        "type": "github"
+      }
+    },
+    "tinted-schemes_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741713929,
+        "narHash": "sha256-XRwEa2+sau3jsVN4QcffFu7cWoxkKVs0oqysSu3Anxc=",
+        "owner": "tinted-theming",
+        "repo": "schemes",
+        "rev": "d4a7c5b683fb4d4150162d163889a7882625022e",
         "type": "github"
       },
       "original": {

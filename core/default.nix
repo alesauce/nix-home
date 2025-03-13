@@ -1,8 +1,8 @@
 {
-  pkgs,
   hostType,
   nix-index-database,
   stylix,
+  tinted-schemes,
   ...
 }: {
   imports = [
@@ -47,6 +47,7 @@
         hostType
         nix-index-database
         stylix
+        tinted-schemes
         ;
     };
   };
@@ -59,7 +60,7 @@
   stylix = {
     enable = true;
     autoEnable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = "${tinted-schemes}/base16/catppuccin-mocha.yaml";
     # We need this otherwise the autoimport clashes with our manual import.
     homeManagerIntegration.autoImport = false;
     image = ../graphical/mt_fuji_across_lake.jpg;

@@ -5,6 +5,7 @@
   nix-index-database,
   nixpkgs,
   stylix,
+  tinted-schemes,
   ...
 }: let
   inherit (nixpkgs) lib;
@@ -31,6 +32,7 @@
           home-manager
           nix-index-database
           stylix
+          tinted-schemes
           ;
       };
     };

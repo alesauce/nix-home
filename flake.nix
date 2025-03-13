@@ -62,6 +62,11 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    tinted-schemes = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
+    };
   };
 
   outputs = {

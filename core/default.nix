@@ -1,6 +1,5 @@
 {
   pkgs,
-  base16-schemes,
   hostType,
   nix-index-database,
   stylix,
@@ -39,7 +38,6 @@
     useUserPackages = true;
     extraSpecialArgs = {
       inherit
-        base16-schemes
         hostType
         nix-index-database
         stylix
@@ -54,7 +52,8 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${base16-schemes}/catppuccin-mocha.yaml";
+    autoEnable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     # We need this otherwise the autoimport clashes with our manual import.
     homeManagerIntegration.autoImport = false;
     image = ../graphical/mt_fuji_across_lake.jpg;

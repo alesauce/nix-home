@@ -1,6 +1,5 @@
 {
   self,
-  base16-schemes,
   home-manager,
   nix-index-database,
   nixpkgs,
@@ -46,7 +45,6 @@
       extraSpecialArgs = {
         hostType = type;
         inherit
-          base16-schemes
           nix-index-database
           stylix
           ;

@@ -1,6 +1,5 @@
 {
   self,
-  base16-schemes,
   darwin,
   home-manager,
   nix-index-database,
@@ -29,7 +28,6 @@
       specialArgs = {
         hostType = type;
         inherit
-          base16-schemes
           home-manager
           nix-index-database
           stylix

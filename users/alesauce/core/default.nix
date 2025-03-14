@@ -1,10 +1,10 @@
 {
-  base16-schemes,
   hostType,
   lib,
   nix-index-database,
   pkgs,
   stylix,
+  tinted-schemes,
   ...
 }: {
   imports = [
@@ -57,13 +57,16 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${base16-schemes}/catppuccin-mocha.yaml";
+    base16Scheme = "${tinted-schemes}/base16/catppuccin-mocha.yaml";
     image = ../../../graphical/mt_fuji_across_lake.jpg;
     targets = {
       gnome.enable = hostType == "nixos";
       gtk.enable = hostType == "nixos";
       kde.enable = lib.mkDefault false;
       xfce.enable = lib.mkDefault false;
+      nixvim = {
+        plugin = "base16-nvim";
+      };
     };
   };
 

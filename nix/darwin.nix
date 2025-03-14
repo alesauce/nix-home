@@ -1,11 +1,11 @@
 {
   self,
-  base16-schemes,
   darwin,
   home-manager,
   nix-index-database,
   nixpkgs,
   stylix,
+  tinted-schemes,
   ...
 }: let
   inherit (nixpkgs) lib;
@@ -29,10 +29,10 @@
       specialArgs = {
         hostType = type;
         inherit
-          base16-schemes
           home-manager
           nix-index-database
           stylix
+          tinted-schemes
           ;
       };
     };

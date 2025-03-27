@@ -75,6 +75,8 @@ in {
             "${meh}-m" = "macos-native-minimize";
             alt-tab = "workspace-back-and-forth";
             "${hyper}-f" = "fullscreen";
+            "${meh}-l" = "join-with right";
+            "${meh}-h" = "join-with left";
           };
         };
         service = {

@@ -77,6 +77,15 @@ in {
             "${hyper}-f" = "fullscreen";
             "${meh}-l" = "join-with right";
             "${meh}-h" = "join-with left";
+            # multi-monitor setup
+            cmd-ctrl-l = "focus-monitor right";
+            cmd-ctrl-h = "focus-monitor left";
+            ctrl-shift-1 = "summon-workspace 1";
+            ctrl-shift-2 = "summon-workspace 2";
+            ctrl-shift-3 = "summon-workspace 3";
+            ctrl-shift-4 = "summon-workspace 4";
+            ctrl-shift-5 = "summon-workspace 5";
+            ctrl-shift-6 = "summon-workspace 6";
           };
         };
         service = {

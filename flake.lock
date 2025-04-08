@@ -507,11 +507,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1743779076,
-        "narHash": "sha256-RhIEwFHGqdxXsCSbhp4DicOlMSldthNRhTn2yLdTc4g=",
+        "lastModified": 1743984373,
+        "narHash": "sha256-LsjMTldRisoxx2a9NCRxLRbEW/Nl1wc+f1PnwNt6kJk=",
         "owner": "Mic92",
         "repo": "nix-fast-build",
-        "rev": "65f8b77cb4c212749885bc79bafaec9b9d5c33e6",
+        "rev": "662a0e96626a80fcece298f755d680771f6c171e",
         "type": "github"
       },
       "original": {
@@ -602,11 +602,11 @@
         "nuschtosSearch": "nuschtosSearch"
       },
       "locked": {
-        "lastModified": 1743723573,
-        "narHash": "sha256-yxONmoimNU0hy0s8pF5lKCSZNqxVmbIHuag3sdk3R30=",
+        "lastModified": 1743844372,
+        "narHash": "sha256-59T+ikFiTt0CiSvuja3/xYahT6SL2s3XtNykfG8l0gk=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "9f495dda930ceca1653813ded11859d6b1342803",
+        "rev": "7b4311333b542178828e90f6997d8f03e8327b89",
         "type": "github"
       },
       "original": {
@@ -629,11 +629,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1743817302,
-        "narHash": "sha256-LFTCqTB4ekSqd2ttOnxtHGry/4s5a6dpGcxgozmytWc=",
+        "lastModified": 1743990381,
+        "narHash": "sha256-EsYrAHqAV+GNoDuXTV00X3MOxscscOQrPBlBoUXjTxM=",
         "owner": "alesauce",
         "repo": "nixvim-flake",
-        "rev": "777edaf362bd7bbe21b569ba1d0692c36223946b",
+        "rev": "5f20138f6e5cde0b699b804583ab423deef1357d",
         "type": "github"
       },
       "original": {

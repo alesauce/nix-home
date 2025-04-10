@@ -14,7 +14,20 @@ in {
         }
         {
           "if" = {
+            app-id = "org.mozilla.nightly";
+          };
+          run = "move-node-to-workspace 1";
+        }
+        {
+          "if" = {
             app-id = "org.mozilla.firefox";
+            window-title-regex-substring = "Picture-in-Picture";
+          };
+          run = "layout floating";
+        }
+        {
+          "if" = {
+            app-id = "org.mozilla.nightly";
             window-title-regex-substring = "Picture-in-Picture";
           };
           run = "layout floating";

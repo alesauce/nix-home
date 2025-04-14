@@ -825,11 +825,11 @@
     "tinted-schemes_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1744505470,
-        "narHash": "sha256-omAtxbs8R26eGaTwMcWECzwI/XHnMXYEMWRvXtbrfh8=",
+        "lastModified": 1744537965,
+        "narHash": "sha256-WAt2QPvv/gy9oTpk0iUJOxB0rDLE+vqLD3a7k9wcOvE=",
         "owner": "tinted-theming",
         "repo": "schemes",
-        "rev": "5c481ad9e963540fb4260ef8ee51f8ce35c7d7d7",
+        "rev": "5dc50019e932e772f4f8e2d8af8ca9ca202b9bdd",
         "type": "github"
       },
       "original": {

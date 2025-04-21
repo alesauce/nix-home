@@ -15,6 +15,7 @@
       nodejs_18
       nodenv
       opensshWithKerberos
+      jupyter
     ];
   };
 

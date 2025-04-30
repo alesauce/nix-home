@@ -8,6 +8,9 @@
       nix-output-monitor
       tldr
     ];
+    sessionVariables = {
+      AIDER_DARK_MODE = true;
+    };
   };
 
   programs = {

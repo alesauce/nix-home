@@ -2,14 +2,14 @@
   home = {
     extraOutputsToInstall = ["doc" "devdoc"];
     packages = with pkgs; [
-      aider-chat-full
+      aider-chat-with-bedrock
       duckdb
       git-lfs
       nix-output-monitor
       tldr
     ];
     sessionVariables = {
-      AIDER_DARK_MODE = true;
+      AIDER_DARK_MODE = "true";
     };
   };
 

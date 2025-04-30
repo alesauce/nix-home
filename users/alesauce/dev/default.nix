@@ -1,17 +1,11 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home = {
     extraOutputsToInstall = ["doc" "devdoc"];
     packages = with pkgs; [
+      aider-chat-full
       duckdb
-      git-absorb
       git-lfs
       nix-output-monitor
-      (lib.hiPrio nixpkgs-review)
-      nix-update
       tldr
     ];
   };

@@ -49,5 +49,6 @@
   system = {
     stateVersion = 4;
     defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+    primaryUser = "alesauce";
   };
 }

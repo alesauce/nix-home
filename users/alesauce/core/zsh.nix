@@ -22,7 +22,7 @@
       export LESSHISTFILE="${config.xdg.dataHome}/less_history"
       export CARGO_HOME="${config.xdg.cacheHome}/cargo"
     '';
-    initExtra = ''
+    initContent = ''
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
       source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh

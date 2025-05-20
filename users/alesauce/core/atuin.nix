@@ -17,7 +17,7 @@
 
   # Zsh-vi-mode overwrites the Ctrl-R keybinding for atuin, this loads atuin after zvm.
   # https://github.com/atuinsh/atuin/issues/1826
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     if [[ $options[zle] = on ]]; then
       zvm_after_init_commands+=(eval "$(${lib.getExe pkgs.atuin} init zsh)")
     fi

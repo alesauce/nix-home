@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   home = {
@@ -22,7 +23,7 @@
     };
   };
 
-  programs.zsh.initExtraBeforeCompInit = ''
+  programs.zsh.initContent = lib.mkOrder 550 ''
     fpath+=("${config.home.homeDirectory}/.zsh/completion")
     fpath+=("${config.home.homeDirectory}/.brazil_completion/zsh_completion")
   '';

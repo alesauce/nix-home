@@ -9,7 +9,7 @@
 }: {
   imports = [
     nix-index-database.hmModules.nix-index
-    stylix.homeManagerModules.stylix
+    stylix.homeModules.stylix
 
     ./atuin.nix
     ./btop.nix

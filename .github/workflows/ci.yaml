@@ -23,7 +23,6 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@v17
         with:
           extra-conf: ${{ env.nix-conf }}
-      - uses: DeterminateSystems/magic-nix-cache-action@v9
       - name: nix-flake-show
         run: nix flake show '${{ env.flake }}'
   get-attrs:
@@ -35,7 +34,6 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@v17
         with:
           extra-conf: ${{ env.nix-conf }}
-      - uses: DeterminateSystems/magic-nix-cache-action@v9
       - id: install-jq
         run: nix profile install '${{ env.flake }}#pkgs.x86_64-linux.jq'
       - id: get-attrs
@@ -126,7 +124,6 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@v17
         with:
           extra-conf: ${{ env.nix-conf }}
-      - uses: DeterminateSystems/magic-nix-cache-action@v9
       - name: nix-fast-build
         run: |
           declare -a args=(

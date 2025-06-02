@@ -5,6 +5,7 @@
       aider-chat-with-bedrock
       duckdb
       git-lfs
+      insomnia
       nix-output-monitor
       tldr
     ];

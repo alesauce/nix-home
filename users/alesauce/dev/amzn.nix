@@ -7,6 +7,7 @@
   home = {
     packages = with pkgs;
       lib.filter (lib.meta.availableOn stdenv.hostPlatform) [
+        unison
         unison-fsmonitor
         mise
       ];

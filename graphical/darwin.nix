@@ -18,6 +18,10 @@
         greedy = true;
       }
       {
+        name = "ghostty";
+        greedy = true;
+      }
+      {
         name = "keymapp";
         greedy = true;
       }
@@ -76,7 +80,7 @@
             app = "/System/Applications/Launchpad.app";
           }
           {
-            app = "${pkgs.alacritty}/Applications/Alacritty.app";
+            app = "/System/Volumes/Data/Applications/Ghostty.app";
           }
           {
             app = "/System/Volumes/Data/Applications/Firefox Nightly.app";

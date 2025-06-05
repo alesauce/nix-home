@@ -6,6 +6,7 @@
   imports = [
     ../../users/alesauce
     ../../users/alesauce/dev/amzn.nix
+    ../../users/alesauce/core/terminfo-hack.nix
   ];
 
   home = {

@@ -62,6 +62,12 @@ in {
           };
           run = "move-node-to-workspace 3";
         }
+        {
+          "if" = {
+            app-id = "us.zoom.xos";
+          };
+          run = "move-node-to-workspace 5";
+        }
       ];
       mode = {
         main = {
@@ -93,6 +99,8 @@ in {
             # multi-monitor setup
             cmd-ctrl-l = "focus-monitor right";
             cmd-ctrl-h = "focus-monitor left";
+            cmd-alt-l = "move-workspace-to-monitor right";
+            cmd-alt-h = "move-workspace-to-monitor left";
             ctrl-shift-1 = "summon-workspace 1";
             ctrl-shift-2 = "summon-workspace 2";
             ctrl-shift-3 = "summon-workspace 3";

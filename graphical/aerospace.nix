@@ -97,10 +97,10 @@ in {
             "${meh}-l" = "join-with right";
             "${meh}-h" = "join-with left";
             # multi-monitor setup
-            cmd-ctrl-l = "focus-monitor right";
-            cmd-ctrl-h = "focus-monitor left";
-            cmd-alt-l = "move-workspace-to-monitor right";
-            cmd-alt-h = "move-workspace-to-monitor left";
+            cmd-ctrl-l = "focus-monitor next";
+            cmd-ctrl-h = "focus-monitor prev";
+            cmd-alt-l = "move-workspace-to-monitor next";
+            cmd-alt-h = "move-workspace-to-monitor prev";
             ctrl-shift-1 = "summon-workspace 1";
             ctrl-shift-2 = "summon-workspace 2";
             ctrl-shift-3 = "summon-workspace 3";

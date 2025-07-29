@@ -6,8 +6,10 @@
       duckdb
       git-lfs
       insomnia
+      jujutsu
       nix-output-monitor
       tldr
+      uv
     ];
     sessionVariables = {
       AIDER_DARK_MODE = "true";

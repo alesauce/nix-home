@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ../../core
     ../../graphical
@@ -6,9 +6,14 @@
   ];
 
   home-manager.users.alesauce = {config, ...}: {
-    home.sessionPath = [
-      "${config.home.homeDirectory}/.local/bin"
-    ];
+    home = {
+      sessionPath = [
+        "${config.home.homeDirectory}/.local/bin"
+      ];
+      packages = with pkgs; [
+        python313
+      ];
+    };
   };
 
   homebrew = {

@@ -20,6 +20,9 @@
       sessionPath = [
         "${config.home.homeDirectory}/.local/bin"
       ];
+      packages = with pkgs; [
+        python313
+      ];
     };
     programs = {
       git.userEmail = lib.mkForce "alesauce@amazon.com";

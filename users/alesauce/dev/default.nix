@@ -8,6 +8,7 @@
       insomnia
       jujutsu
       nix-output-monitor
+      python314
       tldr
       uv
     ];

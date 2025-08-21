@@ -11,6 +11,7 @@
     nix-index-database.hmModules.nix-index
     stylix.homeModules.stylix
 
+    ./zsh
     ./atuin.nix
     ./btop.nix
     ./git.nix
@@ -19,7 +20,6 @@
     ./starship.nix
     ./tmux.nix
     ./xdg.nix
-    ./zsh.nix
   ];
 
   # XXX: Manually enabled in the graphic module
@@ -44,7 +44,7 @@
       man = "batman";
       # Adding this so that Alacritty works with remote hosts
       ssh = "TERM=xterm-256color ssh";
-      ",wp" = "z $(fd . ~/workplace -L -t d --min-depth 1 --max-depth 1 | fzf)";
+      ",wp" = "fzwp -m 2 -M 2";
     };
   };
 

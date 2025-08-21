@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   programs.zsh = {
@@ -36,6 +37,16 @@
         source ~/$NEW_USER-config/entry-point
       fi
     '';
+    siteFunctions = let
+      shellFilesDir = ./functions;
+      getShellFiles = files: builtins.filter (file: lib.hasSuffix ".sh" file) files;
+      shellFiles = getShellFiles (builtins.attrNames (builtins.readDir shellFilesDir));
+      makeNameValuePair = file: {
+        name = lib.removeSuffix ".sh" file;
+        value = builtins.readFile (shellFilesDir + "/${file}");
+      };
+    in
+      builtins.listToAttrs (map makeNameValuePair shellFiles);
     sessionVariables = {
       RPROMPT = "";
     };

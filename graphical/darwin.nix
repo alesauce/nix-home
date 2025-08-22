@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ./aerospace.nix
   ];
@@ -11,6 +11,10 @@
       }
       {
         name = "appcleaner";
+        greedy = true;
+      }
+      {
+        name = "brave-browser";
         greedy = true;
       }
       {

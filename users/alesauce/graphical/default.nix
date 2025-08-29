@@ -5,7 +5,9 @@
 }: {
   imports = [
     (
-      if hostType == "darwin"
+      if hostType == "nixos" || hostType == "homeManager"
+      then ./linux.nix
+      else if hostType == "darwin"
       then ./darwin.nix
       else throw "Unknown hostType '${hostType}' for users/alesauce/graphical"
     )
@@ -22,6 +24,7 @@
     ]
     ++ lib.optionals (stdenv.hostPlatform.system == "x86_64-linux") [
       spotify
+      brave
     ];
 
   programs = {

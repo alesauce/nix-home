@@ -3,6 +3,7 @@
   home-manager,
   nix-index-database,
   stylix,
+  pkgs,
   ...
 }: {
   imports = [
@@ -10,6 +11,10 @@
     nix-index-database.nixosModules.nix-index
     stylix.nixosModules.stylix
   ];
+
+  environment.systemPackages = [pkgs.ghostty.terminfo];
+
+  i18n.defaultLocale = "en_US.UTF-8";
 
   security = {
     sudo = {
@@ -26,7 +31,7 @@
   };
 
   system = {
-    stateVersion = "23.11";
+    stateVersion = "25.05";
   };
 
   users = {

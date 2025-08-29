@@ -26,7 +26,7 @@
         ];
         cores = 0;
         max-jobs = "auto";
-        experimental-features = ["nix-command" "flakes"];
+        experimental-features = ["auto-allocate-uids" "nix-command" "flakes"];
         connect-timeout = 5;
         http-connections = 0;
         flake-registry = "/etc/nix/registry.json";
@@ -48,6 +48,6 @@
     }
     // lib.optionalAttrs (hostType == "darwin") {
       nixPath = ["nixpkgs=/run/current-system/sw/nixpkgs"];
-      daemonIOLowPriority = true;
+      daemonIOLowPriority = false;
     };
 }

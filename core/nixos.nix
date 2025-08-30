@@ -35,6 +35,6 @@
   };
 
   users = {
-    mutableUsers = false;
+    mutableUsers = true;
   };
 }

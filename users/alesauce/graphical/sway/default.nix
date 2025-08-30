@@ -12,7 +12,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    config = rec {
+    config = {
       modifier = "Mod4"; # Super key
       terminal = "ghostty";
       output = {

@@ -1,25 +1,20 @@
-{pkgs, ...}: {
-  services.mako = {
-    enable = true;
-    settings = {
-      icons = true;
-    };
+{
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./common.nix
+  ];
+
+  dconf.enable = lib.mkForce true;
+
+  home = {
+    packages = with pkgs; [
+      qt5.qtwayland
+      qt6.qtwayland
+    ];
   };
 
-  systemd.user.services.mako = {
-    Unit = {
-      Description = "mako";
-      Documentation = ["man:mako(1)"];
-      PartOf = ["sway-session.target"];
-    };
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.mako}/bin/mako";
-      RestartSec = 3;
-      Restart = "always";
-    };
-    Install = {
-      WantedBy = ["sway-session.target"];
-    };
-  };
+  qt.enable = true;
 }

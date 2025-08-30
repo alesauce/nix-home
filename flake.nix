@@ -100,5 +100,6 @@
 
     darwinConfigurations = import ./nix/darwin.nix inputs;
     homeConfigurations = import ./nix/home-manager.nix inputs;
+    nixosConfigurations = import ./nix/nixos.nix inputs;
   };
 }

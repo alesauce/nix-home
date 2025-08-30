@@ -3,7 +3,16 @@
     ../../core
     ../../graphical
     ../../users/alesauce
+    ./hardware-configuration.nix
   ];
+
+  boot = {
+    loader.grub = {
+      enable = true;
+      device = "/dev/nvme0n1";
+      useOSProber = true;
+    };
+  };
 
   nix = {
     gc = {
@@ -22,11 +31,15 @@
 
   networking = {
     hostName = "sanderson";
+    networkmanager.enable = true;
+    # wireless.enable = true;
   };
 
   security = {
     sudo.wheelNeedsPassword = true;
   };
+
+  programs.firefox.enable = true;
 
   services = {
     chrony = {

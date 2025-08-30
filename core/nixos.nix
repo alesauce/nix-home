@@ -17,6 +17,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   security = {
+    rtkit.enable = true;
     sudo = {
       enable = true;
       wheelNeedsPassword = lib.mkDefault false;
@@ -27,6 +28,14 @@
     openssh = {
       enable = true;
       settings.PermitRootLogin = lib.mkDefault "no";
+    };
+    printing.enable = true;
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
     };
   };
 

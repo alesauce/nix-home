@@ -16,6 +16,7 @@ with lib; {
         "wheel"
         "dialout"
         "audio"
+        "networkmanager"
       ]
       ++ optionals config.programs.sway.enable [
         "input"

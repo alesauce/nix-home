@@ -43,4 +43,8 @@ in {
     hostPlatform = "x86_64-linux";
     homeDirectory = "/home/alesauce";
   };
+  sanderson = mkHost {
+    type = "nixos";
+    hostPlatform = "x86_64-linux";
+  };
 }

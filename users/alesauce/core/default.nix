@@ -44,7 +44,6 @@
       man = "batman";
       # Adding this so that Alacritty works with remote hosts
       ssh = "TERM=xterm-256color ssh";
-      ",wp" = ''fzd -m 2 -M 2 -i "build logs"'';
     };
   };
 

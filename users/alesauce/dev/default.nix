@@ -2,7 +2,6 @@
   home = {
     extraOutputsToInstall = ["doc" "devdoc"];
     packages = with pkgs; [
-      aider-chat-with-bedrock
       duckdb
       git-lfs
       insomnia
@@ -11,9 +10,6 @@
       tldr
       uv
     ];
-    sessionVariables = {
-      AIDER_DARK_MODE = "true";
-    };
   };
 
   programs = {

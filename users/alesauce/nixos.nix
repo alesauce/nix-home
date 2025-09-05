@@ -28,9 +28,8 @@ with lib; {
   };
 
   home-manager.users.alesauce = {lib, ...}: {
-    imports = optionals config.programs.sway.enable [
+    imports = [
       ./graphical
-      ./graphical/sway
     ];
     # c.f. https://github.com/danth/stylix/issues/865
     nixpkgs.overlays = lib.mkForce null;

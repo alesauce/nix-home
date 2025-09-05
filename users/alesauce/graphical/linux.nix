@@ -3,10 +3,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./common.nix
-  ];
-
   dconf.enable = lib.mkForce true;
 
   home = {

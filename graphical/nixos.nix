@@ -16,5 +16,8 @@
       enable = true;
       remotePlay.openFirewall = true;
     };
+    ladybird = {
+      enable = true;
+    };
   };
 }

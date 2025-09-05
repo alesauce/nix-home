@@ -14,6 +14,10 @@
     };
   };
 
+  hardware = {
+    steam-hardware.enable = true;
+  };
+
   nix = {
     gc = {
       automatic = true;

@@ -26,6 +26,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/storage/Games" = {
+    device = "/dev/disk/by-uuid/fb49df8d-f0a7-4695-a044-952ed88e7f26";
+    fsType = "ext4";
+  };
+
   swapDevices = [
     {device = "/dev/disk/by-uuid/b1acf9ef-e528-4c5f-ac20-31059e9d3cce";}
   ];

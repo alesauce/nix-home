@@ -476,6 +476,24 @@
         "type": "github"
       }
     },
+    "nix-secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1757117971,
+        "narHash": "sha256-W9Dvtf5Cmg22/20ydRwO0a+68Wvhil+QnNuuxqLrjuE=",
+        "ref": "main",
+        "rev": "bf26a2f8b804858b6e3856418c4a9350e8b2bc54",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/alesauce/nix-secrets"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/alesauce/nix-secrets"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1756542300,
@@ -615,10 +633,32 @@
         "home-manager": "home-manager",
         "nix-fast-build": "nix-fast-build",
         "nix-index-database": "nix-index-database",
+        "nix-secrets": "nix-secrets",
         "nixpkgs": "nixpkgs",
         "nixvim-flake": "nixvim-flake",
+        "sops-nix": "sops-nix",
         "stylix": "stylix",
         "tinted-schemes": "tinted-schemes_2"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754988908,
+        "narHash": "sha256-t+voe2961vCgrzPFtZxha0/kmFSHFobzF00sT8p9h0U=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "3223c7a92724b5d804e9988c6b447a0d09017d48",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     },
     "stylix": {

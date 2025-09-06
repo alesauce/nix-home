@@ -48,8 +48,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-secrets = {
+      url = "git+ssh://git@github.com/alesauce/nix-secrets?shallow=1&ref=main";
+      flake = false;
+    };
+
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
       };

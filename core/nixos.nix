@@ -4,12 +4,14 @@
   nix-index-database,
   stylix,
   pkgs,
+  sops-nix,
   ...
 }: {
   imports = [
     home-manager.nixosModules.home-manager
     nix-index-database.nixosModules.nix-index
     stylix.nixosModules.stylix
+    sops-nix.nixosModules.sops
   ];
 
   environment.systemPackages = [pkgs.ghostty.terminfo];
@@ -44,6 +46,6 @@
   };
 
   users = {
-    mutableUsers = true;
+    mutableUsers = false;
   };
 }

@@ -5,6 +5,8 @@
   nix-index-database,
   nixpkgs,
   stylix,
+  sops-nix,
+  nix-secrets,
   ...
 }: let
   inherit (nixpkgs) lib;
@@ -32,6 +34,8 @@
           nix-index-database
           stylix
           tinted-schemes
+          sops-nix
+          nix-secrets
           ;
       };
     };

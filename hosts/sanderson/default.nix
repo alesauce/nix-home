@@ -1,4 +1,10 @@
 {
+  nix-secrets,
+  config,
+  ...
+}: let
+  secretspath = builtins.toString nix-secrets;
+in {
   imports = [
     ../../core
     ../../graphical
@@ -61,6 +67,24 @@
   };
 
   time.timeZone = "America/Denver";
+
+  users.users.alesauce = {
+    hashedPasswordFile = config.sops.secrets.alesauce_passwd.path;
+  };
+
+  sops = {
+    defaultSopsFile = "${secretspath}/secrets.yaml";
+    age = {
+      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
+    secrets = {
+      alesauce_passwd = {
+        neededForUsers = true;
+      };
+    };
+  };
 
   stylix.fonts.sizes = {
     desktop = 16;

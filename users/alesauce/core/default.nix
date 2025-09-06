@@ -35,6 +35,7 @@
       eza
       fd
       fzf
+      nh
       ripgrep
       tmuxp
       tree

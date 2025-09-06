@@ -103,7 +103,7 @@
     pkgs = forAllSystems (localSystem:
       import nixpkgs {
         inherit localSystem;
-        overlays = [self.overlays.default nur.overlays.default];
+        overlays = [self.overlays.default];
         config = {
           allowUnfree = true;
           allowAliases = true;

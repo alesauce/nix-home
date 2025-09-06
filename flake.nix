@@ -20,6 +20,13 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,11 +60,9 @@
       flake = false;
     };
 
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix = {
@@ -84,6 +89,7 @@
   outputs = {
     self,
     nixpkgs,
+    nur,
     ...
   } @ inputs: let
     forAllSystems = nixpkgs.lib.genAttrs [
@@ -97,7 +103,7 @@
     pkgs = forAllSystems (localSystem:
       import nixpkgs {
         inherit localSystem;
-        overlays = [self.overlays.default];
+        overlays = [self.overlays.default nur.overlays.default];
         config = {
           allowUnfree = true;
           allowAliases = true;

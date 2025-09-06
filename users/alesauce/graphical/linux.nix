@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  imports = [./firefox.nix];
+
   dconf.enable = lib.mkForce true;
 
   home = {

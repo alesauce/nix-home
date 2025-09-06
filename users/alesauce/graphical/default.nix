@@ -17,14 +17,18 @@
   home.packages = with pkgs;
     [
       xdg-utils
+      rbw
     ]
     ++ lib.filter (lib.meta.availableOn stdenv.hostPlatform) [
       discord
       signal-desktop
     ]
     ++ lib.optionals (stdenv.hostPlatform.system == "x86_64-linux") [
-      spotify
+      beeper
       brave
+      spotify
+      obsidian
+      todoist-electron
     ];
 
   programs = {

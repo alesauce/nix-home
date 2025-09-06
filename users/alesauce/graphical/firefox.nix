@@ -16,7 +16,6 @@
         packages = with pkgs.nur.repos.rycee.firefox-addons; [
           bitwarden
           ghostery
-          omnisearch
           tampermonkey
           tree-style-tab
           untrap-for-youtube

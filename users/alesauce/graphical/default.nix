@@ -11,7 +11,6 @@
       then ./darwin.nix
       else throw "Unknown hostType '${hostType}' for users/alesauce/graphical"
     )
-    ./alacritty.nix
   ];
 
   home.packages = with pkgs;

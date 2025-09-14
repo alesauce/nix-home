@@ -23,10 +23,6 @@
         greedy = true;
       }
       {
-        name = "cold-turkey-blocker";
-        greedy = true;
-      }
-      {
         name = "todoist";
         greedy = true;
       }

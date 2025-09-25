@@ -58,6 +58,6 @@
     base16Scheme = "${tinted-schemes}/base16/catppuccin-mocha.yaml";
     # We need this otherwise the autoimport clashes with our manual import.
     homeManagerIntegration.autoImport = false;
-    image = ../graphical/mt_fuji_across_lake.jpg;
+    image = ../graphical/looking_across_lake_moraine.jpg;
   };
 }

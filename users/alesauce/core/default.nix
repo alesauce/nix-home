@@ -61,7 +61,7 @@
   stylix = {
     enable = true;
     base16Scheme = "${tinted-schemes}/base16/catppuccin-mocha.yaml";
-    image = ../../../graphical/mt_fuji_across_lake.jpg;
+    image = ../../../graphical/looking_across_lake_moraine.jpg;
     targets = {
       gnome.enable = hostType == "nixos";
       gtk.enable = hostType == "nixos";

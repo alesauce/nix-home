@@ -18,6 +18,10 @@
         greedy = true;
       }
       {
+        name = "block-goose";
+        greedy = true;
+      }
+      {
         name = "firefox@nightly";
         greedy = true;
       }

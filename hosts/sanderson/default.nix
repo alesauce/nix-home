@@ -74,6 +74,7 @@ in {
     mutableUsers = enableSecrets;
     users.alesauce = {
       hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;
+      initialPassword = lib.mkIf enableSecrets "tempPassword";
     };
   };
 

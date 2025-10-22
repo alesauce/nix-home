@@ -2,7 +2,6 @@
   nix-secrets,
   config,
   lib,
-  pkgs,
   ...
 }: let
   secretspath = builtins.toString nix-secrets;
@@ -71,8 +70,11 @@ in {
 
   time.timeZone = "America/Denver";
 
-  users.users.alesauce = {
-    hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;
+  users = {
+    mutableUsers = enableSecrets;
+    users.alesauce = {
+      hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;
+    };
   };
 
   environment.variables = {

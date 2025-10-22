@@ -44,8 +44,4 @@
   system = {
     stateVersion = "25.05";
   };
-
-  users = {
-    mutableUsers = false;
-  };
 }

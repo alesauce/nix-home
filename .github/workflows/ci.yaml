@@ -15,6 +15,7 @@ env:
     always-allow-substitutes = true
     builders-use-substitutes = true
     max-jobs = auto
+  ENABLE_SECRETS: "false"
 
 jobs:
   flake-show:
@@ -120,7 +121,6 @@ jobs:
         attrs: ${{ fromJson(needs.get-attrs.outputs.build) }}
     env:
       system: ${{ matrix.attrs.hostPlatform }}
-      ENABLE_SECRETS: "false"
     steps:
       - uses: DeterminateSystems/nix-installer-action@v19
         with:

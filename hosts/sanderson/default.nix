@@ -73,7 +73,6 @@ in {
 
   users.users.alesauce = {
     hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;
-    shell = lib.mkIf (!enableSecrets) pkgs.false;
   };
 
   environment.variables = {

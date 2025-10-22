@@ -1,9 +1,12 @@
 {
   nix-secrets,
   config,
+  lib,
+  pkgs,
   ...
 }: let
   secretspath = builtins.toString nix-secrets;
+  enableSecrets = builtins.getEnv "ENABLE_SECRETS" == "true";
 in {
   imports = [
     ../../core
@@ -69,7 +72,12 @@ in {
   time.timeZone = "America/Denver";
 
   users.users.alesauce = {
-    hashedPasswordFile = config.sops.secrets.alesauce_passwd.path;
+    hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;
+    shell = lib.mkIf (!enableSecrets) pkgs.false;
+  };
+
+  environment.variables = {
+    ENABLE_SECRETS = "true";
   };
 
   sops = {

@@ -13,7 +13,6 @@
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
-        noto-fonts-extra
       ];
     }
     // lib.optionalAttrs (hostType == "nixos")
@@ -62,7 +61,7 @@
       name = "Argon Monaspace Font";
     };
     emoji = {
-      package = pkgs.noto-fonts-emoji;
+      package = pkgs.noto-fonts-color-emoji;
       name = "Noto Color Emoji";
     };
   };

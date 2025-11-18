@@ -24,6 +24,7 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@v19
         with:
           extra-conf: ${{ env.nix-conf }}
+      - uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
       - name: nix-flake-show
         run: nix flake show '${{ env.flake }}'
   get-attrs:
@@ -35,6 +36,8 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@v19
         with:
           extra-conf: ${{ env.nix-conf }}
+          determinate: false
+      - uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
       - id: install-jq
         run: nix profile install '${{ env.flake }}#pkgs.x86_64-linux.jq'
       - id: get-attrs
@@ -125,6 +128,7 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@v19
         with:
           extra-conf: ${{ env.nix-conf }}
+      - uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
       - name: nix-fast-build
         run: |
           declare -a args=(

@@ -1,0 +1,9 @@
+keys:
+  - &user_alesauce age19g647n9xaazu5ah50mufd73zgv2ku57gjhte0nh9jwkk23542fcs3phrqh
+  - &host_sanderson age1k53qf89qwfd47w54qwlj5ftf323mwp2hj3ukwg44n38d8pyrx4fst0cdqn
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+      - age:
+        - *user_alesauce
+        - *host_sanderson

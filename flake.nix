@@ -55,11 +55,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-secrets = {
-      url = "git+ssh://git@github.com/alesauce/nix-secrets?shallow=1&ref=main";
-      flake = false;
-    };
-
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";

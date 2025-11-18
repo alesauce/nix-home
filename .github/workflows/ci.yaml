@@ -15,11 +15,15 @@ env:
     always-allow-substitutes = true
     builders-use-substitutes = true
     max-jobs = auto
+  ENABLE_SECRETS: "false"
 
 jobs:
   flake-show:
     runs-on: ubuntu-latest
     steps:
+      - name: Clear out space for Nix (not on macOS)
+        uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
+        if: ${{ runner.os != 'macOS'}}
       - uses: DeterminateSystems/nix-installer-action@v19
         with:
           extra-conf: ${{ env.nix-conf }}
@@ -31,9 +35,13 @@ jobs:
       build: ${{ steps.get-attrs.outputs.build }}
       eval: ${{ steps.get-attrs.outputs.eval }}
     steps:
+      - name: Clear out space for Nix (not on macOS)
+        uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
+        if: ${{ runner.os != 'macOS'}}
       - uses: DeterminateSystems/nix-installer-action@v19
         with:
           extra-conf: ${{ env.nix-conf }}
+          determinate: false
       - id: install-jq
         run: nix profile install '${{ env.flake }}#pkgs.x86_64-linux.jq'
       - id: get-attrs
@@ -121,6 +129,9 @@ jobs:
     env:
       system: ${{ matrix.attrs.hostPlatform }}
     steps:
+      - name: Clear out space for Nix (not on macOS)
+        uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
+        if: ${{ runner.os != 'macOS'}}
       - uses: DeterminateSystems/nix-installer-action@v19
         with:
           extra-conf: ${{ env.nix-conf }}

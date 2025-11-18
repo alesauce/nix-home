@@ -1,9 +1,9 @@
 {
-  nix-secrets,
   config,
+  lib,
   ...
 }: let
-  secretspath = builtins.toString nix-secrets;
+  enableSecrets = builtins.getEnv "ENABLE_SECRETS" == "true";
 in {
   imports = [
     ../../core
@@ -68,12 +68,20 @@ in {
 
   time.timeZone = "America/Denver";
 
-  users.users.alesauce = {
-    hashedPasswordFile = config.sops.secrets.alesauce_passwd.path;
+  users = {
+    mutableUsers = !enableSecrets;
+    users.alesauce = {
+      hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;
+      initialPassword = lib.mkIf (!enableSecrets) "tempPassword";
+    };
+  };
+
+  environment.variables = {
+    ENABLE_SECRETS = "true";
   };
 
   sops = {
-    defaultSopsFile = "${secretspath}/secrets.yaml";
+    defaultSopsFile = ./../../secrets.yaml;
     age = {
       sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
       keyFile = "/var/lib/sops-nix/key.txt";

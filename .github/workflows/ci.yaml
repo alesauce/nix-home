@@ -21,7 +21,9 @@ jobs:
   flake-show:
     runs-on: ubuntu-latest
     steps:
-      - uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
+      - name: Clear out space for Nix (not on macOS)
+        uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
+        if: ${{ runner.os != 'macOS'}}
       - uses: DeterminateSystems/nix-installer-action@v19
         with:
           extra-conf: ${{ env.nix-conf }}
@@ -33,7 +35,9 @@ jobs:
       build: ${{ steps.get-attrs.outputs.build }}
       eval: ${{ steps.get-attrs.outputs.eval }}
     steps:
-      - uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
+      - name: Clear out space for Nix (not on macOS)
+        uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
+        if: ${{ runner.os != 'macOS'}}
       - uses: DeterminateSystems/nix-installer-action@v19
         with:
           extra-conf: ${{ env.nix-conf }}
@@ -125,7 +129,9 @@ jobs:
     env:
       system: ${{ matrix.attrs.hostPlatform }}
     steps:
-      - uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
+      - name: Clear out space for Nix (not on macOS)
+        uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
+        if: ${{ runner.os != 'macOS'}}
       - uses: DeterminateSystems/nix-installer-action@v19
         with:
           extra-conf: ${{ env.nix-conf }}

@@ -22,11 +22,14 @@
 in
   localOverlays
   // {
-    default = lib.composeManyExtensions [
-      inputs.nixvim-flake.overlays.default
-      inputs.nur.overlays.default
-      (final: prev: {
-        inherit (self.packages.${final.stdenv.hostPlatform.system}) nix-fast-build;
-      })
-    ];
+    default = lib.composeManyExtensions (
+      (lib.attrValues localOverlays)
+      ++ [
+        inputs.nixvim-flake.overlays.default
+        inputs.nur.overlays.default
+        (final: prev: {
+          inherit (self.packages.${final.stdenv.hostPlatform.system}) nix-fast-build;
+        })
+      ]
+    );
   }

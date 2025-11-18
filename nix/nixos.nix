@@ -6,7 +6,6 @@
   nixpkgs,
   stylix,
   sops-nix,
-  nix-secrets,
   ...
 }: let
   inherit (nixpkgs) lib;
@@ -35,7 +34,6 @@
           stylix
           tinted-schemes
           sops-nix
-          nix-secrets
           ;
       };
     };

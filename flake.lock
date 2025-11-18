@@ -497,24 +497,6 @@
         "type": "github"
       }
     },
-    "nix-secrets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1757117971,
-        "narHash": "sha256-W9Dvtf5Cmg22/20ydRwO0a+68Wvhil+QnNuuxqLrjuE=",
-        "ref": "main",
-        "rev": "bf26a2f8b804858b6e3856418c4a9350e8b2bc54",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/alesauce/nix-secrets"
-      },
-      "original": {
-        "ref": "main",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/alesauce/nix-secrets"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1756542300,
@@ -675,7 +657,6 @@
         "home-manager": "home-manager",
         "nix-fast-build": "nix-fast-build",
         "nix-index-database": "nix-index-database",
-        "nix-secrets": "nix-secrets",
         "nixpkgs": "nixpkgs",
         "nixvim-flake": "nixvim-flake",
         "nur": "nur",

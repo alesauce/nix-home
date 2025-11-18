@@ -1,4 +1,10 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: let
+  enableSecrets = builtins.getEnv "ENABLE_SECRETS" == "true";
+in {
   imports = [
     ../../core
     ../../graphical
@@ -62,8 +68,16 @@
 
   time.timeZone = "America/Denver";
 
-  users.users.alesauce = {
-    hashedPasswordFile = config.sops.secrets.alesauce_passwd.path;
+  users = {
+    mutableUsers = !enableSecrets;
+    users.alesauce = {
+      hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;
+      initialPassword = lib.mkIf (!enableSecrets) "tempPassword";
+    };
+  };
+
+  environment.variables = {
+    ENABLE_SECRETS = "true";
   };
 
   sops = {

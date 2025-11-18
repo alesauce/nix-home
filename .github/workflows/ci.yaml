@@ -15,6 +15,7 @@ env:
     always-allow-substitutes = true
     builders-use-substitutes = true
     max-jobs = auto
+  ENABLE_SECRETS: "false"
 
 jobs:
   flake-show:

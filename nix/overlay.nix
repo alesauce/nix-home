@@ -1,9 +1,5 @@
-{
-  self,
-  nixpkgs,
-  ...
-} @ inputs: let
-  inherit (nixpkgs) lib;
+{inputs, ...}: let
+  inherit (inputs.nixpkgs) lib;
 
   importLocalOverlay = file:
     lib.composeExtensions
@@ -28,7 +24,7 @@ in
         inputs.nixvim-flake.overlays.default
         inputs.nur.overlays.default
         (final: prev: {
-          inherit (self.packages.${final.stdenv.hostPlatform.system}) nix-fast-build;
+          inherit (inputs.nix-fast-build.packages.${final.stdenv.hostPlatform.system}) nix-fast-build;
         })
       ]
     );

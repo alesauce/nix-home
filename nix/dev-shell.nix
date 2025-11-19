@@ -1,15 +1,18 @@
-{self, ...}: hostPlatform:
-with self.pkgs.${hostPlatform}; {
-  default = mkShell {
+{
+  config,
+  self',
+  pkgs,
+  ...
+}: {
+  default = pkgs.mkShell {
     name = "nix-home";
 
-    nativeBuildInputs = [
+    nativeBuildInputs = with pkgs; [
       # Nix
       alejandra
       deadnix
       nil
-      self.packages.${hostPlatform}.nix-eval-jobs
-      self.packages.${hostPlatform}.nix-fast-build
+      self'.packages.nix-fast-build
       statix
 
       # GitHub Actions
@@ -22,7 +25,7 @@ with self.pkgs.${hostPlatform}; {
     ];
 
     shellHook = ''
-      ${self.checks.${hostPlatform}.pre-commit-check.shellHook}
+      ${config.pre-commit.installationScript}
     '';
   };
 }

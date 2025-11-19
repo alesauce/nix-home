@@ -43,7 +43,7 @@ jobs:
           extra-conf: ${{ env.nix-conf }}
           determinate: false
       - id: install-jq
-        run: nix profile install '${{ env.flake }}#pkgs.x86_64-linux.jq'
+        run: nix profile install '${{ env.flake }}#jq'
       - id: get-attrs
         run: |
           function summary() {

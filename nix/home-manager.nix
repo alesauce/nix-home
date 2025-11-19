@@ -1,19 +1,12 @@
 {
-  self,
-  home-manager,
-  nix-index-database,
-  nixpkgs,
-  stylix,
-  tinted-schemes,
+  withSystem,
+  inputs,
   ...
 }: let
+  inherit (inputs) self nixpkgs home-manager;
   inherit (nixpkgs) lib;
 
-  genModules = hostName: {homeDirectory, ...}: {
-    config,
-    pkgs,
-    ...
-  }: {
+  genModules = hostName: {homeDirectory, ...}: {config, ...}: {
     imports = [(../hosts + "/${hostName}")];
     nix.registry = {
       nixpkgs.flake = nixpkgs;
@@ -40,18 +33,20 @@
     type,
     ...
   } @ attrs:
-    home-manager.lib.homeManagerConfiguration {
-      pkgs = self.pkgs.${hostPlatform};
-      modules = [(genModules hostName attrs)];
-      extraSpecialArgs = {
-        hostType = type;
-        inherit
-          nix-index-database
-          stylix
-          tinted-schemes
-          ;
-      };
-    };
+    withSystem hostPlatform ({pkgs, ...}:
+      home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [(genModules hostName attrs)];
+        extraSpecialArgs = {
+          hostType = type;
+          inherit
+            (inputs)
+            nix-index-database
+            stylix
+            tinted-schemes
+            ;
+        };
+      });
 in
   lib.mapAttrs
   genConfiguration

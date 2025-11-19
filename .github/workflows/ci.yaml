@@ -24,7 +24,7 @@ jobs:
       - name: Clear out space for Nix (not on macOS)
         uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
         if: ${{ runner.os != 'macOS'}}
-      - uses: DeterminateSystems/nix-installer-action@v19
+      - uses: DeterminateSystems/nix-installer-action@v21
         with:
           extra-conf: ${{ env.nix-conf }}
       - name: nix-flake-show
@@ -38,7 +38,7 @@ jobs:
       - name: Clear out space for Nix (not on macOS)
         uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
         if: ${{ runner.os != 'macOS'}}
-      - uses: DeterminateSystems/nix-installer-action@v19
+      - uses: DeterminateSystems/nix-installer-action@v21
         with:
           extra-conf: ${{ env.nix-conf }}
           determinate: false
@@ -132,7 +132,7 @@ jobs:
       - name: Clear out space for Nix (not on macOS)
         uses: wimpysworld/nothing-but-nix@10c936d9e46521bf923f75458e0cbd4fa309300d
         if: ${{ runner.os != 'macOS'}}
-      - uses: DeterminateSystems/nix-installer-action@v19
+      - uses: DeterminateSystems/nix-installer-action@v21
         with:
           extra-conf: ${{ env.nix-conf }}
       - name: nix-fast-build

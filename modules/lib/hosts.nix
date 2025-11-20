@@ -13,13 +13,15 @@
   # Validate host type and platform combination
   validateHost = type: hostPlatform:
     if type == "nixos"
-    then assert lib.assertMsg
-    (hasSuffix "linux" hostPlatform)
-    "NixOS hosts must use a Linux platform (got ${hostPlatform})"; true
+    then
+      assert lib.assertMsg
+      (hasSuffix "linux" hostPlatform)
+      "NixOS hosts must use a Linux platform (got ${hostPlatform})"; true
     else if type == "darwin"
-    then assert lib.assertMsg
-    (hasSuffix "darwin" hostPlatform)
-    "Darwin hosts must use a Darwin platform (got ${hostPlatform})"; true
+    then
+      assert lib.assertMsg
+      (hasSuffix "darwin" hostPlatform)
+      "Darwin hosts must use a Darwin platform (got ${hostPlatform})"; true
     else if type == "home-manager"
     then true # Home-manager works on any platform
     else throw "Unknown host type '${type}'. Valid types: nixos, darwin, home-manager";
@@ -35,11 +37,12 @@ in {
   }:
     assert validateHost type hostPlatform;
       if type == "home-manager"
-      then assert lib.assertMsg
-      (homeDirectory != null)
-      "home-manager hosts require a homeDirectory to be specified"; {
-        inherit type hostPlatform homeDirectory modules extraSpecialArgs;
-      }
+      then
+        assert lib.assertMsg
+        (homeDirectory != null)
+        "home-manager hosts require a homeDirectory to be specified"; {
+          inherit type hostPlatform homeDirectory modules extraSpecialArgs;
+        }
       else {
         inherit type hostPlatform modules specialArgs;
       };

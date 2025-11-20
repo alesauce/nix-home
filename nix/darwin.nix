@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  inherit (inputs) self darwin nixpkgs;
+  inherit (inputs) self darwin nixpkgs home-manager nix-index-database stylix tinted-schemes;
   inherit (nixpkgs) lib;
 
   genConfiguration = hostname: {
@@ -19,6 +19,7 @@
       darwin.lib.darwinSystem {
         inherit pkgs system;
         modules = [
+          self.darwinModules.default
           (../hosts + "/${hostname}")
           {
             nix.registry = {
@@ -30,7 +31,7 @@
         specialArgs = {
           hostType = type;
           inherit
-            (inputs)
+            self
             home-manager
             nix-index-database
             stylix

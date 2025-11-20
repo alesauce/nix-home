@@ -7,7 +7,10 @@
   inherit (nixpkgs) lib;
 
   genModules = hostName: {homeDirectory, ...}: {config, ...}: {
-    imports = [(../hosts + "/${hostName}")];
+    imports = [
+      ../modules/home-manager
+      (../hosts + "/${hostName}")
+    ];
     nix.registry = {
       nixpkgs.flake = nixpkgs;
       p.flake = nixpkgs;

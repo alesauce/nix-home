@@ -92,6 +92,7 @@
     (topLevel @ {withSystem, ...}: {
       imports = [
         inputs.git-hooks.flakeModule
+        ./modules/flake-module.nix
       ];
       systems = ["aarch64-darwin" "x86_64-linux"];
 
@@ -137,7 +138,6 @@
       flake = {
         hosts = import ./nix/hosts.nix;
 
-        overlays = import ./nix/overlay.nix topLevel;
         darwinConfigurations = import ./nix/darwin.nix topLevel;
         homeConfigurations = import ./nix/home-manager.nix topLevel;
         nixosConfigurations = import ./nix/nixos.nix topLevel;

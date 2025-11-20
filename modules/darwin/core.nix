@@ -3,12 +3,15 @@
   config,
   lib,
   pkgs,
+  self,
+  home-manager,
+  nix-index-database,
+  stylix,
+  tinted-schemes,
   ...
 }: let
   cfg = config.nix-home.system.core;
 in {
-  options.nix-home.system.core = import ./options.nix {inherit lib;};
-
   config = lib.mkIf cfg.enable {
     # Nix daemon configuration
     nix = {
@@ -79,6 +82,17 @@ in {
       '';
     };
 
+    # Home-manager configuration
+    home-manager = {
+      backupFileExtension = "backup";
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      extraSpecialArgs = {
+        hostType = "darwin";
+        inherit nix-index-database stylix tinted-schemes;
+      };
+    };
+
     # Aspell configuration
     environment.etc."aspell.conf" = lib.mkIf cfg.aspell.enable {
       text = ''
@@ -112,6 +126,15 @@ in {
     system = {
       stateVersion = 4;
       defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+    };
+
+    # Default user configuration
+    users.users.alesauce = {
+      createHome = true;
+      description = "Alexander Sauceda";
+      home = "/Users/alesauce";
+      isHidden = false;
+      shell = pkgs.zsh;
     };
   };
 }

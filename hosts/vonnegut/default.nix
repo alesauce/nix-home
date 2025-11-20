@@ -1,11 +1,27 @@
-{pkgs, ...}: {
-  imports = [
-    ../../core
-    ../../graphical
-    ../../users/alesauce
-  ];
+{
+  lib,
+  pkgs,
+  self,
+  ...
+}: {
+  # Enable nix-home modules
+  nix-home.system = {
+    core.enable = true;
+    graphical.enable = true;
+  };
 
   home-manager.users.alesauce = {config, ...}: {
+    imports = [
+      self.homeManagerModules.default
+    ];
+
+    nix-home.user = {
+      enable = true;
+      core.enable = true;
+      dev.enable = true;
+      graphical.enable = true;
+    };
+
     home = {
       sessionPath = [
         "${config.home.homeDirectory}/.local/bin"
@@ -43,4 +59,6 @@
     uid = 504;
     gid = 20;
   };
+
+  system.primaryUser = "alesauce";
 }

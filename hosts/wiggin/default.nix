@@ -3,14 +3,21 @@
   pkgs,
   ...
 }: {
+  # Enable nix-home modules
+  nix-home.user = {
+    enable = true;
+    core.enable = true;
+    dev.enable = true;
+  };
+
   imports = [
-    ../../users/alesauce
     ../../users/alesauce/dev/amzn.nix
     ../../users/alesauce/core/terminfo-hack.nix
   ];
 
   home = {
-    uid = 22314791;
+    username = "alesauce";
+    homeDirectory = "/home/alesauce";
     packages = with pkgs; [
       nix-fast-build
       nodenv
@@ -33,5 +40,6 @@
       '';
     };
     git.userEmail = lib.mkForce "alesauce@amazon.com";
+    home-manager.enable = true;
   };
 }

@@ -7,8 +7,6 @@
 }: let
   cfg = config.nix-home.user.dev;
 in {
-  options.nix-home.user.dev = import ./dev-options.nix {inherit lib;};
-
   config = lib.mkIf cfg.enable {
     # Development packages
     home = {

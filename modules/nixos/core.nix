@@ -3,12 +3,15 @@
   config,
   lib,
   pkgs,
+  self,
+  home-manager,
+  nix-index-database,
+  stylix,
+  tinted-schemes,
   ...
 }: let
   cfg = config.nix-home.system.core;
 in {
-  options.nix-home.system.core = import ./options.nix {inherit lib;};
-
   config = lib.mkIf cfg.enable {
     # Nix daemon configuration
     nix = {
@@ -102,6 +105,34 @@ in {
     programs = {
       nix-index.enable = true;
       zsh.enable = true;
+    };
+
+    # Home-manager configuration
+    home-manager = {
+      backupFileExtension = "backup";
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      extraSpecialArgs = {
+        hostType = "nixos";
+        inherit nix-index-database stylix tinted-schemes;
+      };
+    };
+
+    # Default user configuration
+    users.groups.alesauce.gid = config.users.users.alesauce.uid;
+    users.users.alesauce = {
+      createHome = true;
+      description = "Alexander Sauceda";
+      group = "alesauce";
+      extraGroups = [
+        "wheel"
+        "dialout"
+        "audio"
+        "networkmanager"
+      ];
+      isNormalUser = true;
+      shell = pkgs.zsh;
+      uid = 8888;
     };
 
     system.stateVersion = "25.05";

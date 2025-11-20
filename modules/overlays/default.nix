@@ -20,7 +20,7 @@
     )
     (builtins.removeAttrs
       (builtins.readDir ./.)
-      ["default.nix"]); # Exclude this file
+      ["default.nix" "flake-module.nix"]); # Exclude infrastructure files
 in
   localOverlays
   // {

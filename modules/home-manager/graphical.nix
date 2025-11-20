@@ -7,8 +7,6 @@
 }: let
   cfg = config.nix-home.user.graphical;
 in {
-  options.nix-home.user.graphical = import ./graphical-options.nix {inherit lib;};
-
   config = lib.mkIf cfg.enable {
     # Graphical packages
     home.packages =
@@ -26,6 +24,10 @@ in {
         spotify
         obsidian
         todoist-electron
+      ]))
+      ++ (lib.optionals pkgs.stdenv.isLinux (with pkgs; [
+        qt5.qtwayland
+        qt6.qtwayland
       ]));
 
     # Ghostty terminal
@@ -161,10 +163,6 @@ in {
 
     # Linux-specific graphical settings
     dconf.enable = lib.mkIf (cfg.dconf.enable && pkgs.stdenv.isLinux) (lib.mkForce true);
-    home.packages = lib.mkIf pkgs.stdenv.isLinux (with pkgs; [
-      qt5.qtwayland
-      qt6.qtwayland
-    ]);
     qt.enable = lib.mkIf pkgs.stdenv.isLinux true;
   };
 }

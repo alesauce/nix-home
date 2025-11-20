@@ -9,8 +9,6 @@
   hyper = "cmd-alt-ctrl-shift";
   meh = "ctrl-shift-alt";
 in {
-  options.nix-home.system.graphical = import ./graphical-options.nix {inherit lib;};
-
   config = lib.mkIf cfg.enable {
     # Fonts
     fonts = lib.mkIf cfg.fonts.enable {

@@ -3,12 +3,12 @@
   config,
   lib,
   pkgs,
+  tinted-schemes,
   ...
 }: let
   cfg = config.nix-home.user.core;
+  defaultScheme = "${tinted-schemes}/base16/catppuccin-mocha.yaml";
 in {
-  options.nix-home.user.core = import ./core-options.nix {inherit lib;};
-
   config = lib.mkIf cfg.enable {
     # Home configuration
     home = {
@@ -38,7 +38,15 @@ in {
           tmuxp
           tree
         ])
-        ++ cfg.packages.core;
+        ++ cfg.packages.core
+        ++ lib.optionals cfg.tools.neovim.enable [
+          (
+            if cfg.tools.neovim.package != null
+            then cfg.tools.neovim.package
+            else (pkgs.alesauce-nixvim.extend config.lib.stylix.nixvim.config)
+          )
+        ]
+        ++ lib.optionals cfg.tools.btop.enable (with pkgs; [btop]);
 
       # Shell aliases - merge defaults with user-provided
       shellAliases =
@@ -50,7 +58,43 @@ in {
           # SSH with proper TERM for Alacritty
           ssh = "TERM=xterm-256color ssh";
         }
-        // cfg.shellAliases;
+        // cfg.shellAliases
+        // lib.optionalAttrs cfg.tools.git.enable {
+          ",g" = "git";
+          ",ga" = "git add";
+          ",gaa" = "git add -A";
+          ",gb" = "git branch";
+          ",gch" = "git checkout";
+          ",gcl" = "git clone";
+          ",gco" = "git commit";
+          ",gcom" = "git commit --message";
+          ",gcoa" = "git commit --amend";
+          ",gcoan" = "git commit --amend --no-edit";
+          ",gdf" = "git diff";
+          ",gdfs" = "git diff --staged";
+          ",gl" = "git log --decorate --pretty=format:'%C(auto)%h %C(green)(%as)%C(reset)%C(blue) %<(20,trunc) %an%C(reset) %s%C(auto)%d'";
+          ",gm" = "git merge";
+          ",gma" = "git merge --abort";
+          ",gmc" = "git merge --continue";
+          ",gms" = "git merge --squash";
+          ",gpl" = "git pull --rebase";
+          ",gps" = "git push";
+          ",grs" = "git restore";
+          ",grss" = "git restore --staged";
+          ",gs" = "git status";
+          ",gsw" = "git switch";
+          ",grb" = "git rebase";
+          ",grba" = "git rebase --abort";
+          ",grbc" = "git rebase --continue";
+        }
+        // lib.optionalAttrs cfg.tools.tmux.enable {
+          ",tk" = "tmux kill-session";
+          ",tka" = "tmux kill-server";
+          ",tkt" = "tmux kill-session -t";
+          ",tls" = "tmux ls";
+          ",tn" = "tmux new";
+          ",ta" = "tmux attach -t";
+        };
     };
 
     # XDG configuration
@@ -93,53 +137,15 @@ in {
           merge.conflictstyle = "diff3";
           mergetool.prompt = true;
         }
+        // lib.optionalAttrs cfg.tools.neovim.enable {
+          core.editor = "nvim";
+        }
         // cfg.tools.git.extraConfig;
     };
 
-    # Git aliases
-    home.shellAliases = lib.mkIf cfg.tools.git.enable {
-      ",g" = "git";
-      ",ga" = "git add";
-      ",gaa" = "git add -A";
-      ",gb" = "git branch";
-      ",gch" = "git checkout";
-      ",gcl" = "git clone";
-      ",gco" = "git commit";
-      ",gcom" = "git commit --message";
-      ",gcoa" = "git commit --amend";
-      ",gcoan" = "git commit --amend --no-edit";
-      ",gdf" = "git diff";
-      ",gdfs" = "git diff --staged";
-      ",gl" = "git log --decorate --pretty=format:'%C(auto)%h %C(green)(%as)%C(reset)%C(blue) %<(20,trunc) %an%C(reset) %s%C(auto)%d'";
-      ",gm" = "git merge";
-      ",gma" = "git merge --abort";
-      ",gmc" = "git merge --continue";
-      ",gms" = "git merge --squash";
-      ",gpl" = "git pull --rebase";
-      ",gps" = "git push";
-      ",grs" = "git restore";
-      ",grss" = "git restore --staged";
-      ",gs" = "git status";
-      ",gsw" = "git switch";
-      ",grb" = "git rebase";
-      ",grba" = "git rebase --abort";
-      ",grbc" = "git rebase --continue";
-    };
-
-    # Neovim configuration
-    home.packages = lib.mkIf cfg.tools.neovim.enable [
-      (
-        if cfg.tools.neovim.package != null
-        then cfg.tools.neovim.package
-        else (pkgs.alesauce-nixvim.extend config.lib.stylix.nixvim.config)
-      )
-    ];
     home.sessionVariables = lib.mkIf cfg.tools.neovim.enable {
       EDITOR = "nvim";
       VISUAL = "nvim";
-    };
-    programs.git.extraConfig = lib.mkIf (cfg.tools.neovim.enable && cfg.tools.git.enable) {
-      core.editor = "nvim";
     };
 
     # Tmux configuration
@@ -188,16 +194,6 @@ in {
       '';
     };
 
-    # Tmux aliases
-    home.shellAliases = lib.mkIf cfg.tools.tmux.enable {
-      ",tk" = "tmux kill-session";
-      ",tka" = "tmux kill-server";
-      ",tkt" = "tmux kill-session -t";
-      ",tls" = "tmux ls";
-      ",tn" = "tmux new";
-      ",ta" = "tmux attach -t";
-    };
-
     # Zsh configuration
     programs.zsh = lib.mkIf cfg.tools.zsh.enable {
       enable = true;
@@ -231,6 +227,12 @@ in {
         if [ -e ~/$NEW_USER-config ]; then
           source ~/$NEW_USER-config/entry-point
         fi
+
+        ${lib.optionalString cfg.tools.atuin.enable ''
+          if [[ $options[zle] = on ]]; then
+            zvm_after_init_commands+=(eval \"$(${lib.getExe pkgs.atuin} init zsh)\")
+          fi
+        ''}
       '';
       siteFunctions = let
         shellFilesDir = ../../users/alesauce/core/zsh/functions;
@@ -292,14 +294,8 @@ in {
     };
 
     # Atuin integration with zsh-vi-mode
-    programs.zsh.initContent = lib.mkIf (cfg.tools.atuin.enable && cfg.tools.zsh.enable) ''
-      if [[ $options[zle] = on ]]; then
-        zvm_after_init_commands+=(eval "$(${lib.getExe pkgs.atuin} init zsh)")
-      fi
-    '';
 
     # Btop configuration
-    home.packages = lib.mkIf cfg.tools.btop.enable (with pkgs; [btop]);
     xdg.configFile."btop/btop.conf" = lib.mkIf cfg.tools.btop.enable {
       text = let
         mkValueString = v:
@@ -438,11 +434,8 @@ in {
       base16Scheme =
         if cfg.stylix.base16Scheme != null
         then cfg.stylix.base16Scheme
-        else lib.mkDefault null;
-      image =
-        if cfg.stylix.image != null
-        then cfg.stylix.image
-        else lib.mkDefault null;
+        else lib.mkDefault defaultScheme;
+      image = lib.mkIf (cfg.stylix.image != null) cfg.stylix.image;
       targets = {
         gnome.enable = pkgs.stdenv.isLinux;
         gtk.enable = pkgs.stdenv.isLinux;

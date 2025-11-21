@@ -3,6 +3,7 @@
   inputs,
   ...
 }: let
+  inherit (inputs) self home-manager nix-index-database stylix tinted-schemes sops-nix;
   inherit (inputs.nixpkgs) lib;
 
   genConfiguration = hostname: {
@@ -13,6 +14,7 @@
     withSystem hostPlatform ({pkgs, ...}:
       lib.nixosSystem {
         modules = [
+          self.nixosModules.default
           (../hosts + "/${hostname}")
           {
             nix.registry = {
@@ -25,7 +27,7 @@
         specialArgs = {
           hostType = type;
           inherit
-            (inputs)
+            self
             home-manager
             nix-index-database
             stylix

@@ -1,16 +1,33 @@
 {
   config,
   lib,
+  self,
   ...
 }: let
   enableSecrets = builtins.getEnv "ENABLE_SECRETS" == "true";
 in {
   imports = [
-    ../../core
-    ../../graphical
-    ../../users/alesauce
     ./hardware-configuration.nix
   ];
+
+  # Enable nix-home modules
+  nix-home.system = {
+    core.enable = true;
+    graphical.enable = true;
+  };
+
+  home-manager.users.alesauce = {config, ...}: {
+    imports = [
+      self.homeManagerModules.default
+    ];
+
+    nix-home.user = {
+      enable = true;
+      core.enable = true;
+      dev.enable = true;
+      graphical.enable = true;
+    };
+  };
 
   boot = {
     loader.grub = {

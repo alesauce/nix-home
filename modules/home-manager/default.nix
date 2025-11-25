@@ -9,6 +9,7 @@
   imports = [
     nix-index-database.homeModules.nix-index
     stylix.homeManagerModules.stylix
+    ./programs
     ./core-options.nix
     ./dev-options.nix
     ./graphical-options.nix

@@ -198,61 +198,6 @@ in {
       '';
     };
 
-    # Zsh configuration
-    programs.zsh = lib.mkIf cfg.tools.zsh.enable {
-      enable = true;
-      autosuggestion.enable = true;
-      enableCompletion = true;
-      autocd = true;
-      dotDir = "${config.xdg.configHome}/zsh";
-      history = {
-        expireDuplicatesFirst = true;
-        extended = true;
-        ignoreDups = true;
-        ignoreSpace = true;
-        path = "${config.xdg.dataHome}/zsh/history";
-        save = 10000;
-        share = true;
-      };
-      envExtra = ''
-        export LESSHISTFILE="${config.xdg.dataHome}/less_history"
-        export CARGO_HOME="${config.xdg.cacheHome}/cargo"
-      '';
-      initContent = ''
-        source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
-        source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
-
-        source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-        source ${pkgs.zsh-autopair.src}/zsh-autopair.plugin.zsh
-
-        NEW_USER="''${(C)USERNAME}"
-        if [ -e ~/$NEW_USER-config ]; then
-          source ~/$NEW_USER-config/entry-point
-        fi
-
-        ${lib.optionalString cfg.tools.atuin.enable ''
-          if [[ $options[zle] = on ]]; then
-            zvm_after_init_commands+=(eval \"$(${lib.getExe pkgs.atuin} init zsh)\")
-          fi
-        ''}
-      '';
-      siteFunctions = let
-        shellFilesDir = ../../users/alesauce/core/zsh/functions;
-        getShellFiles = files: builtins.filter (file: lib.hasSuffix ".sh" file) files;
-        shellFiles = getShellFiles (builtins.attrNames (builtins.readDir shellFilesDir));
-        makeNameValuePair = file: {
-          name = lib.removeSuffix ".sh" file;
-          value = builtins.readFile (shellFilesDir + "/${file}");
-        };
-      in
-        builtins.listToAttrs (map makeNameValuePair shellFiles);
-      sessionVariables = {
-        RPROMPT = "";
-      };
-    };
-
     # Starship configuration
     programs.starship = lib.mkIf cfg.tools.starship.enable {
       enable = true;

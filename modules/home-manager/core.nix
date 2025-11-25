@@ -117,6 +117,7 @@ in {
 
     # Git configuration
     programs.git = lib.mkIf cfg.tools.git.enable {
+      inherit (cfg.tools.git) userEmail userName;
       enable = true;
       delta = {
         enable = true;
@@ -125,9 +126,12 @@ in {
           syntax-theme = "Nord";
         };
       };
+      ignores = [
+        # nix
+        "result"
+        "result-man"
+      ];
       lfs.enable = true;
-      userEmail = cfg.tools.git.userEmail;
-      userName = cfg.tools.git.userName;
       extraConfig =
         {
           diff.colorMoved = "default";

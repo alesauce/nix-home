@@ -47,12 +47,12 @@ in {
           enable = mkToolOption "git" true;
           userName = lib.mkOption {
             type = lib.types.str;
-            default = "Alex LeSauce";
+            default = "Alexander Sauceda";
             description = "Git user name";
           };
           userEmail = lib.mkOption {
             type = lib.types.str;
-            default = "alex@lesauce.dev";
+            default = "alexander@alexandersauceda.dev";
             description = "Git user email";
           };
           extraConfig = lib.mkOption {

@@ -83,8 +83,6 @@
 
   outputs = inputs @ {
     self,
-    nixpkgs,
-    nur,
     flake-parts,
     ...
   }:

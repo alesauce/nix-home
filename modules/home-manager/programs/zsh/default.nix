@@ -62,7 +62,7 @@ in
       ''}
     '';
     siteFunctions = let
-      shellFilesDir = ../../users/alesauce/core/zsh/functions;
+      shellFilesDir = ./functions;
       getShellFiles = files: builtins.filter (file: lib.hasSuffix ".sh" file) files;
       shellFiles = getShellFiles (builtins.attrNames (builtins.readDir shellFilesDir));
       makeNameValuePair = file: {

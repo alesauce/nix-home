@@ -28,7 +28,6 @@ in {
       packages =
         (with pkgs; [
           age
-          alejandra
           eternal-terminal
           eza
           fd

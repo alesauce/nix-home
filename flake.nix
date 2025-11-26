@@ -79,17 +79,28 @@
       url = "github:tinted-theming/schemes";
       flake = false;
     };
+
+    nix-config-modules.url = "github:chadac/nix-config-modules";
   };
 
   outputs = inputs @ {
     self,
     flake-parts,
     ...
-  }:
+  }: let
+    flakeModule = {
+      imports = [
+        inputs.git-hooks.flakeModule
+        inputs.nix-config-modules.flakeModule
+        ./modules/flake-module.nix
+      ];
+    };
+  in
     flake-parts.lib.mkFlake {inherit inputs;}
     (topLevel @ {withSystem, ...}: {
       imports = [
         inputs.git-hooks.flakeModule
+        inputs.nix-config-modules.flakeModule
         ./modules/flake-module.nix
       ];
       systems = ["aarch64-darwin" "x86_64-linux"];

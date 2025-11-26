@@ -3,11 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = config.nix-home.user.core.tools;
-in
-{
+in {
   programs.zsh = lib.mkIf cfg.zsh.enable {
     enable = true;
     autosuggestion.enable = true;

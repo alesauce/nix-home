@@ -30,7 +30,6 @@
     stateVersion = "23.11";
     packages = with pkgs; [
       age
-      alejandra
       eternal-terminal
       eza
       fd

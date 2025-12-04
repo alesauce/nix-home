@@ -10,6 +10,8 @@
       nix-output-monitor
       tldr
       uv
+      wireshark
+      wireshark-cli
     ];
   };
 

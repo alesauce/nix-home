@@ -11,7 +11,6 @@
       tldr
       uv
       wireshark
-      wireshark-cli
     ];
   };
 

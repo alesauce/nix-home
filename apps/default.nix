@@ -10,7 +10,14 @@ in {
       display = false;
       chat = false;
       entertainment = false;
+
+      # testing different display managers
       wayland = false;
+      noCosmic = true;
+      noSway = true;
+
+      # Some packages and programs are unstable/I am attempting to alpha test. Set tag to false to install this subset of packages.
+      non-experimental = true;
     };
 
     apps.init = {

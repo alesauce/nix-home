@@ -12,5 +12,19 @@ in
         ];
       }
     ];
+
+    apps = {
+      steam = {
+        inherit tags;
+        systems = [ "x86_64-linux" ];
+        nixos = {
+          programs = {
+            steam = {
+              enable = true;
+            };
+          };
+        };
+      };
+    };
   };
 }

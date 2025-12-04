@@ -1,22 +1,12 @@
-let
+{lib, ...}:let
+  inherit (lib.my) mkSubdirList;
   tags = ["wayland"];
   systems = ["x86_64-linux" "aarch64-linux"];
 in
 {
+  imports = mkSubdirList {rootDir = ./.;};
   nix-config = {
     apps = {
-      qt = {
-        inherit tags systems;
-
-        home = {pkgs, ...}: {
-          qt.enable = true;
-
-          home.packages = with pkgs; [
-            qt5.qtwayland
-            qt6.qtwayland
-          ];
-        };
-      };
       mako = {
         inherit tags systems;
 

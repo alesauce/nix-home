@@ -605,11 +605,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1766628127,
-        "narHash": "sha256-cFP0qOlTYpbW41XkvRG0ak8nHmH4f23YO5FQwW0ydB8=",
+        "lastModified": 1766714676,
+        "narHash": "sha256-bX94zJJrLSq5BsbaJsJmf+Jlc40i6qCUxiQTtIjaWNE=",
         "owner": "alesauce",
         "repo": "nixvim-flake",
-        "rev": "8fb93f3fc251477f4bb7aca88f1923b04390f2ba",
+        "rev": "1a64600dba417b983da029b2ad701155a5459da1",
         "type": "github"
       },
       "original": {

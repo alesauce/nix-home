@@ -578,11 +578,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1767361654,
-        "narHash": "sha256-EQeicMekc0p+A8HBIAOdnyeAijqJKQYuj1CfTW4Wd+k=",
+        "lastModified": 1767608728,
+        "narHash": "sha256-kmSJCTgrx+BxgqQOTPHAOkohvO+lbRsPWqu+PSPcz3I=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "d61584cc4cac9af1ba74ad235992df575391276d",
+        "rev": "851399eebd0fb383d2fd76269d859f16021dc7a8",
         "type": "github"
       },
       "original": {
@@ -605,11 +605,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1767579938,
-        "narHash": "sha256-7HCztyhwfXXvQ7WBSHwtTCQ9T2BDJbLzJrVKyUfsyXI=",
+        "lastModified": 1767666118,
+        "narHash": "sha256-2y441xc5E6eHZAFVdedvfUJIUhuSzgLKmRaQOXYrc48=",
         "owner": "alesauce",
         "repo": "nixvim-flake",
-        "rev": "8a48af28f431ec6185d2ae56dcda47d938f5544a",
+        "rev": "2b0659df2a1a6850a095e37033b5295140e44120",
         "type": "github"
       },
       "original": {

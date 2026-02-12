@@ -832,11 +832,11 @@
     "tinted-schemes_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1768516483,
-        "narHash": "sha256-AWTIYZ1tZab0YwAQwgt5yO4ucqZoc4iXX002Byy7pRY=",
+        "lastModified": 1770850203,
+        "narHash": "sha256-Q0me2oa2LmsUBEjRqXWbxcrIN9I4wLpr2/uIs8NqG9s=",
         "owner": "tinted-theming",
         "repo": "schemes",
-        "rev": "43dd14f6466a782bd57419fdfb5f398c74d6ac53",
+        "rev": "858b711f1a18d41463e25fe54ee302e72e581cbb",
         "type": "github"
       },
       "original": {

@@ -386,11 +386,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1743443583,
-        "narHash": "sha256-8rHpOjxsNIcY1JAGeJI3j0Z9qaBSVtHW7kbN4H5FgE8=",
+        "lastModified": 1771027374,
+        "narHash": "sha256-OWj3eSP8CG1ZwcL3XlWw6eqnk/GZ7/9reVRow3Gpq28=",
         "owner": "chadac",
         "repo": "nix-config-modules",
-        "rev": "62d1f39d03a75d595b91a56e8dec57ba885579d8",
+        "rev": "01c3bd618f741a01840180e5b13a42ca4673696f",
         "type": "github"
       },
       "original": {

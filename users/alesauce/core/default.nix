@@ -16,6 +16,7 @@
     ./btop.nix
     ./git.nix
     ./htop.nix
+    ./mise.nix
     ./neovim.nix
     ./starship.nix
     ./tmux.nix

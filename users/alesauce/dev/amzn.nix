@@ -9,7 +9,6 @@
       lib.filter (lib.meta.availableOn stdenv.hostPlatform) [
         unison
         unison-fsmonitor
-        mise
       ];
     sessionPath = [
       "${config.home.homeDirectory}/.toolbox/bin"

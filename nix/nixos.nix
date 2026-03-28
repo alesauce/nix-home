@@ -12,27 +12,18 @@
   }:
     withSystem hostPlatform ({pkgs, ...}:
       lib.nixosSystem {
-        modules = [
-          (../hosts + "/${hostname}")
-          {
-            nix.registry = {
-              nixpkgs.flake = inputs.nixpkgs;
-              p.flake = inputs.nixpkgs;
-            };
-            nixpkgs.pkgs = pkgs;
-          }
-        ];
-        specialArgs = {
-          hostType = type;
-          inherit
-            (inputs)
-            home-manager
-            nix-index-database
-            stylix
-            tinted-schemes
-            sops-nix
-            ;
-        };
+        modules =
+          (builtins.attrValues inputs.self.modules.nixos)
+          ++ [
+            (../hosts + "/${hostname}")
+            {
+              nix.registry = {
+                nixpkgs.flake = inputs.nixpkgs;
+                p.flake = inputs.nixpkgs;
+              };
+              nixpkgs.pkgs = pkgs;
+            }
+          ];
       });
 in
   lib.mapAttrs

@@ -30,6 +30,7 @@
 
       home-manager.users.alesauce = {lib, ...}: {
         imports = builtins.attrValues inputs.self.modules.homeManager;
+        home.uid = config.users.users.alesauce.uid;
         # c.f. https://github.com/danth/stylix/issues/865
         nixpkgs.overlays = lib.mkForce null;
       };
@@ -51,6 +52,7 @@
       home-manager.users.alesauce = {
         imports = builtins.attrValues inputs.self.modules.homeManager;
         home.username = config.users.users.alesauce.name;
+        home.uid = config.users.users.alesauce.uid;
       };
     };
 

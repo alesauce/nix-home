@@ -1,10 +1,4 @@
 {pkgs, ...}: {
-  imports = [
-    ../../core
-    ../../graphical
-    ../../users/alesauce
-  ];
-
   home-manager.users.alesauce = {config, ...}: {
     home = {
       sessionPath = [

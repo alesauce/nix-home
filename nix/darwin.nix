@@ -18,25 +18,17 @@
     }:
       darwin.lib.darwinSystem {
         inherit pkgs system;
-        modules = [
-          (../hosts + "/${hostname}")
-          {
-            nix.registry = {
-              nixpkgs.flake = nixpkgs;
-              p.flake = nixpkgs;
-            };
-          }
-        ];
-        specialArgs = {
-          hostType = type;
-          inherit
-            (inputs)
-            home-manager
-            nix-index-database
-            stylix
-            tinted-schemes
-            ;
-        };
+        modules =
+          (builtins.attrValues self.modules.darwin)
+          ++ [
+            (../hosts + "/${hostname}")
+            {
+              nix.registry = {
+                nixpkgs.flake = nixpkgs;
+                p.flake = nixpkgs;
+              };
+            }
+          ];
       });
 in
   lib.mapAttrs

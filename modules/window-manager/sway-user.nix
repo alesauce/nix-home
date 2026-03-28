@@ -1,15 +1,15 @@
 {
-  flake.modules.homeManager.base = {pkgs, ...}: {
-    imports = [
-      ./_sway-mako.nix
-    ];
-
-    home.packages = with pkgs; [
+  flake.modules.homeManager.base = {
+    pkgs,
+    lib,
+    ...
+  }: {
+    home.packages = lib.optionals pkgs.stdenv.isLinux (with pkgs; [
       wl-clipboard
       shotman
-    ];
+    ]);
 
-    wayland.windowManager.sway = {
+    wayland.windowManager.sway = lib.mkIf pkgs.stdenv.isLinux {
       enable = true;
       config = {
         modifier = "Mod4";
@@ -20,12 +20,35 @@
           };
         };
       };
+      extraConfig = ''
+        bindsym Print               exec shotman -c output
+        bindsym Print+Shift         exec shotman -c region
+        bindsym Print+Shift+Control exec shotman -c window
+      '';
     };
 
-    extraConfig = ''
-      bindsym Print               exec shotman -c output
-      bindsym Print+Shift         exec shotman -c region
-      bindsym Print+Shift+Control exec shotman -c window
-    '';
+    services.mako = lib.mkIf pkgs.stdenv.isLinux {
+      enable = true;
+      settings = {
+        icons = true;
+      };
+    };
+
+    systemd.user.services.mako = lib.mkIf pkgs.stdenv.isLinux {
+      Unit = {
+        Description = "mako";
+        Documentation = ["man:mako(1)"];
+        PartOf = ["sway-session.target"];
+      };
+      Service = {
+        Type = "simple";
+        ExecStart = "${pkgs.mako}/bin/mako";
+        RestartSec = 3;
+        Restart = "always";
+      };
+      Install = {
+        WantedBy = ["sway-session.target"];
+      };
+    };
   };
 }

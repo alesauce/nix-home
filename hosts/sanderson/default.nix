@@ -6,9 +6,6 @@
   enableSecrets = builtins.getEnv "ENABLE_SECRETS" == "true";
 in {
   imports = [
-    ../../core
-    ../../graphical
-    ../../users/alesauce
     ./hardware-configuration.nix
   ];
 

@@ -80,9 +80,6 @@
       flake = false;
     };
 
-    nix-config-modules = {
-      url = "github:chadac/nix-config-modules";
-    };
   };
 
   outputs = inputs @ {

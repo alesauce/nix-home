@@ -30,18 +30,9 @@ let
       }
     else throw "unknown host type '${type}'";
 in {
-  hemingway = mkHost {
-    type = "darwin";
-    hostPlatform = "aarch64-darwin";
-  };
   vonnegut = mkHost {
     type = "darwin";
     hostPlatform = "aarch64-darwin";
-  };
-  wiggin = mkHost {
-    type = "home-manager";
-    hostPlatform = "x86_64-linux";
-    homeDirectory = "/home/alesauce";
   };
   sanderson = mkHost {
     type = "nixos";

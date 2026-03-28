@@ -3,7 +3,6 @@
     extraOutputsToInstall = ["doc" "devdoc"];
     packages = with pkgs; [
       duckdb
-      goose-cli
       git-lfs
       insomnia
       jujutsu

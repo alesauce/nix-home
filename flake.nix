@@ -32,6 +32,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    import-tree.url = "github:vic/import-tree";
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixvim-flake = {
@@ -93,8 +95,8 @@
     (topLevel @ {withSystem, ...}: {
       imports = [
         inputs.git-hooks.flakeModule
+        (inputs.import-tree ./modules)
       ];
-      systems = ["aarch64-darwin" "x86_64-linux"];
 
       perSystem = ctx @ {
         config,

@@ -142,7 +142,6 @@
 
         overlays = import ./nix/overlay.nix topLevel;
         darwinConfigurations = import ./nix/darwin.nix topLevel;
-        homeConfigurations = import ./nix/home-manager.nix topLevel;
         nixosConfigurations = import ./nix/nixos.nix topLevel;
       };
     });

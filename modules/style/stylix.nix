@@ -6,7 +6,7 @@
         autoEnable = true;
         base16Scheme = "${inputs.tinted-schemes}/base16/catppuccin-mocha.yaml";
         homeManagerIntegration.autoImport = false;
-        image = ../../graphical/looking_across_lake_moraine.jpg;
+        image = ../../assets/looking_across_lake_moraine.jpg;
       };
     };
 
@@ -16,7 +16,7 @@
         autoEnable = true;
         base16Scheme = "${inputs.tinted-schemes}/base16/catppuccin-mocha.yaml";
         homeManagerIntegration.autoImport = false;
-        image = ../../graphical/looking_across_lake_moraine.jpg;
+        image = ../../assets/looking_across_lake_moraine.jpg;
       };
     };
 
@@ -29,7 +29,7 @@
       stylix = {
         enable = true;
         base16Scheme = "${tinted-schemes}/base16/catppuccin-mocha.yaml";
-        image = ../../graphical/looking_across_lake_moraine.jpg;
+        image = ../../assets/looking_across_lake_moraine.jpg;
         targets = {
           gnome.enable = pkgs.stdenv.isLinux;
           gtk.enable = pkgs.stdenv.isLinux;

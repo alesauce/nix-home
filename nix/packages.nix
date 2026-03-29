@@ -8,9 +8,8 @@
   inherit (pkgs) lib linkFarm;
 
   nixosDrvs = lib.mapAttrs (_: nixos: nixos.config.system.build.toplevel) flake.nixosConfigurations;
-  homeDrvs = lib.mapAttrs (_: home: home.activationPackage) flake.homeConfigurations;
   darwinDrvs = lib.mapAttrs (_: darwin: darwin.system) flake.darwinConfigurations;
-  hostDrvs = nixosDrvs // homeDrvs // darwinDrvs;
+  hostDrvs = nixosDrvs // darwinDrvs;
 
   compatHosts = lib.filterAttrs (_: host: host.hostPlatform == system) flake.hosts;
   compatHostDrvs =

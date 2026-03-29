@@ -141,8 +141,6 @@
         hosts = import ./nix/hosts.nix;
 
         overlays = import ./nix/overlay.nix topLevel;
-        darwinConfigurations = import ./nix/darwin.nix topLevel;
-        nixosConfigurations = import ./nix/nixos.nix topLevel;
       };
     });
 }

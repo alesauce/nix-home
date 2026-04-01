@@ -1,0 +1,56 @@
+{
+  flake.modules.homeManager.base = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: {
+    programs.zsh = {
+      enable = true;
+      autosuggestion.enable = true;
+      enableCompletion = true;
+      autocd = true;
+      dotDir = "${config.xdg.configHome}/zsh";
+      history = {
+        expireDuplicatesFirst = true;
+        extended = true;
+        ignoreDups = true;
+        ignoreSpace = true;
+        path = "${config.xdg.dataHome}/zsh/history";
+        save = 10000;
+        share = true;
+      };
+      envExtra = ''
+        export LESSHISTFILE="${config.xdg.dataHome}/less_history"
+        export CARGO_HOME="${config.xdg.cacheHome}/cargo"
+      '';
+      initContent = ''
+        source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+        source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+        source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+        source ${pkgs.zsh-autopair.src}/zsh-autopair.plugin.zsh
+
+        NEW_USER="''${(C)USERNAME}"
+        if [ -e ~/$NEW_USER-config ]; then
+          source ~/$NEW_USER-config/entry-point
+        fi
+      '';
+      siteFunctions = let
+        shellFilesDir = ./_zsh-functions;
+        getShellFiles = files: builtins.filter (file: lib.hasSuffix ".sh" file) files;
+        shellFiles = getShellFiles (builtins.attrNames (builtins.readDir shellFilesDir));
+        makeNameValuePair = file: {
+          name = lib.removeSuffix ".sh" file;
+          value = builtins.readFile (shellFilesDir + "/${file}");
+        };
+      in
+        builtins.listToAttrs (map makeNameValuePair shellFiles);
+      sessionVariables = {
+        RPROMPT = "";
+      };
+    };
+  };
+}

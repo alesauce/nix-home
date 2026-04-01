@@ -13,6 +13,15 @@
   };
 
   inputs = {
+    actions-nix = {
+      url = "github:nialov/actions.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks";
+      };
+    };
+
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +40,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    import-tree.url = "github:vic/import-tree";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -82,66 +93,11 @@
 
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nur,
-    flake-parts,
-    ...
-  }:
-    flake-parts.lib.mkFlake {inherit inputs;}
-    (topLevel @ {withSystem, ...}: {
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.git-hooks.flakeModule
+        (inputs.import-tree ./modules)
       ];
-      systems = ["aarch64-darwin" "x86_64-linux"];
-
-      perSystem = ctx @ {
-        config,
-        self',
-        inputs',
-        pkgs,
-        system,
-        ...
-      }: {
-        _module.args.pkgs = import inputs.nixpkgs {
-          localSystem = system;
-          overlays = [self.overlays.default];
-          config = {
-            allowUnfree = true;
-            allowAliases = true;
-          };
-          pre-commit = {
-            check.enable = true;
-            settings.hooks = {
-              actionlint.enable = true;
-              alejandra.enable = true;
-              deadnix = {
-                enable = true;
-                settings = {
-                  noLambdaArg = true;
-                  noLambdaPatternNames = true;
-                  noUnderscore = true;
-                };
-              };
-              nil.enable = true;
-              statix.enable = true;
-            };
-          };
-        };
-
-        devShells = import ./nix/dev-shell.nix ctx;
-        packages = import ./nix/packages.nix topLevel ctx;
-        formatter = pkgs.alejandra;
-      };
-
-      flake = {
-        hosts = import ./nix/hosts.nix;
-
-        overlays = import ./nix/overlay.nix topLevel;
-        darwinConfigurations = import ./nix/darwin.nix topLevel;
-        homeConfigurations = import ./nix/home-manager.nix topLevel;
-        nixosConfigurations = import ./nix/nixos.nix topLevel;
-      };
-    });
+    };
 }

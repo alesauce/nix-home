@@ -1,7 +1,0 @@
-{
-  hardware = {
-    opengl = {
-      enable = true;
-    };
-  };
-}

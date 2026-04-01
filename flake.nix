@@ -13,6 +13,15 @@
   };
 
   inputs = {
+    actions-nix = {
+      url = "github:nialov/actions.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks";
+      };
+    };
+
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -133,13 +142,13 @@
         };
 
         devShells = import ./nix/dev-shell.nix ctx;
-        packages = import ./nix/packages.nix topLevel ctx;
+        packages = {
+          inherit (inputs'.nix-fast-build.packages) nix-fast-build;
+        };
         formatter = pkgs.alejandra;
       };
 
       flake = {
-        hosts = import ./nix/hosts.nix;
-
         overlays = import ./nix/overlay.nix topLevel;
       };
     });

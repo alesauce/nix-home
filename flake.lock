@@ -1,5 +1,31 @@
 {
   "nodes": {
+    "actions-nix": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "git-hooks": [
+          "git-hooks"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773385671,
+        "narHash": "sha256-PTsUy5Pynmg7aLxB7LBoGzoWsYIzZ+gZdDN0FnTLo5M=",
+        "owner": "nialov",
+        "repo": "actions.nix",
+        "rev": "749019ea27ca61d23bb75d9884734ea227e06012",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nialov",
+        "repo": "actions.nix",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -609,6 +635,7 @@
     },
     "root": {
       "inputs": {
+        "actions-nix": "actions-nix",
         "darwin": "darwin",
         "flake-parts": "flake-parts",
         "git-hooks": "git-hooks",

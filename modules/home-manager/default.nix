@@ -45,9 +45,6 @@
         backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = {
-          inherit (inputs) nix-index-database stylix tinted-schemes;
-        };
       };
 
       documentation = {
@@ -112,9 +109,6 @@
         backupFileExtension = "backup";
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = {
-          inherit (inputs) nix-index-database stylix tinted-schemes;
-        };
       };
 
       documentation = {

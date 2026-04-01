@@ -56,15 +56,10 @@
       };
     };
 
-    homeManager.base = {
-      nix-index-database,
-      stylix,
-      pkgs,
-      ...
-    }: {
+    homeManager.base = {pkgs, ...}: {
       imports = [
-        nix-index-database.hmModules.nix-index
-        stylix.homeModules.stylix
+        inputs.nix-index-database.hmModules.nix-index
+        inputs.stylix.homeModules.stylix
         ./_uid.nix
       ];
 

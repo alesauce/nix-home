@@ -93,63 +93,11 @@
 
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nur,
-    flake-parts,
-    ...
-  }:
-    flake-parts.lib.mkFlake {inherit inputs;}
-    (topLevel @ {withSystem, ...}: {
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.git-hooks.flakeModule
         (inputs.import-tree ./modules)
       ];
-
-      perSystem = ctx @ {
-        config,
-        self',
-        inputs',
-        pkgs,
-        system,
-        ...
-      }: {
-        _module.args.pkgs = import inputs.nixpkgs {
-          localSystem = system;
-          overlays = [self.overlays.default];
-          config = {
-            allowUnfree = true;
-            allowAliases = true;
-          };
-          pre-commit = {
-            check.enable = true;
-            settings.hooks = {
-              actionlint.enable = true;
-              alejandra.enable = true;
-              deadnix = {
-                enable = true;
-                settings = {
-                  noLambdaArg = true;
-                  noLambdaPatternNames = true;
-                  noUnderscore = true;
-                };
-              };
-              nil.enable = true;
-              statix.enable = true;
-            };
-          };
-        };
-
-        devShells = import ./nix/dev-shell.nix ctx;
-        packages = {
-          inherit (inputs'.nix-fast-build.packages) nix-fast-build;
-        };
-        formatter = pkgs.alejandra;
-      };
-
-      flake = {
-        overlays = import ./nix/overlay.nix topLevel;
-      };
-    });
+    };
 }

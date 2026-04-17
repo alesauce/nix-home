@@ -121,7 +121,7 @@ jobs:
   build:
     name: build ${{ matrix.attrs.name }}
     runs-on: ${{ matrix.attrs.runsOn }}
-    needs: [ get-attrs ]
+    needs: [get-attrs]
     strategy:
       fail-fast: false
       matrix:
@@ -149,7 +149,7 @@ jobs:
 
   check:
     runs-on: ubuntu-latest
-    needs: [ flake-show, build ]
+    needs: [flake-show, build]
     if: always()
     steps:
       - uses: re-actors/alls-green@release/v1

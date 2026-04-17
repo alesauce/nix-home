@@ -5,5 +5,5 @@ creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
       - age:
-        - *user_alesauce
-        - *host_sanderson
+          - *user_alesauce
+          - *host_sanderson

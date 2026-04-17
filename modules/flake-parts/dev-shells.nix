@@ -1,5 +1,9 @@
 {
-  perSystem = {pkgs, config, ...}: {
+  perSystem = {
+    pkgs,
+    config,
+    ...
+  }: {
     devShells.default = pkgs.mkShell {
       name = "nix-home";
 

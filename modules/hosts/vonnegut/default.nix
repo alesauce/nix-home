@@ -3,5 +3,5 @@
   inputs,
   ...
 }: {
-  flake.darwinConfigurations.vonnegut = inputs.nix-darwin.lib.darwinySystem {};
+  flake.darwinConfigurations.vonnegut = inputs.nix-darwin.lib.darwinSystem {};
 }

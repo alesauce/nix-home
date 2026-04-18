@@ -20,7 +20,5 @@
         ];
       };
     };
-    # TODO: uncomment when I set up pre-commit hooks
-    # pre-commit.settings.hooks.treefmt.enable = true;
   };
 }

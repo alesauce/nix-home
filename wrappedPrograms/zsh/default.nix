@@ -1,5 +1,13 @@
 {inputs, ...}: let
-  zshModule = {pkgs, ...}: {
+  zshModule = {pkgs, ...}: let
+    # Strip .sh suffix so zsh autoload resolves function names from fpath.
+    functionsDir = pkgs.runCommand "zsh-site-functions" {} ''
+      mkdir -p $out
+      for f in ${./functions}/*.sh; do
+        ln -s "$f" "$out/$(basename "$f" .sh)"
+      done
+    '';
+  in {
     config = {
       extraPackages = with pkgs; [
         bat
@@ -43,8 +51,8 @@
 
         eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
 
-        fpath=(${./functions} $fpath)
-        autoload -Uz fzd
+        fpath=(${functionsDir} $fpath)
+        autoload -Uz -- ${functionsDir}/*(N:t)
       '';
     };
   };

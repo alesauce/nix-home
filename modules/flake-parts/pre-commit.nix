@@ -18,7 +18,11 @@
         nil.enable = true;
         shellcheck = {
           enable = true;
-          excludes = [".envrc"];
+          excludes = [
+            ".envrc"
+            # zsh autoload function bodies; shellcheck can't parse zsh syntax.
+            "^wrappedPrograms/zsh/functions/.*\\.sh$"
+          ];
         };
         statix.enable = true;
         treefmt.enable = true;

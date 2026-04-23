@@ -17,6 +17,8 @@
           "*.png"
           "LICENSE"
           ".claude/*"
+          # zsh autoload function bodies; not valid bash, shfmt can't parse.
+          "wrappedPrograms/zsh/functions/*.sh"
         ];
       };
     };

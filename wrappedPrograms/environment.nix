@@ -11,20 +11,31 @@
     self',
     ...
   }: {
-    packages.environment = inputs.wrapper-modules.lib.wrapPackage {
-      inherit pkgs;
-      package = self'.packages.zsh;
-      runtimePkgs = [
-        self'.packages.git
-        self'.packages.tmux
-        self'.packages.atuin
-        self'.packages.starship
-        self'.packages.htop
-        self'.packages.btop
-        self'.packages.neovim
-        pkgs.mise
-      ];
-    };
+    packages.environment =
+      inputs.wrapper-modules.lib.wrapPackage {
+        inherit pkgs;
+        package = self'.packages.zsh;
+        runtimePkgs = [
+          self'.packages.git
+          self'.packages.tmux
+          self'.packages.atuin
+          self'.packages.starship
+          self'.packages.htop
+          self'.packages.btop
+          self'.packages.neovim
+          self'.packages.direnv
+          self'.packages.gh
+          self'.packages.gh-dash
+          pkgs.mise
+          pkgs.duckdb
+          pkgs.uv
+        ];
+      }
+      # Lets a host opt into this as users.users.<name>.shell (NixOS's
+      # types.shellPackage requires a shellPath passthru) without every host
+      # having to do it — headless hosts will want this, desktop hosts with a
+      # terminal emulator can wire the shell there instead.
+      // {shellPath = "/bin/zsh";};
   };
 
   flake.modules.homeManager.base = {pkgs, ...}: let

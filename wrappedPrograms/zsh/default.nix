@@ -65,6 +65,7 @@
         eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
         eval "$(${lib.getExe pkgs.starship} init zsh)"
         eval "$(${lib.getExe pkgs.mise} activate zsh)"
+        eval "$(${lib.getExe pkgs.direnv} hook zsh)"
 
         fpath=(${functionsDir} $fpath)
         autoload -Uz -- ${functionsDir}/*(N:t)

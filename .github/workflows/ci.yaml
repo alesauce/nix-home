@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - refactor/rebuild-with-dendritic-pattern
   pull_request:
 
 permissions: {}
@@ -52,23 +53,42 @@ jobs:
 
           summary "# CI"
           TMP="$(mktemp -d)"
-          # host packages
-          nix eval --json '${{ env.flake }}#hosts' | jq -c '
-            to_entries
-            | map({
-                name: .key,
-                evalOnly: false,
-                hostPlatform: .value.hostPlatform,
-                attr: "packages.\(.value.hostPlatform).\(.key)"
-            })
-            | map(
-                if .hostPlatform  == "x86_64-linux" then .runsOn="ubuntu-latest"
-                elif .hostPlatform == "aarch64-linux" then .runsOn="ubuntu-24.04-arm"
-                elif .hostPlatform == "x86_64-darwin" then .runsOn="macos-13"
-                elif .hostPlatform == "aarch64-darwin" then .runsOn="macos-latest"
-                else .evalOnly=true | .runsOn="ubuntu-latest"
-                end
+
+          # nixosConfigurations.<name> -> {name, hostPlatform, attr}
+          nix eval --json '${{ env.flake }}#nixosConfigurations' \
+            --apply 'builtins.mapAttrs (n: c: c.config.nixpkgs.hostPlatform.system)' \
+            | jq -c '
+              to_entries
+              | map({
+                  name: .key,
+                  hostPlatform: .value,
+                  attr: "nixosConfigurations.\(.key).config.system.build.toplevel"
+              })
+            ' >"$TMP/nixosHosts.json"
+
+          # darwinConfigurations.<name> -> {name, hostPlatform, attr}
+          nix eval --json '${{ env.flake }}#darwinConfigurations' \
+            --apply 'builtins.mapAttrs (n: c: c.pkgs.stdenv.hostPlatform.system)' \
+            | jq -c '
+              to_entries
+              | map({
+                  name: .key,
+                  hostPlatform: .value,
+                  attr: "darwinConfigurations.\(.key).system"
+              })
+            ' >"$TMP/darwinHosts.json"
+
+          # join, then assign a runner (or mark eval-only when no runner fits)
+          jq -c -s add "$TMP/nixosHosts.json" "$TMP/darwinHosts.json" | jq -c '
+            map(
+              if .hostPlatform == "x86_64-linux" then .runsOn="ubuntu-latest"
+              elif .hostPlatform == "aarch64-linux" then .runsOn="ubuntu-24.04-arm"
+              elif .hostPlatform == "x86_64-darwin" then .runsOn="macos-13"
+              elif .hostPlatform == "aarch64-darwin" then .runsOn="macos-latest"
+              else .evalOnly=true | .runsOn="ubuntu-latest"
+              end
             )
+            | map(.evalOnly //= false)
           ' >"$TMP/hostAttrs.json"
 
           # dev shells

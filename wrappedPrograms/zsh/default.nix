@@ -1,5 +1,9 @@
 {inputs, ...}: let
-  zshModule = {pkgs, ...}: let
+  zshModule = {
+    pkgs,
+    lib,
+    ...
+  }: let
     # Strip .sh suffix so zsh autoload resolves function names from fpath.
     functionsDir = pkgs.runCommand "zsh-site-functions" {} ''
       mkdir -p $out
@@ -44,12 +48,18 @@
 
         autoload -Uz compinit && compinit
 
+        if [[ $options[zle] = on ]]; then
+          zvm_after_init_commands+=(eval "$(${lib.getExe pkgs.atuin} init zsh)")
+        fi
+
         source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
         source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
         source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
         source ${pkgs.zsh-autopair.src}/zsh-autopair.plugin.zsh
 
         eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
+        eval "$(${lib.getExe pkgs.starship} init zsh)"
+        eval "$(${lib.getExe pkgs.mise} activate zsh)"
 
         fpath=(${functionsDir} $fpath)
         autoload -Uz -- ${functionsDir}/*(N:t)

@@ -17,6 +17,11 @@
       runtimePkgs = [
         self'.packages.git
         self'.packages.tmux
+        self'.packages.atuin
+        self'.packages.starship
+        self'.packages.htop
+        self'.packages.btop
+        pkgs.mise
       ];
     };
   };

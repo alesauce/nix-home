@@ -9,7 +9,7 @@
     '';
   in {
     config = {
-      extraPackages = with pkgs; [
+      runtimePkgs = with pkgs; [
         bat
         bat-extras.batman
         eza

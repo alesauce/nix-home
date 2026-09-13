@@ -29,7 +29,7 @@
     };
 
     config = {
-      extraPackages = [pkgs.delta pkgs.git-lfs];
+      runtimePkgs = [pkgs.delta pkgs.git-lfs];
 
       settings = {
         user = {

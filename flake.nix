@@ -28,6 +28,24 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+
+    tinted-schemes = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
+    };
   };
 
   outputs = inputs:

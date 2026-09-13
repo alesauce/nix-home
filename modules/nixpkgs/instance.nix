@@ -31,10 +31,9 @@
     };
 
     flake.modules.nixos.base = nixosArgs: {
-      nixpkgs = {
-        pkgs = withSystem nixosArgs.config.hardware.facter.report.system (psArgs: psArgs.pkgs);
-        hostPlatform = nixosArgs.config.hardware.facter.report.system;
-      };
+      # hostPlatform is declared by the host's hardware module; base only
+      # needs it to select the matching perSystem pkgs instance.
+      nixpkgs.pkgs = withSystem nixosArgs.config.nixpkgs.hostPlatform.system (psArgs: psArgs.pkgs);
     };
 
     flake.modules.darwin.base = {

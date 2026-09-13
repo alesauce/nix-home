@@ -1,18 +1,20 @@
 {
   self,
   inputs,
+  config,
   ...
 }: {
   # TODO: restore `enableSecrets = builtins.getEnv "ENABLE_SECRETS" == "true";`
   # let binding when the users/sops blocks below are re-enabled.
   flake.nixosConfigurations.sanderson = inputs.nixpkgs.lib.nixosSystem {
     modules = [
+      config.flake.modules.nixos.base
       self.nixosModules.sandersonConfiguration
-      ({
-        lib,
-        config,
-        ...
-      }: {
+      (_: {
+        # Matches `main`'s existing value — this is a marker of what NixOS
+        # version the box was first installed with, not a version to bump.
+        system.stateVersion = "25.05";
+
         boot = {
           loader.grub = {
             enable = true;
@@ -69,16 +71,18 @@
 
         time.timeZone = "America/Denver";
 
-        # TODO: complete user declaration — needs `isNormalUser = true;`,
-        # `group = "alesauce";`, and `users.groups.alesauce = {};` to satisfy NixOS
-        # assertions. Re-enable once sops-nix is wired up (hashedPasswordFile depends on it).
-        # users = {
-        #   mutableUsers = !enableSecrets;
-        #   users.alesauce = {
-        #     hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;
-        #     initialPassword = lib.mkIf (!enableSecrets) "tempPassword";
-        #   };
-        # };
+        # mutableUsers = true: password stays manually managed (passwd/live
+        # account), no declarative password directive needed yet. Revisit
+        # once sops-nix is wired up and we want the password itself declared.
+        users = {
+          mutableUsers = true;
+          groups.alesauce = {};
+          users.alesauce = {
+            isNormalUser = true;
+            group = "alesauce";
+            extraGroups = ["wheel" "networkmanager"];
+          };
+        };
 
         environment.variables = {
           ENABLE_SECRETS = "true";

@@ -1,0 +1,32 @@
+{
+  inputs,
+  withSystem,
+  ...
+}: {
+  # Bundles the wrapped programs onto zsh's own $PATH via extraPackages, so the
+  # whole shell environment is a single derivation you can drop on any machine
+  # with nix installed — no home-manager activation required.
+  perSystem = {
+    pkgs,
+    self',
+    ...
+  }: {
+    packages.environment = inputs.wrapper-modules.lib.wrapPackage {
+      inherit pkgs;
+      package = self'.packages.zsh;
+      extraPackages = [
+        self'.packages.git
+        self'.packages.tmux
+      ];
+    };
+  };
+
+  flake.modules.homeManager.base = {pkgs, ...}: let
+    currentSystem = pkgs.stdenv.hostPlatform.system;
+    environmentPackage = withSystem currentSystem (
+      {config, ...}: config.packages.environment
+    );
+  in {
+    home.packages = [environmentPackage];
+  };
+}

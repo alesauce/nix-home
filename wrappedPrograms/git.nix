@@ -4,6 +4,13 @@
   lib,
   ...
 }: let
+  # bat/delta name their bundled Catppuccin syntax themes "Catppuccin <Flavor>"
+  # (title case, space-joined) — a naming convention specific to bat, not part
+  # of the general theme.family/flavor pair, so the transform lives here
+  # rather than in modules/theme.nix.
+  titleCase = s: lib.toUpper (builtins.substring 0 1 s) + builtins.substring 1 (-1) s;
+  batThemeName = "${titleCase config.flake.meta.theme.family} ${titleCase config.flake.meta.theme.flavor}";
+
   # Defined as a let binding so perSystem can import it directly
   # without going through self.modules (avoids self-reference cycle).
   # Other flakes consume it via inputs.nix-home.modules.programs.git.main.
@@ -43,7 +50,7 @@
         interactive.diffFilter = "${lib.getExe pkgs.delta} --color-only";
         delta = {
           navigate = true;
-          syntax-theme = "Nord";
+          syntax-theme = batThemeName;
         };
         diff.colorMoved = "default";
         difftool.prompt = true;

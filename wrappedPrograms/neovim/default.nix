@@ -1,4 +1,8 @@
-{inputs, ...}: let
+{
+  inputs,
+  config,
+  ...
+}: let
   neovimModule = {
     imports = [(inputs.import-tree ./_config)];
   };
@@ -13,6 +17,7 @@ in {
     packages.neovim = inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
       inherit pkgs;
       module = neovimModule;
+      extraSpecialArgs.theme = config.flake.meta.theme;
     };
   };
 }

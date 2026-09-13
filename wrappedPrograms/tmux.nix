@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   perSystem = {pkgs, ...}: {
     packages.tmux = inputs.wrapper-modules.wrappers.tmux.wrap {
       inherit pkgs;
@@ -18,11 +22,13 @@
       plugins = with pkgs.tmuxPlugins; [
         {plugin = tmux-fzf;}
         {plugin = vim-tmux-navigator;}
-        {plugin = catppuccin;}
+        {plugin = pkgs.tmuxPlugins.${config.flake.meta.theme.family};}
         {plugin = yank;}
       ];
 
       configBefore = ''
+        set -g @${config.flake.meta.theme.family}_flavor "${config.flake.meta.theme.flavor}"
+
         # reset update-environment to defaults before appending
         set -g update-environment -r
         set -g renumber-windows on

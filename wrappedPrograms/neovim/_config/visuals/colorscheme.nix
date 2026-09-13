@@ -1,11 +1,11 @@
-{
-  colorschemes.catppuccin = {
+{theme, ...}: {
+  colorschemes.${theme.family} = {
     enable = true;
     settings = {
       background = {
-        dark = "mocha";
+        dark = theme.flavor;
       };
-      flavour = "mocha";
+      flavour = theme.flavor;
       integrations = {
         nvimtree = true;
         treesitter = true;

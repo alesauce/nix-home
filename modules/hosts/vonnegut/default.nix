@@ -1,7 +1,9 @@
 {
-  self,
   inputs,
+  config,
   ...
 }: {
-  flake.darwinConfigurations.vonnegut = inputs.nix-darwin.lib.darwinSystem {};
+  flake.darwinConfigurations.vonnegut = inputs.darwin.lib.darwinSystem {
+    modules = [config.flake.modules.darwin.base];
+  };
 }

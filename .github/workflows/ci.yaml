@@ -9,6 +9,10 @@ on:
 
 permissions: {}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   flake: github:${{ github.repository }}/${{ github.sha }}
   nix-conf: |-
@@ -32,6 +36,7 @@ jobs:
         run: nix flake show '${{ env.flake }}'
   get-attrs:
     runs-on: ubuntu-latest
+    needs: [flake-show]
     outputs:
       build: ${{ steps.get-attrs.outputs.build }}
       eval: ${{ steps.get-attrs.outputs.eval }}
@@ -141,9 +146,9 @@ jobs:
   build:
     name: build ${{ matrix.attrs.name }}
     runs-on: ${{ matrix.attrs.runsOn }}
-    needs: [get-attrs]
+    needs: [flake-show, get-attrs]
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         attrs: ${{ fromJson(needs.get-attrs.outputs.build) }}
     env:
@@ -165,7 +170,7 @@ jobs:
             '--retries=3'
           )
           args+=('--flake=${{ env.flake }}#${{ matrix.attrs.attr }}')
-          nix run '${{ env.flake }}#nix-fast-build' -- "${args[@]}"
+          nix run 'github:Mic92/nix-fast-build' -- "${args[@]}"
 
   check:
     runs-on: ubuntu-latest

@@ -13,6 +13,11 @@
     '';
   in {
     config = {
+      env = {
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+      };
+
       runtimePkgs = with pkgs; [
         bat
         bat-extras.batman

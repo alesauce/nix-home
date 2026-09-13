@@ -36,7 +36,10 @@
           email = config.userEmail;
           name = config.userName;
         };
-        core.pager = lib.getExe pkgs.delta;
+        core = {
+          editor = "nvim";
+          pager = lib.getExe pkgs.delta;
+        };
         interactive.diffFilter = "${lib.getExe pkgs.delta} --color-only";
         delta = {
           navigate = true;

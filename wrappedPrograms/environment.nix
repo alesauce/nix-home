@@ -21,6 +21,7 @@
         self'.packages.starship
         self'.packages.htop
         self'.packages.btop
+        self'.packages.neovim
         pkgs.mise
       ];
     };

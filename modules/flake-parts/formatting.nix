@@ -9,6 +9,7 @@
         nixfmt.enable = false;
         prettier.enable = true;
         shfmt.enable = true;
+        stylua.enable = true;
       };
       settings = {
         on-unmatched = "fatal";

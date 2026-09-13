@@ -43,6 +43,11 @@
       url = "github:tinted-theming/schemes";
       flake = false;
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

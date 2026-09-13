@@ -6,7 +6,7 @@ _: {
         (ncurses + "/share/terminfo")
         ((
             if stdenv.hostPlatform.isDarwin
-            then ghostty-bin
+            then ghostty-bin.terminfo
             else ghostty
           )
           + "/share/terminfo")

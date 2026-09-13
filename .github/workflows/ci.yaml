@@ -36,7 +36,6 @@ jobs:
         run: nix flake show '${{ env.flake }}'
   get-attrs:
     runs-on: ubuntu-latest
-    needs: [flake-show]
     outputs:
       build: ${{ steps.get-attrs.outputs.build }}
       eval: ${{ steps.get-attrs.outputs.eval }}

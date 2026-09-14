@@ -1,2 +1,7 @@
 *.png filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text
+
+# Nix's github:sha flake fetcher doesn't run git-lfs smudge filters, so any
+# LFS-tracked asset a build actually reads (not just eval) breaks CI — it
+# gets the pointer text instead of the real file. Committed directly instead.
+modules/looking_across_lake_moraine.jpg -filter -diff -merge -text

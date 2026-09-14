@@ -52,9 +52,14 @@
                 type = lib.types.listOf (lib.types.submodule {
                   options = {
                     modifiers = lib.mkOption {
-                      type = lib.types.listOf (lib.types.enum ["mod" "shift" "ctrl" "alt"]);
+                      type = lib.types.listOf (lib.types.enum ["mod" "meh" "cmd" "shift" "ctrl" "alt"]);
                       default = ["mod"];
-                      description = "Modifier keys held with `key`.";
+                      description = ''
+                        Modifier keys held with `key`. "mod" and "meh" are
+                        each a single logical tier (translated per-tool to
+                        that tool's own combo, e.g. aerospace's hyper/meh
+                        chords) rather than individually-composable keys.
+                      '';
                     };
                     key = lib.mkOption {
                       type = lib.types.str;

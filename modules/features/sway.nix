@@ -1,6 +1,11 @@
 {config, ...}: let
+  # "mod"/"meh" are hyper/meh tiers (a single physical hardware key sends
+  # all these modifiers at once), not individually-composable — see
+  # modules/meta.nix.
   modifierNames = {
-    mod = "Mod4";
+    mod = "Mod4+Shift+Control+Mod1";
+    meh = "Shift+Control+Mod1";
+    cmd = "Mod4";
     shift = "Shift";
     ctrl = "Control";
     alt = "Mod1";

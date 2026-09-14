@@ -41,3 +41,13 @@ in {
     };
   };
 }
+# TODO: `main`'s real graphical/fonts.nix hasn't been ported yet —
+# fonts.packages (monaspace, recursive, nerd-fonts.hack, noto-fonts family),
+# the NixOS-only fontconfig emoji-fallback aliases, and stylix.fonts
+# (sansSerif/serif = ibm-plex, monospace = monaspace, emoji =
+# noto-fonts-color-emoji). Also stylix.image (the real wallpaper,
+# looking_across_lake_moraine.jpg) isn't wired up — blocked on sanderson
+# importing stylix's nixosModule, which is already a known pending item.
+# mt_fuji_across_lake.jpg is a genuinely dead asset on main (verified via
+# `rg`, zero references) — don't bother porting it.
+

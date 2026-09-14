@@ -32,22 +32,22 @@ _: {
       }
 
       {
-        modifiers = ["mod" "shift"];
+        modifiers = ["meh"];
         key = "H";
         action.move = "left";
       }
       {
-        modifiers = ["mod" "shift"];
+        modifiers = ["meh"];
         key = "L";
         action.move = "right";
       }
       {
-        modifiers = ["mod" "shift"];
+        modifiers = ["meh"];
         key = "K";
         action.move = "up";
       }
       {
-        modifiers = ["mod" "shift"];
+        modifiers = ["meh"];
         key = "J";
         action.move = "down";
       }
@@ -58,7 +58,7 @@ _: {
         action.workspace = n;
       }
       {
-        modifiers = ["mod" "shift"];
+        modifiers = ["meh"];
         key = toString n;
         action.moveToWorkspace = n;
       }

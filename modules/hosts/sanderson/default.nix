@@ -10,6 +10,7 @@ in {
     modules = [
       config.flake.modules.nixos.base
       self.nixosModules.sandersonConfiguration
+      self.nixosModules.niri
       ({
         lib,
         config,

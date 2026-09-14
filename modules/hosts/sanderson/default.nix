@@ -47,7 +47,8 @@ in {
             enable = true;
             remotePlay.openFirewall = true;
           };
-          ladybird.enable = true;
+          # TODO: ladybird is currently marked insecure in nixpkgs
+          # ladybird.enable = true;
         };
 
         nix = {

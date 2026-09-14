@@ -11,6 +11,10 @@ in {
       config.flake.modules.nixos.base
       self.nixosModules.sandersonConfiguration
       self.nixosModules.niri
+      self.nixosModules.sway
+      {
+        home-manager.users.${config.flake.meta.owner.username}.imports = [self.homeManagerModules.sway];
+      }
       ({
         lib,
         config,

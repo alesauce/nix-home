@@ -129,18 +129,6 @@ in {
             };
           };
         };
-
-        # stylix.nixosModules.stylix isn't imported yet (see modules/theme.nix)
-        # — its regreet submodule doesn't evaluate against the pinned
-        # nixpkgs-unstable rev (`services.displayManager.regreet` option is
-        # gone/renamed upstream), and it's greeter/DM theming anyway, which
-        # is moot until sanderson has a DE. Revisit alongside that.
-        # stylix.fonts.sizes = {
-        #   desktop = 16;
-        #   applications = 14;
-        #   terminal = 12;
-        #   popups = 16;
-        # };
       })
     ];
   };

@@ -26,10 +26,10 @@
   # key — dispatch on that key instead of testing each possibility in turn.
   niriActionHandlers = {
     spawn = cmd: {spawn-sh = cmd;};
-    closeWindow = _: {close-window = null;};
-    toggleFullscreen = _: {fullscreen-window = null;};
-    focus = dir: {"focus-${directionVerb.${dir}}" = null;};
-    move = dir: {"move-${directionVerb.${dir}}" = null;};
+    closeWindow = _: {close-window = _: {};};
+    toggleFullscreen = _: {fullscreen-window = _: {};};
+    focus = dir: {"focus-${directionVerb.${dir}}" = _: {};};
+    move = dir: {"move-${directionVerb.${dir}}" = _: {};};
     workspace = n: {focus-workspace = n;};
     moveToWorkspace = n: {move-column-to-workspace = n;};
   };

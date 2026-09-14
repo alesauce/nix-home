@@ -4,9 +4,14 @@ on:
   push:
     branches:
       - main
+      - refactor/rebuild-with-dendritic-pattern
   pull_request:
 
 permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   flake: github:${{ github.repository }}/${{ github.sha }}
@@ -43,7 +48,7 @@ jobs:
           extra-conf: ${{ env.nix-conf }}
           determinate: false
       - id: install-jq
-        run: nix profile install '${{ env.flake }}#jq'
+        run: nix profile install 'nixpkgs#jq'
       - id: get-attrs
         run: |
           function summary() {
@@ -52,23 +57,42 @@ jobs:
 
           summary "# CI"
           TMP="$(mktemp -d)"
-          # host packages
-          nix eval --json '${{ env.flake }}#hosts' | jq -c '
-            to_entries
-            | map({
-                name: .key,
-                evalOnly: false,
-                hostPlatform: .value.hostPlatform,
-                attr: "packages.\(.value.hostPlatform).\(.key)"
-            })
-            | map(
-                if .hostPlatform  == "x86_64-linux" then .runsOn="ubuntu-latest"
-                elif .hostPlatform == "aarch64-linux" then .runsOn="ubuntu-24.04-arm"
-                elif .hostPlatform == "x86_64-darwin" then .runsOn="macos-13"
-                elif .hostPlatform == "aarch64-darwin" then .runsOn="macos-latest"
-                else .evalOnly=true | .runsOn="ubuntu-latest"
-                end
+
+          # nixosConfigurations.<name> -> {name, hostPlatform, attr}
+          nix eval --json '${{ env.flake }}#nixosConfigurations' \
+            --apply 'builtins.mapAttrs (n: c: c.config.nixpkgs.hostPlatform.system)' \
+            | jq -c '
+              to_entries
+              | map({
+                  name: .key,
+                  hostPlatform: .value,
+                  attr: "nixosConfigurations.\(.key).config.system.build.toplevel"
+              })
+            ' >"$TMP/nixosHosts.json"
+
+          # darwinConfigurations.<name> -> {name, hostPlatform, attr}
+          nix eval --json '${{ env.flake }}#darwinConfigurations' \
+            --apply 'builtins.mapAttrs (n: c: c.pkgs.stdenv.hostPlatform.system)' \
+            | jq -c '
+              to_entries
+              | map({
+                  name: .key,
+                  hostPlatform: .value,
+                  attr: "darwinConfigurations.\(.key).system"
+              })
+            ' >"$TMP/darwinHosts.json"
+
+          # join, then assign a runner (or mark eval-only when no runner fits)
+          jq -c -s add "$TMP/nixosHosts.json" "$TMP/darwinHosts.json" | jq -c '
+            map(
+              if .hostPlatform == "x86_64-linux" then .runsOn="ubuntu-latest"
+              elif .hostPlatform == "aarch64-linux" then .runsOn="ubuntu-24.04-arm"
+              elif .hostPlatform == "x86_64-darwin" then .runsOn="macos-13"
+              elif .hostPlatform == "aarch64-darwin" then .runsOn="macos-latest"
+              else .evalOnly=true | .runsOn="ubuntu-latest"
+              end
             )
+            | map(.evalOnly //= false)
           ' >"$TMP/hostAttrs.json"
 
           # dev shells
@@ -121,9 +145,9 @@ jobs:
   build:
     name: build ${{ matrix.attrs.name }}
     runs-on: ${{ matrix.attrs.runsOn }}
-    needs: [ get-attrs ]
+    needs: [flake-show, get-attrs]
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         attrs: ${{ fromJson(needs.get-attrs.outputs.build) }}
     env:
@@ -145,11 +169,11 @@ jobs:
             '--retries=3'
           )
           args+=('--flake=${{ env.flake }}#${{ matrix.attrs.attr }}')
-          nix run '${{ env.flake }}#nix-fast-build' -- "${args[@]}"
+          nix run 'github:Mic92/nix-fast-build' -- "${args[@]}"
 
   check:
     runs-on: ubuntu-latest
-    needs: [ flake-show, build ]
+    needs: [flake-show, build]
     if: always()
     steps:
       - uses: re-actors/alls-green@release/v1

@@ -1,4 +1,5 @@
 # My systems defined via Nix [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
 My Nix configs for all my machines. This repo was particularly inspired by [lovesegfault's nix-config](https://github.com/lovesegfault/nix-config/tree/master), if you can't tell from the nearly identical structure and content :)
 
 For the configurations' entry points see the individual [hosts], as well as [flake.nix]. For adding overlays see [overlays](#Adding-overlays).
@@ -22,7 +23,7 @@ For the configurations' entry points see the individual [hosts], as well as [fla
 
 For macOS hosts using `nix-darwin`:
 
-```console 
+```console
 $ darwin-rebuild --flake "github:alesauce/nix-home#hemingway" switch
 ```
 

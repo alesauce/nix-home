@@ -9,11 +9,12 @@
     config = {
       allowUnfreePredicate = lib.mkOption {
         type = lib.types.functionTo lib.types.bool;
-        default = _: false;
+        default = pkg: builtins.elem (lib.getName pkg) config.nixpkgs.config.allowUnfreePackages;
       };
       allowUnfreePackages = lib.mkOption {
         type = lib.types.listOf lib.types.singleLineStr;
         default = [];
+        description = "Specific unfree packages to allow, by name, rather than blanket-allowing all unfree packages.";
       };
     };
     overlays = lib.mkOption {

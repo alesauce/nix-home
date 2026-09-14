@@ -75,6 +75,10 @@
             package = pkgs.nixVersions.latest;
             inherit (config.nix) gc;
             settings = config.nix.settings // config.nix.daemonSettings;
+            registry = {
+              nixpkgs.flake = inputs.nixpkgs;
+              p.flake = inputs.nixpkgs;
+            };
           }
           {
             settings = {
@@ -95,10 +99,13 @@
             package = pkgs.nixVersions.latest;
             inherit (config.nix) gc;
             settings = config.nix.settings // config.nix.daemonSettings;
+            registry = {
+              nixpkgs.flake = inputs.nixpkgs;
+              p.flake = inputs.nixpkgs;
+            };
           }
           {
-            # TODO: set up config.meta with username here
-            settings.trusted-users = config.nix.daemonSettings.trusted-users ++ ["alesauce"];
+            settings.trusted-users = config.nix.daemonSettings.trusted-users ++ [config.flake.meta.owner.username];
             daemonIOLowPriority = false;
             nixPath = ["nixpkgs=/run/current-system/sw/nixpkgs"];
           }

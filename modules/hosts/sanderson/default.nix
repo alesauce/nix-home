@@ -95,24 +95,17 @@ in {
 
         time.timeZone = "America/Denver";
 
-        # Matches `main`'s existing setup — same uid/gid so ownership of the
-        # real box's home dir doesn't shift. mutableUsers stays true (password
-        # managed by hand) until ENABLE_SECRETS=true is passed at eval time
-        # (see the sops block below), at which point the password comes from
-        # the encrypted secret instead.
         users = {
           mutableUsers = !enableSecrets;
-          groups.alesauce.gid = config.users.users.alesauce.uid;
+          groups.alesauce.gid = 8888;
           users.alesauce = {
             isNormalUser = true;
             createHome = true;
             description = "Alexander Sauceda";
             group = "alesauce";
             extraGroups = ["wheel" "networkmanager" "dialout" "audio"];
-            uid = 8888;
-            shell = pkgs.zsh;
-            # zsh is wrapped separately (wrappedPrograms/zsh) rather than via
-            # programs.zsh, so skip the check that wants that module enabled.
+            uid = 1000;
+            shell = self.packages.${pkgs.stdenv.hostPlatform.system}.environment;
             ignoreShellProgramCheck = true;
             hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;
             initialPassword = lib.mkIf (!enableSecrets) "tempPassword";

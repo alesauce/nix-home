@@ -14,6 +14,7 @@ in {
       self.nixosModules.sandersonConfiguration
       self.nixosModules.niri
       self.nixosModules.sway
+      self.nixosModules.greetd
       {
         home-manager.users.${config.flake.meta.owner.username}.imports = [
           self.homeManagerModules.sway
@@ -110,9 +111,7 @@ in {
             group = "alesauce";
             extraGroups = ["wheel" "networkmanager" "dialout" "audio"];
             uid = 8888;
-            shell = pkgs.zsh;
-            # zsh is wrapped separately (wrappedPrograms/zsh) rather than via
-            # programs.zsh, so skip the check that wants that module enabled.
+            shell = self.packages.${pkgs.stdenv.hostPlatform.system}.environment;
             ignoreShellProgramCheck = true;
             hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;
             initialPassword = lib.mkIf (!enableSecrets) "tempPassword";

@@ -42,6 +42,64 @@
             };
           };
         };
+
+        windowManager = lib.mkOption {
+          description = "Cross-platform window-manager configuration. Written once here, translated into each compositor/WM's own native config by that tool's own module (e.g. modules/features/niri.nix).";
+          type = lib.types.submodule {
+            options = {
+              keybinds = lib.mkOption {
+                description = "Keybindings, in tool-agnostic form.";
+                type = lib.types.listOf (lib.types.submodule {
+                  options = {
+                    modifiers = lib.mkOption {
+                      type = lib.types.listOf (lib.types.enum ["mod" "shift" "ctrl" "alt"]);
+                      default = ["mod"];
+                      description = "Modifier keys held with `key`.";
+                    };
+                    key = lib.mkOption {
+                      type = lib.types.str;
+                      description = ''The non-modifier key, e.g. "Return", "h", "1".'';
+                    };
+                    action = lib.mkOption {
+                      description = "What this keybinding does.";
+                      type = lib.types.attrTag {
+                        spawn = lib.mkOption {
+                          type = lib.types.str;
+                          description = "Shell command to spawn.";
+                        };
+                        closeWindow = lib.mkOption {
+                          type = lib.types.submodule {};
+                          description = "Close the focused window.";
+                        };
+                        toggleFullscreen = lib.mkOption {
+                          type = lib.types.submodule {};
+                          description = "Toggle fullscreen on the focused window.";
+                        };
+                        focus = lib.mkOption {
+                          type = lib.types.enum ["left" "right" "up" "down"];
+                          description = "Move focus in a direction.";
+                        };
+                        move = lib.mkOption {
+                          type = lib.types.enum ["left" "right" "up" "down"];
+                          description = "Move the focused window/column in a direction.";
+                        };
+                        workspace = lib.mkOption {
+                          type = lib.types.ints.positive;
+                          description = "Switch to workspace N.";
+                        };
+                        moveToWorkspace = lib.mkOption {
+                          type = lib.types.ints.positive;
+                          description = "Send the focused window/column to workspace N.";
+                        };
+                      };
+                    };
+                  };
+                });
+                default = [];
+              };
+            };
+          };
+        };
       };
     };
   };

@@ -96,14 +96,9 @@ in {
 
         time.timeZone = "America/Denver";
 
-        # Matches `main`'s existing setup — same uid/gid so ownership of the
-        # real box's home dir doesn't shift. mutableUsers stays true (password
-        # managed by hand) until ENABLE_SECRETS=true is passed at eval time
-        # (see the sops block below), at which point the password comes from
-        # the encrypted secret instead.
         users = {
           mutableUsers = !enableSecrets;
-          groups.alesauce.gid = config.users.users.alesauce.uid;
+          groups.alesauce.gid = 8888;
           users.alesauce = {
             isNormalUser = true;
             createHome = true;

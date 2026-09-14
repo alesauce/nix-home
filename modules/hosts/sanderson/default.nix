@@ -14,7 +14,6 @@ in {
       self.nixosModules.sandersonConfiguration
       self.nixosModules.niri
       self.nixosModules.sway
-      self.nixosModules.greetd
       {
         home-manager.users.${config.flake.meta.owner.username}.imports = [
           self.homeManagerModules.sway

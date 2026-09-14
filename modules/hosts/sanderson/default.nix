@@ -13,7 +13,10 @@ in {
       self.nixosModules.niri
       self.nixosModules.sway
       {
-        home-manager.users.${config.flake.meta.owner.username}.imports = [self.homeManagerModules.sway];
+        home-manager.users.${config.flake.meta.owner.username}.imports = [
+          self.homeManagerModules.sway
+          self.homeManagerModules.ghostty
+        ];
       }
       ({
         lib,
@@ -37,13 +40,13 @@ in {
           steam-hardware.enable = true;
         };
 
-        # TODO: `main`'s real graphical/nixos.nix also enables
-        # `programs.steam` (with remotePlay.openFirewall) and
-        # `programs.ladybird` — only the steam *hardware* support made it
-        # over so far, not the actual steam program, and ladybird hasn't
-        # been ported at all. (cosmic-greeter/cosmic desktop from that same
-        # file is intentionally NOT ported — superseded by the niri/sway
-        # decision.) See "Nix-Home Window Manager Abstraction" vault note.
+        programs = {
+          steam = {
+            enable = true;
+            remotePlay.openFirewall = true;
+          };
+          ladybird.enable = true;
+        };
 
         nix = {
           gc = {

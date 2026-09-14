@@ -1,4 +1,5 @@
 {
+  self,
   inputs,
   config,
   ...
@@ -10,7 +11,10 @@
       backupFileExtension = "backup";
       useGlobalPkgs = true;
       useUserPackages = true;
-      users.${config.flake.meta.owner.username}.imports = [config.flake.modules.homeManager.base];
+      users.${config.flake.meta.owner.username}.imports = [
+        config.flake.modules.homeManager.base
+        self.homeManagerModules.ghostty
+      ];
     };
   };
 }

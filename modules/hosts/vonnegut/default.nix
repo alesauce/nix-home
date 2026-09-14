@@ -32,16 +32,6 @@
         # `brew install --cask omniwm`, so `homebrew.casks = ["omniwm"];`
         # here whenever this gets picked up. Waiting to see how niri feels
         # on Linux first before investing in a second scrolling WM.
-
-        # TODO: `main`'s real graphical/darwin.nix has a bunch of real,
-        # tuned machine polish that hasn't been ported to this branch yet:
-        # homebrew casks (aldente/appcleaner/brave-browser/firefox@nightly/
-        # ghostty/keymapp/obsidian/raycast/reader, all greedy=true),
-        # security.pam.services.sudo_local.touchIdAuth, and system.defaults
-        # for dock/finder/menuExtraClock/NSGlobalDomain/screencapture/
-        # spaces, plus system.keyboard (Colemak input source, caps->escape).
-        # See "Nix-Home Window Manager Abstraction" vault note for the full
-        # itemized list.
       })
     ];
   };

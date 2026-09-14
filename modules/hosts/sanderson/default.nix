@@ -110,7 +110,7 @@ in {
             description = "Alexander Sauceda";
             group = "alesauce";
             extraGroups = ["wheel" "networkmanager" "dialout" "audio"];
-            uid = 8888;
+            uid = 1000;
             shell = self.packages.${pkgs.stdenv.hostPlatform.system}.environment;
             ignoreShellProgramCheck = true;
             hashedPasswordFile = lib.mkIf enableSecrets config.sops.secrets.alesauce_passwd.path;

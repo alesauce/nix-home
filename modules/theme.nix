@@ -32,22 +32,31 @@ in {
       imports = [inputs.stylix.darwinModules.stylix];
     };
 
-    modules.homeManager.base = {
+    modules.homeManager.base = {pkgs, ...}: {
       imports = [inputs.stylix.homeModules.stylix];
       stylix = {
         enable = true;
         base16Scheme = base16SchemeFile;
+        image = ./looking_across_lake_moraine.jpg;
+        fonts = {
+          sansSerif = {
+            package = pkgs.ibm-plex;
+            name = "IBM Plex Sans";
+          };
+          serif = {
+            package = pkgs.ibm-plex;
+            name = "IBM Plex Serif";
+          };
+          monospace = {
+            package = pkgs.monaspace;
+            name = "Argon Monaspace Font";
+          };
+          emoji = {
+            package = pkgs.noto-fonts-color-emoji;
+            name = "Noto Color Emoji";
+          };
+        };
       };
     };
   };
 }
-# TODO: `main`'s real graphical/fonts.nix hasn't been ported yet —
-# fonts.packages (monaspace, recursive, nerd-fonts.hack, noto-fonts family),
-# the NixOS-only fontconfig emoji-fallback aliases, and stylix.fonts
-# (sansSerif/serif = ibm-plex, monospace = monaspace, emoji =
-# noto-fonts-color-emoji). Also stylix.image (the real wallpaper,
-# looking_across_lake_moraine.jpg) isn't wired up — blocked on sanderson
-# importing stylix's nixosModule, which is already a known pending item.
-# mt_fuji_across_lake.jpg is a genuinely dead asset on main (verified via
-# `rg`, zero references) — don't bother porting it.
-

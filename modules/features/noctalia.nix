@@ -11,7 +11,7 @@
         settings = {
           wallpaper = {
             enabled = true;
-            fill_mode = "fit";
+            fill_mode = "repeat";
             default.path = "${config.flake.meta.theme.wallpaper}";
           };
         };

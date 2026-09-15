@@ -75,7 +75,7 @@ in {
       binds =
         niriBinds
         // {
-          "Mod+S".action.spawn-sh = "${lib.getExe inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default} ipc call launcher toggle";
+          "Mod+Space".action.spawn-sh = "${lib.getExe inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default} msg panel-toggle launcher";
         };
     };
   };

@@ -1,9 +1,11 @@
 _: {
   flake.modules = {
-    homeManager.base = {pkgs, ...}: {
-      home.packages = with pkgs; [
-        xwayland-satellite
-      ];
+    homeManager.base = {
+      pkgs,
+      lib,
+      ...
+    }: {
+      home.packages = lib.mkIf pkgs.stdenv.hostPlatform.isLinux [pkgs.xwayland-satellite];
     };
     nixos.base = {lib, ...}: {
       documentation = {

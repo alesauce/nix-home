@@ -12,7 +12,7 @@ jobs:
     outputs:
       flake-inputs: ${{ steps.get-flake-inputs.outputs.flake-inputs }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           lfs: false
           sparse-checkout: flake.lock
@@ -29,19 +29,25 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJson(needs.get-flake-inputs.outputs.flake-inputs) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           lfs: false
-      - uses: DeterminateSystems/nix-installer-action@v19
+      - uses: DeterminateSystems/nix-installer-action@3138316df39ed29be04236d7ffc686fa525866aa # v23
         with:
           nix-installer-branch: main
           extra-conf: accept-flake-config = true
+          determinate: false
       - run: git config --global user.email "alebot@alexandersauceda.dev"
       - run: git config --global user.name "alebot"
-      - uses: cpcloud/flake-update-action@v2.0.1
+      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        id: app-token
+        with:
+          app-id: ${{ secrets.UPDATE_FLAKES_APP_ID }}
+          private-key: ${{ secrets.UPDATE_FLAKES_APP_PRIVATE_KEY }}
+      - uses: cpcloud/flake-update-action@10ccab3efc5659d7562dd2368990e081f3ee7ac9 # v2.0.1
         with:
           dependency: ${{ matrix.flake }}
-          pull-request-token: ${{ secrets.PRTOKEN }}
+          pull-request-token: ${{ steps.app-token.outputs.token }}
           pull-request-author: alebot <alebot@alexandersauceda.dev>
           delete-branch: true
           github-token: ${{ secrets.GITHUB_TOKEN }}

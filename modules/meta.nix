@@ -39,6 +39,10 @@
                 type = lib.types.attrsOf (lib.types.strMatching "[0-9a-fA-F]{6}");
                 description = "The 16 base16 colors (base00..base0F), as lowercase hex strings without a leading '#', parsed from the family/flavor's yaml file.";
               };
+              wallpaper = lib.mkOption {
+                type = lib.types.path;
+                description = "The wallpaper image, applied directly by stylix's own targets (e.g. sway) and spawned manually by tools stylix has no target for (e.g. niri).";
+              };
             };
           };
         };

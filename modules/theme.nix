@@ -2,6 +2,7 @@
   themeFamily = "catppuccin";
   themeFlavor = "mocha";
   base16SchemeFile = "${inputs.tinted-schemes}/base16/${themeFamily}-${themeFlavor}.yaml";
+  wallpaper = ./looking_across_lake_moraine.jpg;
 
   parseBase16 = file: let
     lines = builtins.split "\n" (builtins.readFile file);
@@ -26,6 +27,7 @@ in {
       family = themeFamily;
       flavor = themeFlavor;
       palette = parseBase16 base16SchemeFile;
+      inherit wallpaper;
     };
 
     modules = {
@@ -47,8 +49,9 @@ in {
         imports = [inputs.stylix.homeModules.stylix];
         stylix = {
           enable = true;
+          polarity = "dark";
           base16Scheme = base16SchemeFile;
-          image = ./looking_across_lake_moraine.jpg;
+          image = wallpaper;
           fonts = {
             sansSerif = {
               package = pkgs.ibm-plex;

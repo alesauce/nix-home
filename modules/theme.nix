@@ -2,6 +2,7 @@
   themeFamily = "catppuccin";
   themeFlavor = "mocha";
   base16SchemeFile = "${inputs.tinted-schemes}/base16/${themeFamily}-${themeFlavor}.yaml";
+  wallpaper = ./looking_across_lake_moraine.jpg;
 
   parseBase16 = file: let
     lines = builtins.split "\n" (builtins.readFile file);
@@ -26,34 +27,49 @@ in {
       family = themeFamily;
       flavor = themeFlavor;
       palette = parseBase16 base16SchemeFile;
+      inherit wallpaper;
     };
 
-    modules.darwin.base = {
-      imports = [inputs.stylix.darwinModules.stylix];
-    };
+    modules = {
+      darwin.base = {
+        imports = [inputs.stylix.darwinModules.stylix];
+      };
 
-    modules.homeManager.base = {pkgs, ...}: {
-      imports = [inputs.stylix.homeModules.stylix];
-      stylix = {
-        enable = true;
-        base16Scheme = base16SchemeFile;
-        image = ./looking_across_lake_moraine.jpg;
-        fonts = {
-          sansSerif = {
-            package = pkgs.ibm-plex;
-            name = "IBM Plex Sans";
-          };
-          serif = {
-            package = pkgs.ibm-plex;
-            name = "IBM Plex Serif";
-          };
-          monospace = {
-            package = pkgs.monaspace;
-            name = "Argon Monaspace Font";
-          };
-          emoji = {
-            package = pkgs.noto-fonts-color-emoji;
-            name = "Noto Color Emoji";
+      nixos.base = {
+        imports = [inputs.stylix.nixosModules.stylix];
+        stylix.fonts.sizes = {
+          desktop = 16;
+          applications = 14;
+          terminal = 12;
+          popups = 16;
+        };
+      };
+
+      homeManager.base = {pkgs, ...}: {
+        imports = [inputs.stylix.homeModules.stylix];
+        stylix = {
+          enable = true;
+          autoEnable = true;
+          polarity = "dark";
+          base16Scheme = base16SchemeFile;
+          image = wallpaper;
+          fonts = {
+            sansSerif = {
+              package = pkgs.ibm-plex;
+              name = "IBM Plex Sans";
+            };
+            serif = {
+              package = pkgs.ibm-plex;
+              name = "IBM Plex Serif";
+            };
+            monospace = {
+              package = pkgs.monaspace;
+              name = "Argon Monaspace Font";
+            };
+            emoji = {
+              package = pkgs.noto-fonts-color-emoji;
+              name = "Noto Color Emoji";
+            };
           };
         };
       };

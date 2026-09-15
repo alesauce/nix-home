@@ -65,7 +65,7 @@ in {
   }: {
     programs.niri.settings = {
       spawn-at-startup = [
-        {argv = ["swaybg" "-i" "${config.flake.meta.theme.wallpaper}" "-m" "fill"];}
+        {argv = ["swaybg" "-i" "${config.flake.meta.theme.wallpaper}" "-m" "fit"];}
         {argv = [(lib.getExe inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default)];}
       ];
 

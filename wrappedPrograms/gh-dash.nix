@@ -21,7 +21,7 @@
     };
   };
 in {
-  flake.modules.programs.gh-dash.main = ghDashModule;
+  flake.modules.programs.gh-dash = ghDashModule;
 
   perSystem = {pkgs, ...}: {
     packages.gh-dash = inputs.wrapper-modules.lib.wrapPackage {

@@ -29,7 +29,7 @@
     };
   };
 in {
-  flake.modules.programs.claude-code.main = claudeCodeModule;
+  flake.modules.programs.claude-code = claudeCodeModule;
 
   nixpkgs.overlays = [inputs.claude-code-nix.overlays.default];
   nixpkgs.config.allowUnfreePackages = ["claude-code"];

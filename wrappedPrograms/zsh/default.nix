@@ -73,7 +73,7 @@
     };
   };
 in {
-  flake.modules.programs.zsh.main = zshModule;
+  flake.modules.programs.zsh = zshModule;
 
   perSystem = {pkgs, ...}: {
     packages.zsh = inputs.wrapper-modules.wrappers.zsh.wrap {

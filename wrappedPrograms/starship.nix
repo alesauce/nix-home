@@ -31,7 +31,7 @@
     };
   };
 in {
-  flake.modules.programs.starship.main = starshipModule;
+  flake.modules.programs.starship = starshipModule;
 
   perSystem = {pkgs, ...}: {
     packages.starship = inputs.wrapper-modules.wrappers.starship.wrap {

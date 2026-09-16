@@ -26,6 +26,7 @@
           self'.packages.direnv
           self'.packages.gh
           self'.packages.gh-dash
+          self'.packages.claude-code
           pkgs.mise
           pkgs.duckdb
           pkgs.uv

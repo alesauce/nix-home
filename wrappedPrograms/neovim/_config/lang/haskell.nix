@@ -1,5 +1,16 @@
-{pkgs, ...}: {
-  config = {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
+  options.languages.haskell.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable Haskell language support in neovim.";
+  };
+
+  config = lib.mkIf config.languages.haskell.enable {
     plugins.haskell-scope-highlighting.enable = true;
     extraPlugins = with pkgs.vimPlugins; [
       # https://github.com/mrcjkb/haskell-tools.nvim

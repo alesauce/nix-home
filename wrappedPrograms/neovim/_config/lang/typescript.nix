@@ -1,5 +1,15 @@
 {
-  config = {
+  lib,
+  config,
+  ...
+}: {
+  options.languages.typescript.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable TypeScript language support in neovim.";
+  };
+
+  config = lib.mkIf config.languages.typescript.enable {
     autoCmd = [
       {
         event = "FileType";

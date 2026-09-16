@@ -5,7 +5,7 @@
   # blind; add settings here once you know what you want htop to show.
   htopModule = _: {};
 in {
-  flake.modules.programs.htop.main = htopModule;
+  flake.modules.programs.htop = htopModule;
 
   perSystem = {pkgs, ...}: {
     packages.htop = inputs.wrapper-modules.wrappers.htop.wrap {

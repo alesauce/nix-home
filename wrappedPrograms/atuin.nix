@@ -10,7 +10,7 @@
     };
   };
 in {
-  flake.modules.programs.atuin.main = atuinModule;
+  flake.modules.programs.atuin = atuinModule;
 
   perSystem = {pkgs, ...}: {
     packages.atuin = inputs.wrapper-modules.wrappers.atuin.wrap {

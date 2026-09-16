@@ -5,7 +5,7 @@
   # something from btop's default behavior.
   btopModule = _: {};
 in {
-  flake.modules.programs.btop.main = btopModule;
+  flake.modules.programs.btop = btopModule;
 
   perSystem = {pkgs, ...}: {
     packages.btop = inputs.wrapper-modules.wrappers.btop.wrap {

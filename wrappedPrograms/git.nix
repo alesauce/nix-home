@@ -13,7 +13,7 @@
 
   # Defined as a let binding so perSystem can import it directly
   # without going through self.modules (avoids self-reference cycle).
-  # Other flakes consume it via inputs.nix-home.modules.programs.git.main.
+  # Other flakes consume it via inputs.nix-home.modules.programs.git.
   gitModule = {
     config,
     lib,
@@ -62,7 +62,7 @@
     };
   };
 in {
-  flake.modules.programs.git.main = gitModule;
+  flake.modules.programs.git = gitModule;
 
   perSystem = {pkgs, ...}: {
     packages.git = inputs.wrapper-modules.wrappers.git.wrap {

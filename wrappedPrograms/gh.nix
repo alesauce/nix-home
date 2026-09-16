@@ -21,7 +21,7 @@
     };
   };
 in {
-  flake.modules.programs.gh.main = ghModule;
+  flake.modules.programs.gh = ghModule;
 
   perSystem = {pkgs, ...}: {
     packages.gh = inputs.wrapper-modules.lib.wrapPackage {

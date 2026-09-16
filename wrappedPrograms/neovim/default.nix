@@ -7,7 +7,7 @@
     imports = [(inputs.import-tree ./_config)];
   };
 in {
-  flake.modules.programs.neovim.main = neovimModule;
+  flake.modules.programs.neovim = neovimModule;
 
   perSystem = {
     pkgs,

@@ -6,7 +6,7 @@
 }: let
   enableSecrets = builtins.getEnv "ENABLE_SECRETS" == "true";
 in {
-  nixpkgs.config.allowUnfreePackages = ["steam" "steam-unwrapped"];
+  nixpkgs.config.allowUnfreePackages = ["steam" "steam-unwrapped" "discord"];
 
   flake.nixosConfigurations.sanderson = inputs.nixpkgs.lib.nixosSystem {
     modules = [
@@ -50,6 +50,8 @@ in {
           # TODO: ladybird is currently marked insecure in nixpkgs
           # ladybird.enable = true;
         };
+
+        environment.systemPackages = [pkgs.discord];
 
         nix = {
           gc = {

@@ -15,7 +15,7 @@
     };
   };
 in {
-  flake.modules.programs.direnv.main = direnvModule;
+  flake.modules.programs.direnv = direnvModule;
 
   perSystem = {pkgs, ...}: {
     packages.direnv = inputs.wrapper-modules.lib.wrapPackage {

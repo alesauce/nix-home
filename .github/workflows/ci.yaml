@@ -37,6 +37,8 @@ jobs:
         run: nix flake show '${{ env.flake }}'
   get-attrs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       build: ${{ steps.get-attrs.outputs.build }}
       eval: ${{ steps.get-attrs.outputs.eval }}
@@ -51,6 +53,8 @@ jobs:
       - id: install-jq
         run: nix profile install 'nixpkgs#jq'
       - id: get-attrs
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           function summary() {
             printf '%s\n' "${*}" >> "$GITHUB_STEP_SUMMARY"
@@ -108,6 +112,37 @@ jobs:
 
           # join shell and host attrs
           jq -c -s add "$TMP/hostAttrs.json" "$TMP/shellAttrs.json" >"$TMP/attrs.json"
+
+          if [[ '${{ github.event_name }}' == 'pull_request' ]]; then
+            base='${{ github.event.pull_request.base.sha }}'
+            head='${{ github.event.pull_request.head.sha }}'
+          else
+            base='${{ github.event.before }}'
+            head='${{ github.sha }}'
+          fi
+
+          neovim_changed=false
+          if [[ -n "$base" && "$base" != "0000000000000000000000000000000000000000" ]]; then
+            if gh api "repos/${{ github.repository }}/compare/$base...$head" --jq '.files[].filename' \
+              | grep -q '^wrappedPrograms/neovim/'; then
+              neovim_changed=true
+            fi
+          else
+            neovim_changed=true
+          fi
+
+          if [[ "$neovim_changed" == "true" ]]; then
+            summary "- 🔍 \`wrappedPrograms/neovim/\` changed — adding full-language-set build leg"
+            jq -n -c '[{
+              name: "neovim-languages",
+              hostPlatform: "x86_64-linux",
+              attr: "packages.x86_64-linux.neovim-full",
+              runsOn: "ubuntu-latest",
+              evalOnly: false
+            }]' >"$TMP/neovimFullAttr.json"
+            jq -c -s add "$TMP/attrs.json" "$TMP/neovimFullAttr.json" >"$TMP/attrs2.json"
+            mv "$TMP/attrs2.json" "$TMP/attrs.json"
+          fi
 
           # warn about eval-only attrs
           read -r -a evalOnlyAttrs < \

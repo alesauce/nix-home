@@ -1,5 +1,15 @@
 {
-  config = {
+  lib,
+  config,
+  ...
+}: {
+  options.languages.nix.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Enable Nix language support in neovim.";
+  };
+
+  config = lib.mkIf config.languages.nix.enable {
     autoCmd = [
       {
         event = "FileType";

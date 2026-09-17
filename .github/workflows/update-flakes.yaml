@@ -34,7 +34,6 @@ jobs:
           lfs: false
       - uses: DeterminateSystems/nix-installer-action@3138316df39ed29be04236d7ffc686fa525866aa # v23
         with:
-          nix-installer-branch: main
           extra-conf: accept-flake-config = true
           determinate: false
       - run: git config --global user.email "alebot@alexandersauceda.dev"

@@ -19,7 +19,7 @@ nix build .#darwinConfigurations.vonnegut.system
 nix fmt
 
 # Run linters manually (also run as pre-commit hooks)
-nix run .#checks.$(nix eval --impure --expr builtins.currentSystem --raw).pre-commit-check
+nix run .#checks.$(nix eval --impure --expr builtins.currentSystem --raw).pre-commit
 ```
 
 Pre-commit hooks enforce: `deadnix`, `statix`, `nil` (LSP lint), `treefmt`, `shellcheck`, `actionlint`.
@@ -55,12 +55,9 @@ Cross-cutting config (nix settings, nixpkgs instance, home-manager wiring) lives
 ### Adding a new host
 
 1. Create `modules/hosts/<hostname>/default.nix` defining `flake.nixosConfigurations.<hostname>` or `flake.darwinConfigurations.<hostname>`
-2. Import `self.nixosModules.base` (aggregates all `flake.modules.nixos.base` contributions) or darwin equivalent
+2. Import `config.flake.modules.nixos.base` (or `.darwin.base`) directly into the `modules` list — see `modules/hosts/sanderson/default.nix` / `modules/hosts/vonnegut/default.nix` for the real pattern
 3. No registration needed — `import-tree` picks it up automatically
 
 ### Adding home-manager user config
 
-Home-manager wiring is not yet complete on this branch. When ready:
-
-- Add `home-manager.users.${username}.imports = [ ... ]` to `modules/home-manager/nixos.nix` and `darwin.nix`
-- `flake.modules.homeManager.base` contains the base HM module to import there
+Already wired for both hosts. `modules/home-manager/{nixos,darwin}.nix` set `home-manager.users.${username}.imports = [config.flake.modules.homeManager.base]` at the system level; a host's own `default.nix` adds further HM modules on top (see sanderson's `home-manager.users.${owner.username}.imports = [self.homeManagerModules.ghostty ...]` block).

@@ -34,13 +34,13 @@
     flake.modules.nixos.base = nixosArgs: {
       # hostPlatform is declared by the host's hardware module; base only
       # needs it to select the matching perSystem pkgs instance.
-      nixpkgs.pkgs = withSystem nixosArgs.config.nixpkgs.hostPlatform.system (psArgs: psArgs.pkgs);
+      nixpkgs.pkgs = lib.mkDefault (withSystem nixosArgs.config.nixpkgs.hostPlatform.system (psArgs: psArgs.pkgs));
     };
 
     flake.modules.darwin.base = {
       nixpkgs = rec {
-        hostPlatform = "aarch64-darwin";
-        pkgs = withSystem hostPlatform (psArgs: psArgs.pkgs);
+        hostPlatform = lib.mkDefault "aarch64-darwin";
+        pkgs = lib.mkDefault withSystem hostPlatform (psArgs: psArgs.pkgs);
       };
     };
   };

@@ -58,12 +58,7 @@ contributors (`modules/{aspell,fonts,sops,xdg,terminfo}.nix` — `rg -n
 "flake.modules.(nixos|darwin|homeManager).base" modules/` for the current full list, it
 changes).
 
-**Not a clean slate** — verified empirically against a standalone downstream flake: importing
-`nixos.base` still resolves `config.nixpkgs.pkgs` to _nix-home's own_ `pkgs` instance (its
-overlays, its `allowUnfreePackages`), because `modules/nixpkgs/instance.nix` closes over
-flake-parts' `withSystem` at the point nix-home's own `flake.nix` evaluates it — the closure
-doesn't re-resolve against the consumer's own `nixpkgs` input. Same story for
-`flake.meta.owner` / `flake.meta.theme` (`modules/owner.nix`, `modules/theme.nix`) — plain
+**Not a clean slate** — verified empirically against a standalone downstream flake: `flake.meta.owner` / `flake.meta.theme` (`modules/owner.nix`, `modules/theme.nix`) — plain
 flake-level values, not options a downstream import can override. If you need your own
 identity or your own `pkgs`, don't import `base` wholesale; cherry-pick individual
 contributing files instead.

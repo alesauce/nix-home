@@ -6,7 +6,7 @@
 }: let
   enableSecrets = builtins.getEnv "ENABLE_SECRETS" == "true";
 in {
-  nixpkgs.config.allowUnfreePackages = ["steam" "steam-unwrapped" "discord"];
+  nixpkgs.config.allowUnfreePackages = ["steam" "steam-unwrapped" "discord" "discord-unwrapped"];
 
   flake.nixosConfigurations.sanderson = inputs.nixpkgs.lib.nixosSystem {
     modules = [
